@@ -5,13 +5,13 @@
 Pod::Spec.new do |s|
   s.name             = 'flutter_gromore_ads'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = '一款优质的 Flutter 广告插件（Gromore、穿山甲）'
   s.description      = <<-DESC
-A new flutter plugin project.
+  FlutterAds 致力于构建优质的 Flutter 广告插件
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/FlutterAds'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'ZeroFlutter' => '1300326388@qq.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'

@@ -1,8 +1,7 @@
 name: flutter_gromore_ads
-description: A new flutter plugin project.
+description: 一款优质的 Flutter 广告插件（Gromore、穿山甲）
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/FlutterAds/flutter_gromore_ads
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
