@@ -11,6 +11,9 @@
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_gromore_ads?color=brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/LICENSE"><img src=https://img.shields.io/badge/license-MIT-brightgreen></a>
 </p>
+<p align="center">
+<a href="https://www.csjplatform.com/gromore"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/images/gromore/gromore_introduce.jpeg" alt="gromore"/></a>
+</p>
 
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
