@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/FlutterAds"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/logo/flutterads_logo.png" alt="logo" height="180"/></a>
+<a href="https://github.com/FlutterAds"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/logo/flutterads_logo.png" alt="logo"/></a>
 </p>
 <h3 align="center">一款优质的 Flutter 广告插件（Gromore、穿山甲）</h3>
 
