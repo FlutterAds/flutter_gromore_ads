@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/services.dart';
+import 'event/ad_event_handler.dart';
+export 'event/ad_event_handler.dart';
 
+/// GroMore 广告插件
 class FlutterGromoreAds {
   // 方法通道
   static const MethodChannel _methodChannel =
@@ -10,6 +12,15 @@ class FlutterGromoreAds {
   // 事件通道
   static const EventChannel _eventChannel =
       const EventChannel('flutter_gromore_ads_event');
+
+  ///事件回调
+  ///@params onData 事件回调
+  static Future<void> onEventListener(
+      OnAdEventListener onAdEventListener) async {
+    _eventChannel.receiveBroadcastStream().listen((data) {
+      hanleAdEvent(data, onAdEventListener);
+    });
+  }
 
   /// 请求应用跟踪透明度授权(仅 iOS)
   static Future<bool> get requestIDFA async {

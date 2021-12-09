@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   String _adEvent = '';
   @override
   void initState() {
+    setAdEvent();
     super.initState();
   }
 
@@ -97,24 +98,24 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _adEvent = '设置成功';
     });
-    // FlutterGromoreAds.onEventListener((event) {
-    //   _adEvent = 'adId:${event.adId} action:${event.action}';
-    //   if (event is AdErrorEvent) {
-    //     // 错误事件
-    //     _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
-    //   } else if (event is AdRewardEvent) {
-    //     // 激励事件
-    //     _adEvent +=
-    //         ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
-    //   }
-    //   // 测试关闭 Banner（会员场景）
-    //   if (event.action == AdEventAction.onAdClosed &&
-    //       event.adId == AdsConfig.bannerId02) {
-    //     _adEvent += '仅会员可以关闭广告';
-    //   }
-    //   print('onEventListener:$_adEvent');
-    //   setState(() {});
-    // });
+    FlutterGromoreAds.onEventListener((event) {
+      _adEvent = 'adId:${event.adId} action:${event.action}';
+      if (event is AdErrorEvent) {
+        // 错误事件
+        _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
+      } else if (event is AdRewardEvent) {
+        // 激励事件
+        _adEvent +=
+            ' rewardVerify:${event.rewardVerify} rewardAmount:${event.rewardAmount} rewardName:${event.rewardName} errCode:${event.errCode} errMsg:${event.errMsg} customData:${event.customData} userId:${event.userId}';
+      }
+      // // 测试关闭 Banner（会员场景）
+      // if (event.action == AdEventAction.onAdClosed &&
+      //     event.adId == AdsConfig.bannerId02) {
+      //   _adEvent += '仅会员可以关闭广告';
+      // }
+      debugPrint('onEventListener:$_adEvent');
+      setState(() {});
+    });
   }
 
   /// 请求应用跟踪透明度授权
