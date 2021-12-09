@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.zero.flutter_gromore_ads_example">
    <application
         android:label="flutter_gromore_ads_example"
@@ -37,5 +38,60 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-    </application>
+
+
+       <!-- GDT start================== -->
+       <!-- targetSDKVersion >= 24时才需要添加这个provider。provider的authorities属性的值为${applicationId}.fileprovider，请开发者根据自己的${applicationId}来设置这个值，例如本例中applicationId为"com.qq.e.union.demo"。 -->
+       <provider
+           android:name="com.qq.e.comm.GDTFileProvider"
+           android:authorities="${applicationId}.gdt.fileprovider"
+           android:exported="false"
+           android:grantUriPermissions="true">
+           <meta-data
+               android:name="android.support.FILE_PROVIDER_PATHS"
+               android:resource="@xml/gdt_file_path" />
+       </provider>
+
+       <activity
+           android:name="com.qq.e.ads.PortraitADActivity"
+           android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+           android:screenOrientation="portrait" />
+       <activity
+           android:name="com.qq.e.ads.LandscapeADActivity"
+           android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+           android:screenOrientation="landscape"
+           tools:replace="android:screenOrientation" />
+
+       <!-- 声明SDK所需要的组件 -->
+       <service
+           android:name="com.qq.e.comm.DownloadService"
+           android:exported="false" />
+       <!-- 请开发者注意字母的大小写，ADActivity，而不是AdActivity -->
+
+       <activity
+           android:name="com.qq.e.ads.ADActivity"
+           android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+       <!-- GDT end================== -->
+
+
+       <!-- Pangle start================== -->
+
+       <provider
+           android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
+           android:authorities="${applicationId}.TTFileProvider"
+           android:exported="false"
+           android:grantUriPermissions="true">
+           <meta-data
+               android:name="android.support.FILE_PROVIDER_PATHS"
+               android:resource="@xml/pangle_file_paths" />
+       </provider>
+
+       <provider
+           android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
+           android:authorities="${applicationId}.TTMultiProvider"
+           android:exported="false" />
+
+       <!-- Pangle end================== -->
+
+   </application>
 </manifest>
