@@ -110,6 +110,11 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
         finish();
         // 设置退出动画
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        // 销毁
+        if (gmSplashAd != null) {
+            gmSplashAd.destroy();
+            gmSplashAd=null;
+        }
     }
 
     /**

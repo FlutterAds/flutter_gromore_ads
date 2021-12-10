@@ -20,6 +20,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     setAdEvent();
+    init().then((value) {
+      if (value) {
+        showSplashAd(AdsConfig.logo);
+      }
+    });
     super.initState();
   }
 
@@ -67,12 +72,18 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
+                child: const Text('展示开屏广告（全屏）'),
+                onPressed: () {
+                  showSplashAd();
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
                 child: const Text('展示插屏广告'),
                 onPressed: () {
                   showInterstitialAd();
                 },
               ),
-              const SizedBox(height: 20),
               const SizedBox(height: 20),
               ElevatedButton(
                 child: const Text('展示插屏全屏广告'),

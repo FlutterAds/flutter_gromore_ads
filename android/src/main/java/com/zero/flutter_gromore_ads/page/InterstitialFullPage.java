@@ -26,7 +26,7 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
     public void loadAd(@NonNull MethodCall call) {
         int width = call.argument("width");
         int height = call.argument("height");
-        ad=new GMInterstitialFullAd(activity,this.posId);
+        ad = new GMInterstitialFullAd(activity, this.posId);
         GMAdSlotInterstitialFull adSlot = new GMAdSlotInterstitialFull.Builder()
                 .setGMAdSlotBaiduOption(GMAdOptionUtil.getGMAdSlotBaiduOption().build())
                 .setGMAdSlotGDTOption(GMAdOptionUtil.getGMAdSlotGDTOption().build())
@@ -35,7 +35,7 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
                 .setUserID("user123")//用户id,必传参数 (插全屏类型下_全屏广告使用)
                 .setOrientation(GMAdConstant.VERTICAL)//必填参数，期望视频的播放方向：TTAdConstant.HORIZONTAL 或 TTAdConstant.VERTICAL; (插全屏类型下_全屏广告使用)
                 .build();
-        ad.loadAd( adSlot,this);
+        ad.loadAd(adSlot, this);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
         sendEvent(AdEventAction.onAdLoaded);
         // 设置监听
 
-        if(ad!=null&&ad.isReady()){
+        if (ad != null && ad.isReady()) {
             ad.setAdInterstitialFullListener(this);
             ad.showAd(activity);
         }
@@ -82,7 +82,10 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
         Log.i(TAG, "onInterstitialFullClosed");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        ad = null;
+        if (ad != null) {
+            ad.destroy();
+            ad = null;
+        }
     }
 
     @Override
@@ -96,7 +99,7 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
     public void onVideoError() {
         Log.i(TAG, "onVideoError");
         // 添加广告事件
-        sendErrorEvent(-200,"onVideoError");
+        sendErrorEvent(-200, "onVideoError");
     }
 
     @Override

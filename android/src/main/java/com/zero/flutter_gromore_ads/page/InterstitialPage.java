@@ -26,13 +26,13 @@ public class InterstitialPage extends BaseAdPage implements GMInterstitialAdLoad
     public void loadAd(@NonNull MethodCall call) {
         int width = call.argument("width");
         int height = call.argument("height");
-        ad=new GMInterstitialAd(activity,this.posId);
-        GMAdSlotInterstitial adSlot=new GMAdSlotInterstitial.Builder()
+        ad = new GMInterstitialAd(activity, this.posId);
+        GMAdSlotInterstitial adSlot = new GMAdSlotInterstitial.Builder()
                 .setGMAdSlotBaiduOption(GMAdOptionUtil.getGMAdSlotBaiduOption().build())
                 .setGMAdSlotGDTOption(GMAdOptionUtil.getGMAdSlotGDTOption().build())
                 .setImageAdSize(width, height)
                 .build();
-        ad.loadAd( adSlot,this);
+        ad.loadAd(adSlot, this);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class InterstitialPage extends BaseAdPage implements GMInterstitialAdLoad
         sendEvent(AdEventAction.onAdLoaded);
         // 设置监听
 
-        if(ad!=null&&ad.isReady()){
+        if (ad != null && ad.isReady()) {
             ad.setAdInterstitialListener(this);
             ad.showAd(activity);
         }
@@ -79,7 +79,10 @@ public class InterstitialPage extends BaseAdPage implements GMInterstitialAdLoad
         Log.i(TAG, "onInterstitialClosed");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        ad = null;
+        if (ad != null) {
+            ad.destroy();
+            ad = null;
+        }
     }
 
     @Override
