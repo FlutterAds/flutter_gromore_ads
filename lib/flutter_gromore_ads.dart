@@ -86,6 +86,49 @@ class FlutterGromoreAds {
     return result;
   }
 
+  /// 展示插屏广告
+  /// [posId] 广告位 id
+  /// [width] 宽度
+  /// [height] 高度
+  static Future<bool> showInterstitialAd(
+    String posId, {
+    int width = 300,
+    int height = 300,
+  }) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'showInterstitialAd',
+      {
+        'posId': posId,
+        'width': width,
+        'height': height,
+      },
+    );
+    return result;
+  }
+
+  /// 展示插屏全屏广告
+  /// [posId] 广告位 id
+  /// [width] 宽度
+  /// [height] 高度
+  /// [orientation] 期望视频的播放方向，1：VERTICAL 2：HORIZONTAL
+  static Future<bool> showInterstitialFullAd(
+    String posId, {
+    int width = 300,
+    int height = 300,
+    int orientation = 1,
+  }) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'showInterstitialFullAd',
+      {
+        'posId': posId,
+        'width': width,
+        'height': height,
+        'orientation': orientation,
+      },
+    );
+    return result;
+  }
+
   static Future<String?> get platformVersion async {
     final String? version =
         await _methodChannel.invokeMethod('getPlatformVersion');

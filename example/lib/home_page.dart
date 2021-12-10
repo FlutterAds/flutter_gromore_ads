@@ -65,6 +65,22 @@ class _HomePageState extends State<HomePage> {
                   showSplashAd(AdsConfig.logo2);
                 },
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('展示插屏广告'),
+                onPressed: () {
+                  showInterstitialAd();
+                },
+              ),
+              const SizedBox(height: 20),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('展示插屏全屏广告'),
+                onPressed: () {
+                  showInterstitialFullAd();
+                },
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -145,5 +161,36 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (e) {
       _result = "展示开屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
+  }
+
+  /// 展示插屏广告
+  Future<void> showInterstitialAd() async {
+    try {
+      bool result = await FlutterGromoreAds.showInterstitialAd(
+        AdsConfig.interstitialId,
+        width: 300,
+        height: 300,
+      );
+      _result = "展示插屏广告${result ? '成功' : '失败'}";
+    } on PlatformException catch (e) {
+      _result = "展示插屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
+    }
+    setState(() {});
+  }
+
+  /// 展示插屏全屏广告
+  Future<void> showInterstitialFullAd() async {
+    try {
+      bool result = await FlutterGromoreAds.showInterstitialFullAd(
+        AdsConfig.interstitialFullId,
+        width: 300,
+        height: 300,
+      );
+      _result = "展示插屏全屏广告${result ? '成功' : '失败'}";
+    } on PlatformException catch (e) {
+      _result =
+          "展示插屏全屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
+    }
+    setState(() {});
   }
 }

@@ -20,11 +20,6 @@ public abstract class BaseAdPage {
     protected Activity activity;
     // 广告位 id
     protected String posId;
-    // 广告管理对象
-    protected GMBaseAd ad;
-    // 广告配置对象
-    protected GMAdSlotBase adSlot;
-
 
     /**
      * 显示广告

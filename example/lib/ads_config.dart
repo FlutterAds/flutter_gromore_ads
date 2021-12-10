@@ -27,10 +27,10 @@ class AdsConfig {
   static String get splashId => '887382965';
 
   /// 获取插屏广告位id
-  static String get interstitialId => '887382965';
+  static String get interstitialId => '945493679';
 
-  /// 获取新插屏广告位id
-  static String get newInterstitialId => '946584893';
+  /// 获取插屏全屏广告位id
+  static String get interstitialFullId => '946276599';
 
   /// 获取新插屏（半屏）广告位id
   static String get newInterstitialId2 => '946601932';

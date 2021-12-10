@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import com.bytedance.msdk.api.v2.GMAdConfig;
 import com.bytedance.msdk.api.v2.GMMediationAdSdk;
 import com.zero.flutter_gromore_ads.page.AdSplashActivity;
+import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
+import com.zero.flutter_gromore_ads.page.InterstitialPage;
 
 import java.util.ArrayList;
 
@@ -78,6 +80,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             showSplashAd(call, result);
         } else if ("showInterstitialAd".equals(method)) {
             showInterstitialAd(call, result);
+        } else if ("showInterstitialFullAd".equals(method)) {
+            showInterstitialFullAd(call, result);
         } else if ("showRewardVideoAd".equals(method)) {
             showRewardVideoAd(call, result);
         } else if ("showFullScreenVideoAd".equals(method)) {
@@ -207,9 +211,21 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void showInterstitialAd(MethodCall call, MethodChannel.Result result) {
-//        InterstitialPage adPage = new InterstitialPage();
-//        adPage.showAd(activity, call);
-//        result.success(true);
+        InterstitialPage adPage = new InterstitialPage();
+        adPage.showAd(activity, call);
+        result.success(true);
+    }
+
+    /**
+     * 显示插屏全屏广告
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void showInterstitialFullAd(MethodCall call, MethodChannel.Result result) {
+        InterstitialFullPage adPage = new InterstitialFullPage();
+        adPage.showAd(activity, call);
+        result.success(true);
     }
 
     /**

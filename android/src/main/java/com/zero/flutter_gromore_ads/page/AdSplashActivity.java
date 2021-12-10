@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-
 import com.bytedance.msdk.api.AdError;
 import com.bytedance.msdk.api.v2.GMAdConstant;
 import com.bytedance.msdk.api.v2.ad.splash.GMSplashAd;
