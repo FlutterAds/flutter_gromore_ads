@@ -92,6 +92,20 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('展示全屏视频广告(纵向)'),
+                onPressed: () {
+                  showFullVideoAd(1);
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('展示全屏视频广告(横向)'),
+                onPressed: () {
+                  showFullVideoAd(2);
+                },
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -201,6 +215,23 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (e) {
       _result =
           "展示插屏全屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
+    }
+    setState(() {});
+  }
+
+  /// 展示全屏视频广告
+  Future<void> showFullVideoAd(int orientation) async {
+    try {
+      bool result = await FlutterGromoreAds.showFullVideoAd(
+        orientation == 1
+            ? AdsConfig.fullVideoVerticalId
+            : AdsConfig.fullVideoHorizontalId,
+        orientation: orientation,
+      );
+      _result = "展示全屏视频广告${result ? '成功' : '失败'}";
+    } on PlatformException catch (e) {
+      _result =
+          "展示全屏视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
     setState(() {});
   }

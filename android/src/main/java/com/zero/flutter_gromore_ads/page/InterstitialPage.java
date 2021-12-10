@@ -46,8 +46,7 @@ public class InterstitialPage extends BaseAdPage implements GMInterstitialAdLoad
         Log.i(TAG, "onInterstitialLoad");
         // 添加广告事件
         sendEvent(AdEventAction.onAdLoaded);
-        // 设置监听
-
+        // 显示广告
         if (ad != null && ad.isReady()) {
             ad.setAdInterstitialListener(this);
             ad.showAd(activity);

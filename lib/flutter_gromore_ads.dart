@@ -129,6 +129,23 @@ class FlutterGromoreAds {
     return result;
   }
 
+  /// 展示全屏视频广告
+  /// [posId] 广告位 id
+  /// [orientation] 期望视频的播放方向，1：VERTICAL 2：HORIZONTAL
+  static Future<bool> showFullVideoAd(
+    String posId, {
+    int orientation = 1,
+  }) async {
+    final bool result = await _methodChannel.invokeMethod(
+      'showFullVideoAd',
+      {
+        'posId': posId,
+        'orientation': orientation,
+      },
+    );
+    return result;
+  }
+
   static Future<String?> get platformVersion async {
     final String? version =
         await _methodChannel.invokeMethod('getPlatformVersion');

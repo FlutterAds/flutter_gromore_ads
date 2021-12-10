@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.bytedance.msdk.api.v2.GMAdConfig;
 import com.bytedance.msdk.api.v2.GMMediationAdSdk;
 import com.zero.flutter_gromore_ads.page.AdSplashActivity;
+import com.zero.flutter_gromore_ads.page.FullVideoPage;
 import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
 import com.zero.flutter_gromore_ads.page.InterstitialPage;
 
@@ -82,10 +83,10 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             showInterstitialAd(call, result);
         } else if ("showInterstitialFullAd".equals(method)) {
             showInterstitialFullAd(call, result);
+        } else if ("showFullVideoAd".equals(method)) {
+            showFullVideoAd(call, result);
         } else if ("showRewardVideoAd".equals(method)) {
             showRewardVideoAd(call, result);
-        } else if ("showFullScreenVideoAd".equals(method)) {
-            showFullScreenVideoAd(call, result);
         } else if ("loadFeedAd".equals(method)) {
             loadFeedAd(call, result);
         } else if ("clearFeedAd".equals(method)) {
@@ -229,6 +230,18 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     }
 
     /**
+     * 显示全屏视频广告
+     *
+     * @param call   MethodCall
+     * @param result Result
+     */
+    public void showFullVideoAd(MethodCall call, MethodChannel.Result result) {
+        FullVideoPage adPage = new FullVideoPage();
+        adPage.showAd(activity, call);
+        result.success(true);
+    }
+
+    /**
      * 显示激励视频广告
      *
      * @param call   MethodCall
@@ -236,18 +249,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      */
     public void showRewardVideoAd(MethodCall call, MethodChannel.Result result) {
 //        RewardVideoPage adPage = new RewardVideoPage();
-//        adPage.showAd(activity, call);
-//        result.success(true);
-    }
-
-    /**
-     * 显示全屏视频广告
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void showFullScreenVideoAd(MethodCall call, MethodChannel.Result result) {
-//        FullScreenVideoPage adPage = new FullScreenVideoPage();
 //        adPage.showAd(activity, call);
 //        result.success(true);
     }

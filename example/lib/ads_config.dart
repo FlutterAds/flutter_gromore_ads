@@ -32,14 +32,14 @@ class AdsConfig {
   /// 获取插屏全屏广告位id
   static String get interstitialFullId => '946276599';
 
-  /// 获取新插屏（半屏）广告位id
-  static String get newInterstitialId2 => '946601932';
+  /// 获取全屏视频广告位id(纵向)
+  static String get fullVideoVerticalId => '945493676';
+
+  /// 获取全屏视频广告位id(横向)
+  static String get fullVideoHorizontalId => '945493675';
 
   /// 获取激励视频广告位id
   static String get rewardVideoId => '946584890';
-
-  /// 获取全屏视频广告位id
-  static String get fullScreenVideoId => '946593099';
 
   /// 获取 Banner 广告位id
   static String get bannerId => '946651948';
