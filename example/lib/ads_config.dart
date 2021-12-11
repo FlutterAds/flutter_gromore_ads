@@ -21,7 +21,12 @@ class AdsConfig {
   }
 
   /// 获取 App id
-  static String get appId => '5001121';
+  static String get appId {
+    if (Platform.isIOS) {
+      return '5000546';
+    }
+    return '5001121';
+  }
 
   /// 获取开屏广告位id
   static String get splashId => '887382965';
