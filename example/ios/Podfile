@@ -39,21 +39,22 @@ target 'Runner' do
   #pod 'Ads-CN-Beta', '3.8.0.0'
   # 广点通/优量汇
   pod 'ABUAdGdtAdapter', :path=>'Frameworks/ABUAdGdtAdapter'
-  pod 'GDTMobSDK' ,'4.13.26'
+  pod 'GDTMobSDK'
   # 百度SDK
+#  pod 'ABUAdBaiduAdapter', :path=>'Frameworks/ABUAdBaiduAdapter'
 #  pod 'BaiduMobAdSDK', '4.83'
-#  pod 'flutter_gromore_ads/ABUAdBaiduAdapter', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
   # UnityAds
+#  pod 'ABUAdUnityAdapter', :path=>'Frameworks/ABUAdUnityAdapter'
 #  pod 'UnityAds', '3.7.5'
-#  pod 'flutter_gromore_ads/ABUAdUnityAdapter', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
   # Admob/GoogleAd
-#  pod 'Google-Mobile-Ads-SDK', '8.11.0'
-#  pod 'flutter_gromore_ads/ABUAdAdmobAdapter', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
+#  pod 'ABUAdAdmobAdapter', :path=>'Frameworks/ABUAdAdmobAdapter'
+#  pod 'Google-Mobile-Ads-SDK', '8.13.0'
   # SigmobAd
+#  pod 'ABUAdSigmobAdapter', :path=>'Frameworks/ABUAdSigmobAdapter'
 #  pod 'SigmobAd-iOS', '3.5.0'
-#  pod 'flutter_gromore_ads/ABUAdSigmobAdapter', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
   # MintegralAdSDK
-#  pod 'MintegralAdSDK', '7.0.3', :subspecs => [
+#  pod 'ABUAdMintegralAdapter', :path=>'Frameworks/ABUAdMintegralAdapter'
+#  pod 'MintegralAdSDK', '7.0.4', :subspecs => [
 #    'SplashAd',
 #    'InterstitialAd',
 #    'InterstitialVideoAd',
@@ -63,15 +64,14 @@ target 'Runner' do
 #    'BannerAd',
 #    'BidNativeAd'
 #  ]
-#  pod 'flutter_gromore_ads/ABUAdMintegralAdapter', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
   # KlevinAdSDK 2.2.0.286
   # ！！！请务必修改为KlevinAdSDK目录
-  #pod 'KlevinAdSDK', :path=>'../KlevinAdSDK/'
-#  pod 'flutter_gromore_ads/ABUAdKlevinAdapter', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
+  #pod 'KlevinAdSDK', :path=>'Frameworks/KlevinAdSDK/'
+#  pod 'ABUAdKlevinAdapter', :path=>'Frameworks/ABUAdKlevinAdapter'
   # 快手
 #  pod 'KSAdSDK'
   # 调试
-#  pod 'flutter_gromore_ads/ABUVisualDebug', :path=>'.symlinks/plugins/flutter_gromore_ads/ios'
+#  pod 'ABUVisualDebug', :path=>'Frameworks/ABUVisualDebug'
 end
 
 post_install do |installer|

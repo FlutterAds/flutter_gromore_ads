@@ -22,7 +22,7 @@ Pod::Spec.new do |spec|
 
   spec.ios.deployment_target = '9.0'
   valid_archs = ['arm64', 'armv7', 'x86_64', 'i386']
-
+  # 这里去掉 framework 的加载，因为 flutter_gromore_ads 插件已经加载了
 	#spec.ios.vendored_frameworks = 'Ads-Mediation-CN/ABUAdSDK.framework'
   spec.dependency "Ads-CN"
   spec.libraries = 'sqlite3', 'xml2', 'z'
