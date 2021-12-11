@@ -29,7 +29,12 @@ class AdsConfig {
   }
 
   /// 获取开屏广告位id
-  static String get splashId => '887382965';
+  static String get splashId {
+    if (Platform.isIOS) {
+      return '887383142';
+    }
+    return '887382965';
+  }
 
   /// 获取插屏广告位id
   static String get interstitialId => '945493679';

@@ -30,7 +30,9 @@
         [self requestIDFA:call result:result];
     }else if ([@"initAd" isEqualToString:methodStr]){
         [self initAd:call result:result];
-    } else {
+    }else if ([@"showSplashAd" isEqualToString:methodStr]) {
+        [self showSplashAd:call result:result];
+    }else {
         result(FlutterMethodNotImplemented);
     }
 }
@@ -56,6 +58,12 @@
         return c;
     }];
     result(@(YES));
+}
+
+// 开屏广告
+- (void) showSplashAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    self.sad=[[FGMSplashPage alloc] init];
+    [self.sad showAd:call eventSink:self.eventSink];
 }
 
 #pragma mark - FlutterStreamHandler
