@@ -1,0 +1,6 @@
+framework module ABUAdAdmobAdapter {
+  umbrella header "ABUAdAdmobAdapter.h"
+
+  export *
+  module * { export * }
+}

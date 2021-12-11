@@ -1,0 +1,6 @@
+framework module ABUAdBaiduAdapter {
+  umbrella header "ABUAdBaiduAdapter.h"
+
+  export *
+  module * { export * }
+}

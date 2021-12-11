@@ -1,0 +1,6 @@
+framework module ABUAdSDK {
+  umbrella header "ABUAdSDK.h"
+
+  export *
+  module * { export * }
+}
