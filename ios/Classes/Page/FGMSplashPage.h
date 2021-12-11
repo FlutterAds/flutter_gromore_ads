@@ -12,4 +12,6 @@
 @interface FGMSplashPage :FGMBasePage
 // 开屏
 @property (strong,nonatomic) ABUSplashAd *ad;
+@property (retain,nonatomic) UIView *bottomView;
+@property (assign,nonatomic ) BOOL fullScreenAd;
 @end
