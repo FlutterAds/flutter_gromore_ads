@@ -32,6 +32,8 @@
         [self showInterstitialAd:call result:result];
     }else if ([@"showInterstitialFullAd" isEqualToString:methodStr]) {
         [self showInterstitialFullAd:call result:result];
+    }else if ([@"showFullVideoAd" isEqualToString:methodStr]) {
+        [self showFullVideoAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -78,6 +80,13 @@
 - (void) showInterstitialFullAd:(FlutterMethodCall *)call result:(FlutterResult) result{
     self.ifad=[[FGMInterstitialFullPage alloc] init];
     [self.ifad showAd:call eventSink:self.eventSink];
+    result(@(YES));
+}
+
+// 全屏视频广告
+- (void) showFullVideoAd:(FlutterMethodCall *) call result:(FlutterResult) result{
+    self.fvad=[[FGMFullVideoPage alloc] init];
+    [self.fvad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 

@@ -67,5 +67,4 @@
     [self sendEventAction:onAdClosed];
 }
 
-
 @end

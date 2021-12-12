@@ -8,10 +8,10 @@ export 'event/ad_event_handler.dart';
 class FlutterGromoreAds {
   // 方法通道
   static const MethodChannel _methodChannel =
-      const MethodChannel('flutter_gromore_ads');
+      MethodChannel('flutter_gromore_ads');
   // 事件通道
   static const EventChannel _eventChannel =
-      const EventChannel('flutter_gromore_ads_event');
+      EventChannel('flutter_gromore_ads_event');
 
   ///事件回调
   ///@params onData 事件回调

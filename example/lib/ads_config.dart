@@ -53,10 +53,20 @@ class AdsConfig {
   }
 
   /// 获取全屏视频广告位id(纵向)
-  static String get fullVideoVerticalId => '945493676';
+  static String get fullVideoVerticalId {
+    if (Platform.isIOS) {
+      return '900546831';
+    }
+    return '945493676';
+  }
 
   /// 获取全屏视频广告位id(横向)
-  static String get fullVideoHorizontalId => '945493675';
+  static String get fullVideoHorizontalId {
+    if (Platform.isIOS) {
+      return '945494751';
+    }
+    return '945493675';
+  }
 
   /// 获取激励视频广告位id
   static String get rewardVideoId => '946584890';
