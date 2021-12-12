@@ -30,6 +30,8 @@
         [self showSplashAd:call result:result];
     }else if ([@"showInterstitialAd" isEqualToString:methodStr]) {
         [self showInterstitialAd:call result:result];
+    }else if ([@"showInterstitialFullAd" isEqualToString:methodStr]) {
+        [self showInterstitialFullAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -69,6 +71,13 @@
 - (void) showInterstitialAd:(FlutterMethodCall *)call result:(FlutterResult) result{
     self.iad=[[FGMInterstitialPage alloc] init];
     [self.iad showAd:call eventSink:self.eventSink];
+    result(@(YES));
+}
+
+// 插屏全屏广告
+- (void) showInterstitialFullAd:(FlutterMethodCall *)call result:(FlutterResult) result{
+    self.ifad=[[FGMInterstitialFullPage alloc] init];
+    [self.ifad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
