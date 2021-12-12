@@ -74,6 +74,11 @@
     NSLog(@"%s",__FUNCTION__);
     // 发送事件
     [self sendEventAction:onAdClosed];
+    // 销毁广告
+    if (self.ad) {
+        [self.ad destoryAd];
+    }
+    
 }
 
 - (void)splashAdCountdownToZero:(ABUSplashAd *)splashAd{

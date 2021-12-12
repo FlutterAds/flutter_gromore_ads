@@ -366,6 +366,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GDTMobSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_gromore_ads\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_pangle_ads\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_qq_ads\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,6 +382,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.flutterGromoreAdsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -489,6 +499,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GDTMobSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_gromore_ads\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_pangle_ads\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_qq_ads\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +515,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.flutterGromoreAdsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -507,6 +527,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/GDTMobSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_gromore_ads\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_pangle_ads\"",
+					"\"${PODS_ROOT}/Headers/Public/flutter_qq_ads\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,6 +543,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zero.flutterGromoreAdsExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

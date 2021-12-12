@@ -7,11 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Flutter/Flutter.h>
-# if __has_include(<ABUAdSDK/ABUAdSDK.h>)
-#import <ABUAdSDK/ABUAdSDK.h>
-#else
-#import <Ads-Mediation-CN/ABUAdSDK.h>
-#endif
+#import "FGMGroMore.h"
 #import "FGMAdErrorEvent.h"
 // 基础广告页面
 @interface FGMBasePage : NSObject

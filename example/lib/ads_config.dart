@@ -37,7 +37,12 @@ class AdsConfig {
   }
 
   /// 获取插屏广告位id
-  static String get interstitialId => '945493679';
+  static String get interstitialId {
+    if (Platform.isIOS) {
+      return '945494755';
+    }
+    return '945493679';
+  }
 
   /// 获取插屏全屏广告位id
   static String get interstitialFullId => '946276599';

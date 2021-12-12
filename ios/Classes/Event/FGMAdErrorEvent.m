@@ -17,7 +17,7 @@
 }
 
 - (id)initWithAdId:(NSString *)adId error:(NSError *)error{
-    return [self initWithAdId:adId errCode:[NSNumber numberWithInteger:error.code] errMsg:error.domain];
+    return [self initWithAdId:adId errCode:[NSNumber numberWithInteger:error.code] errMsg:error.localizedDescription];
 }
 
 - (NSDictionary *)toMap{

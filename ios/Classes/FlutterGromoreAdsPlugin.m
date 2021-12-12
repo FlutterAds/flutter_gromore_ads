@@ -1,11 +1,7 @@
 #import "FlutterGromoreAdsPlugin.h"
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
-# if __has_include(<ABUAdSDK/ABUAdSDK.h>)
-#import <ABUAdSDK/ABUAdSDK.h>
-#else
-#import <Ads-Mediation-CN/ABUAdSDK.h>
-#endif
+#import "FGMGroMore.h"
 
 @implementation FlutterGromoreAdsPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -32,6 +28,8 @@
         [self initAd:call result:result];
     }else if ([@"showSplashAd" isEqualToString:methodStr]) {
         [self showSplashAd:call result:result];
+    }else if ([@"showInterstitialAd" isEqualToString:methodStr]) {
+        [self showInterstitialAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -64,6 +62,14 @@
 - (void) showSplashAd:(FlutterMethodCall*) call result:(FlutterResult) result{
     self.sad=[[FGMSplashPage alloc] init];
     [self.sad showAd:call eventSink:self.eventSink];
+    result(@(YES));
+}
+
+// 插屏广告
+- (void) showInterstitialAd:(FlutterMethodCall *)call result:(FlutterResult) result{
+    self.iad=[[FGMInterstitialPage alloc] init];
+    [self.iad showAd:call eventSink:self.eventSink];
+    result(@(YES));
 }
 
 #pragma mark - FlutterStreamHandler
