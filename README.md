@@ -139,8 +139,11 @@ dependencies {
     implementation 'com.qq.e.union:union:4.422.1292'// 广点通广告 SDK
     implementation "com.gromore.cn:pangle-adapter:4.0.1.9.1" //穿山甲 adapter
     implementation 'com.pangle.cn:ads-sdk-pro:4.0.1.9'//穿山甲广告 SDK
+    // 其他参考官方文档 引入即可
 }
 ```
+
+> 这里通过远程仓库导入你也可以按照官方示例中的 `aar` 导入依赖
 
 - 添加配置文件
 
@@ -205,6 +208,93 @@ dependencies {
     android:exported="false" />
 
 <!-- Pangle end================== -->
+
+<!-- admob end================== -->	
+<provider	
+    android:name="com.google.android.gms.ads.MobileAdsInitProvider"	
+    android:authorities="${applicationId}.mobileadsinitprovider"	
+    tools:replace="android:authorities" />	
+
+<!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->	
+<meta-data	
+    android:name="com.google.android.gms.ads.APPLICATION_ID"	
+    android:value="ca-app-pub-3940256099942544~3347511713" />	
+<!--This meta-data tag is required to use Google Play Services.-->	
+<!-- admob end================== -->	
+
+<!-- baidu start================== -->	
+<!-- 声明打开落地页的Activity（不建议修改主题配置）-->	
+<activity	
+    android:name="com.baidu.mobads.sdk.api.AppActivity"	
+    android:configChanges="screenSize|keyboard|keyboardHidden|orientation"	
+    android:theme="@android:style/Theme.NoTitleBar" />	
+<!-- 声明打开显示激励视频/全屏视频的Activity-->	
+<activity	
+    android:name="com.baidu.mobads.sdk.api.MobRewardVideoActivity"	
+    android:configChanges="screenSize|orientation|keyboardHidden"	
+    android:launchMode="singleTask"	
+    android:theme="@android:style/Theme.Translucent.NoTitleBar" />	
+
+<!-- 如果targetSdkVersion设置值>=24，则强烈建议添加以下provider，否则会影响app变现 -->	
+<!-- android:authorities="${packageName}.bd.provider" authorities中${packageName}部分必须替换成app自己的包名 -->	
+<!-- 原来的FileProvider在新版本中改为BdFileProvider,继承自v4的FileProvider,需要在应用内引用support-v4包 -->	
+<provider	
+    android:name="com.baidu.mobads.sdk.api.BdFileProvider"	
+    android:authorities="${applicationId}.bd.provider"	
+    android:exported="false"	
+    android:grantUriPermissions="true">	
+    <meta-data	
+        android:name="android.support.FILE_PROVIDER_PATHS"	
+        android:resource="@xml/bd_file_paths" />	
+</provider>	
+<!-- baidu end================== -->	
+
+<!-- sigmob start================== -->	
+<activity	
+    android:name="com.sigmob.sdk.base.common.AdActivity"	
+    android:configChanges="keyboard|keyboardHidden|orientation|screenSize"	
+    android:theme="@style/sig_transparent_style" />	
+
+<provider	
+    android:name="com.sigmob.sdk.SigmobFileProvider"	
+    android:authorities="${applicationId}.sigprovider"	
+    android:exported="false"	
+    android:grantUriPermissions="true">	
+    <meta-data	
+        android:name="android.support.FILE_PROVIDER_PATHS"	
+        android:resource="@xml/sigmob_provider_paths" />	
+</provider>	
+<!-- sigmob end================== -->	
+
+<!-- klevin start================== -->	
+
+<provider	
+    android:name="com.tencent.klevin.utils.FileProvider"	
+    android:authorities="${applicationId}.klevin.fileProvider"	
+    android:exported="false"	
+    android:grantUriPermissions="true">	
+    <meta-data	
+        android:name="android.support.FILE_PROVIDER_PATHS"	
+        android:resource="@xml/klevin_provider_paths" />	
+</provider>	
+
+<!--        <meta-data-->	
+<!--            android:name="Klevin.AppId"-->	
+<!--            android:value="30008" />-->	
+<!-- klevin end================== -->	
+
+
+<!-- mintegral start================== -->	
+<provider	
+    android:name="com.mbridge.msdk.foundation.tools.MBFileProvider"	
+    android:authorities="${applicationId}.mbFileProvider"	
+    android:exported="false"	
+    android:grantUriPermissions="true">	
+    <meta-data	
+        android:name="android.support.FILE_PROVIDER_PATHS"	
+        android:resource="@xml/mb_provider_paths" />	
+</provider>	
+<!-- mintegral end================== -->	
 ```
 
 > 必要权限已添加，其他权限`参考示例`和`官方文档`酌情添加即可。
