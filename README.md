@@ -100,7 +100,10 @@ FlutterGromoreAds.showInterstitialAd(
 ``` Dart
 /// [posId] 广告位 id
 /// [muted] 是否静音播放视频
-FlutterGromoreAds.showInterstitialFullAd(posId,muted: false);
+FlutterGromoreAds.showInterstitialFullAd(
+    posId,
+    muted: false,
+);
 ```
 
 ### 全屏视频
@@ -108,7 +111,10 @@ FlutterGromoreAds.showInterstitialFullAd(posId,muted: false);
 ``` Dart
 /// [posId] 广告位 id
 /// [orientation] 期望视频的播放方向，1：VERTICAL 2：HORIZONTAL
-FlutterPangleAds.showFullVideoAd(posId,orientation: 1,);
+FlutterGromoreAds.showFullVideoAd(
+    posId,
+    orientation: 1,
+);
 ```
 
 
