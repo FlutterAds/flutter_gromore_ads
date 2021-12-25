@@ -305,13 +305,19 @@ bool result = await FlutterGromoreAds.requestIDFA;
 
 ## 支持开源
 
-- 开源不易，需要牺牲大量休息时间加班熬夜来维护，你可以通过下方二维码赞赏支持我。
+- 开源不易，需要花费大量休息时间加班熬夜来维护，你可以通过下方二维码赞赏支持我。
 
-- <a href="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
+<a href="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
     <img width="300" alt="coffee" src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
 </a>
 
 - 用爱发电，给本项目点个免费的 [Star](https://github.com/FlutterAds/flutter_gromore_ads) ⭐️ 也是非常好的支持。
+
+### 支持名单
+
+|支持者|金额|备注|
+|--|--|--|
+|歌**|88|大佬 666|
 
 ## FlutterAds 广告插件系列
 |插件|描述|
