@@ -29,6 +29,49 @@ flutter_ios_podfile_setup
 
 target 'Runner' do
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  #1.GroMoreSDK核心库
+  pod 'Ads-Mediation-CN', :path=>'Frameworks/Ads-Mediation-CN'
+  # 2.GroMore官方适配adapter（请以接入文档0.3说明为准，请不要更换GroMoreSDK不支持的三方sdk版本）
+  # 穿山甲
+  pod 'ABUAdSDKAdapter', :path=>'Frameworks/ABUAdSDKAdapter'
+  pod 'Ads-CN'
+  # 穿山甲beta灰度版
+  #pod 'Ads-CN-Beta', '3.8.0.0'
+  # 广点通/优量汇
+  pod 'ABUAdGdtAdapter', :path=>'Frameworks/ABUAdGdtAdapter'
+  pod 'GDTMobSDK'
+  # 百度SDK
+#  pod 'ABUAdBaiduAdapter', :path=>'Frameworks/ABUAdBaiduAdapter'
+#  pod 'BaiduMobAdSDK', '4.83'
+  # UnityAds
+#  pod 'ABUAdUnityAdapter', :path=>'Frameworks/ABUAdUnityAdapter'
+#  pod 'UnityAds', '3.7.5'
+  # Admob/GoogleAd
+#  pod 'ABUAdAdmobAdapter', :path=>'Frameworks/ABUAdAdmobAdapter'
+#  pod 'Google-Mobile-Ads-SDK', '8.13.0'
+  # SigmobAd
+#  pod 'ABUAdSigmobAdapter', :path=>'Frameworks/ABUAdSigmobAdapter'
+#  pod 'SigmobAd-iOS', '3.5.0'
+  # MintegralAdSDK
+#  pod 'ABUAdMintegralAdapter', :path=>'Frameworks/ABUAdMintegralAdapter'
+#  pod 'MintegralAdSDK', '7.0.4', :subspecs => [
+#    'SplashAd',
+#    'InterstitialAd',
+#    'InterstitialVideoAd',
+#    'RewardVideoAd',
+#    'NativeAd',
+#    'NativeAdvancedAd',
+#    'BannerAd',
+#    'BidNativeAd'
+#  ]
+  # KlevinAdSDK 2.2.0.286
+  # ！！！请务必修改为KlevinAdSDK目录
+  #pod 'KlevinAdSDK', :path=>'Frameworks/KlevinAdSDK/'
+#  pod 'ABUAdKlevinAdapter', :path=>'Frameworks/ABUAdKlevinAdapter'
+  # 快手
+#  pod 'KSAdSDK'
+  # 调试
+#  pod 'ABUVisualDebug', :path=>'Frameworks/ABUVisualDebug'
 end
 
 post_install do |installer|

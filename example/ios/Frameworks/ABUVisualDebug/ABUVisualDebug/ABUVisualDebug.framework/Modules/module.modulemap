@@ -1,0 +1,6 @@
+framework module ABUVisualDebug {
+  umbrella header "ABUVisualDebug.h"
+
+  export *
+  module * { export * }
+}

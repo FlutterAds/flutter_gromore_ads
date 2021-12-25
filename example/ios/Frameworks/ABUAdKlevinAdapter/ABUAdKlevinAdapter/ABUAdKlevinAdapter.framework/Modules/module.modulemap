@@ -1,0 +1,6 @@
+framework module ABUAdKlevinAdapter {
+  umbrella header "ABUAdKlevinAdapter.h"
+
+  export *
+  module * { export * }
+}
