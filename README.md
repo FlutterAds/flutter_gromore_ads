@@ -31,3 +31,85 @@
 - 🔲 激励视频
 - 🔲 Banner
 - 🔲 信息流
+
+## 入门使用
+
+### 引入依赖
+
+``` Dart
+dependencies:
+  flutter_gromore_ads: ^1.0.0
+```
+
+### 初始化广告
+
+``` Dart
+// 导包
+import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
+/// [appId] 应用ID
+FlutterGromoreAds.initAd(appId);
+```
+
+### 开屏广告
+
+- 全屏
+
+``` Dart
+/// [posId] 广告位 id
+/// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
+/// [timeout] 加载超时时间
+/// [buttonType] 开屏广告的点击区域，1：全都可以点击 2：仅有下载 Bar 区域可以点击
+FlutterGromoreAds.showSplashAd(
+  posId,
+  timeout: 3.5,
+  buttonType: 2,
+);
+```
+
+
+- 半屏
+
+``` Dart
+/// [posId] 广告位 id
+/// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
+FlutterGromoreAds.showSplashAd(
+  posId,
+  logo: 'flutterads_logo',
+);
+```
+
+> [Logo 设置的最佳实践](https://github.com/FlutterAds/flutter_qq_ads/blob/develop/doc/SETTING_LOGO.md)
+
+### 插屏广告
+
+- 半插屏
+
+``` Dart
+/// [posId] 广告位 id
+/// [width] 宽度
+/// [height] 高度
+FlutterGromoreAds.showInterstitialAd(
+    posId,
+    width: 300,
+    height: 300,
+);
+```
+
+- 全插屏
+
+``` Dart
+/// [posId] 广告位 id
+/// [muted] 是否静音播放视频
+FlutterGromoreAds.showInterstitialFullAd(posId,muted: false);
+```
+
+### 全屏视频
+
+``` Dart
+/// [posId] 广告位 id
+/// [orientation] 期望视频的播放方向，1：VERTICAL 2：HORIZONTAL
+FlutterPangleAds.showFullVideoAd(posId,orientation: 1,);
+```
+
+
+

@@ -208,8 +208,7 @@ class _HomePageState extends State<HomePage> {
     try {
       bool result = await FlutterGromoreAds.showInterstitialFullAd(
         AdsConfig.interstitialFullId,
-        width: 300,
-        height: 300,
+        muted: true,
       );
       _result = "展示插屏全屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {

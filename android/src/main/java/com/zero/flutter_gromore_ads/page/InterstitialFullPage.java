@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.bytedance.msdk.api.AdError;
+import com.bytedance.msdk.api.v2.GMAdConstant;
 import com.bytedance.msdk.api.v2.ad.interstitialFull.GMInterstitialFullAd;
 import com.bytedance.msdk.api.v2.ad.interstitialFull.GMInterstitialFullAdListener;
 import com.bytedance.msdk.api.v2.ad.interstitialFull.GMInterstitialFullAdLoadCallback;
@@ -23,17 +24,15 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
 
     @Override
     public void loadAd(@NonNull MethodCall call) {
-        int width = call.argument("width");
-        int height = call.argument("height");
-        int orientation = call.argument("orientation");
+        boolean muted = call.argument("muted");
         ad = new GMInterstitialFullAd(activity, this.posId);
         GMAdSlotInterstitialFull adSlot = new GMAdSlotInterstitialFull.Builder()
                 .setGMAdSlotBaiduOption(GMAdOptionUtil.getGMAdSlotBaiduOption().build())
                 .setGMAdSlotGDTOption(GMAdOptionUtil.getGMAdSlotGDTOption().build())
-                .setImageAdSize(width, height)  //设置宽高 （插全屏类型下_插屏广告使用）
+                .setMuted(muted)
                 .setVolume(0.5f) //admob 声音配置，与setMuted配合使用
                 .setUserID("user123")//用户id,必传参数 (插全屏类型下_全屏广告使用)
-                .setOrientation(orientation)//必填参数，期望视频的播放方向：TTAdConstant.HORIZONTAL 或 TTAdConstant.VERTICAL; (插全屏类型下_全屏广告使用)
+                .setOrientation(GMAdConstant.VERTICAL)//必填参数，期望视频的播放方向：TTAdConstant.HORIZONTAL 或 TTAdConstant.VERTICAL; (插全屏类型下_全屏广告使用)
                 .build();
         ad.loadAd(adSlot, this);
     }

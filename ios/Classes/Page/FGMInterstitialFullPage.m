@@ -14,11 +14,10 @@
 @implementation FGMInterstitialFullPage
 
 - (void)loadAd:(FlutterMethodCall *)call{
-    int width=[call.arguments[@"width"] intValue];
-    int height=[call.arguments[@"height"] intValue];
-    self.ad =[[ABUInterstitialProAd alloc] initWithAdUnitID:self.posId sizeForInterstitial:CGSizeMake(width, height)];
+    bool muted=[call.arguments[@"muted"] boolValue];
+    self.ad =[[ABUInterstitialProAd alloc] initWithAdUnitID:self.posId sizeForInterstitial:CGSizeZero];
     self.ad.delegate=self;
-    self.ad.mutedIfCan=YES;
+    self.ad.mutedIfCan=muted;
     [self.ad loadAdData];
 }
 

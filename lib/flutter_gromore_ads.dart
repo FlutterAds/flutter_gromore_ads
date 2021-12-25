@@ -108,23 +108,12 @@ class FlutterGromoreAds {
 
   /// 展示插屏全屏广告
   /// [posId] 广告位 id
-  /// [width] 宽度
-  /// [height] 高度
-  /// [orientation] 期望视频的播放方向，1：VERTICAL 2：HORIZONTAL
-  static Future<bool> showInterstitialFullAd(
-    String posId, {
-    int width = 300,
-    int height = 300,
-    int orientation = 1,
-  }) async {
+  /// [muted] 是否静音播放视频
+  static Future<bool> showInterstitialFullAd(String posId,
+      {bool muted = false}) async {
     final bool result = await _methodChannel.invokeMethod(
       'showInterstitialFullAd',
-      {
-        'posId': posId,
-        'width': width,
-        'height': height,
-        'orientation': orientation,
-      },
+      {'posId': posId, 'muted': muted},
     );
     return result;
   }
