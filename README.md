@@ -128,7 +128,7 @@ FlutterGromoreAds.showFullVideoAd(
 
 |参考示例|官方文档|
 |--|--|
-|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/android/app/build.gradle)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=75&docId=604de8b510af03004cbcbf69&osType=android#_1-1sdk包的导入)|
+|[build.gradle](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/android/app/build.gradle)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=75&docId=604de8b510af03004cbcbf69&osType=android#_1-1sdk包的导入)|
 
 打开 `android/app/build.gradle` 添加依赖，需要哪个添加哪个，`Adapter` 和 `SDK` 要成对添加
 
@@ -148,7 +148,7 @@ dependencies {
 
 |参考示例|官方文档|
 |--|--|
-|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/android/app/src/main/AndroidManifest.xml)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=75&docId=604de8b510af03004cbcbf69&osType=android#_1-2-2-androidmanifest-xml-第三方adn相关配置)|
+|[AndroidManifest.xml](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/android/app/src/main/AndroidManifest.xml)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=75&docId=604de8b510af03004cbcbf69&osType=android#_1-2-2-androidmanifest-xml-第三方adn相关配置)|
 
 打开 `android/app/src/main/AndroidManifest.xml` 添加对应的配置文件，与上面的 SDK 对应
 
@@ -217,15 +217,22 @@ dependencies {
 
 |参考示例|官方文档|
 |--|--|
-|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/ios/Podfile)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=79&docId=618372e19e41cf0042bc0016&osType=ios)|
+|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/ios)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=79&docId=618372e19e41cf0042bc0016&osType=ios)|
 
 1、将下载的 `SDK` 中的 `Ads-Mediation-CN` 及其其他所需要的 `Adapter` 复制到 `ios/Frameworks` 下，参考 [ios/Frameworks](https://github.com/FlutterAds/flutter_gromore_ads/tree/develop/example/ios/Frameworks)
+
+<img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381759-02ed1659-dc0a-4f18-b1dd-50c788c764af.png">
 
 > ⚠️⚠️⚠️ 下面这一步非常重要
 
 2、将 `ios/Frameworks/Ads-Mediation-CN/Ads-Mediation-CN.podspec` 中的 `#spec.ios.vendored_frameworks = 'Ads-Mediation-CN/ABUAdSDK.framework'` 注释掉，参考 [Ads-Mediation-CN.podspec 25~26 行](https://github.com/FlutterAds/flutter_gromore_ads/blob/56f8ac69747b7c123024511755d79d667cbc5ede/example/ios/Frameworks/Ads-Mediation-CN/Ads-Mediation-CN.podspec#L25-L26)
 
+<img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381793-af75c511-466e-437f-81ff-c67866e2f041.png">
+
+
 3、修改 `ios/Podfile` 引入 `SDK`，参考 [Podfile](https://github.com/FlutterAds/flutter_gromore_ads/blob/56f8ac69747b7c123024511755d79d667cbc5ede/example/ios/Podfile#L32-L37)
+
+<img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381808-165f56d3-256e-4146-b57b-e4372d630bd4.png">
 
 
 - 添加配置文件
