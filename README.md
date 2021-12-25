@@ -120,6 +120,31 @@ FlutterGromoreAds.showFullVideoAd(
 ```
 
 
+### 设置广告事件监听
+
+``` Dart
+FlutterGromoreAds.onEventListener((event) {
+    _adEvent = 'adId:${event.adId} action:${event.action}';
+    if (event is AdErrorEvent) {
+    // 错误事件
+    _adEvent += ' errCode:${event.errCode} errMsg:${event.errMsg}';
+    }
+    debugPrint('onEventListener:$_adEvent');
+});
+```
+### 事件列表
+|事件|说明|
+|-|-|
+|onAdLoaded|广告加载成功|
+|onAdPresent|广告填充|
+|onAdExposure|广告曝光|
+|onAdClosed|广告关闭（开屏计时结束或者用户点击关闭）|
+|onAdClicked|广告点击|
+|onAdSkip|广告跳过|
+|onAdComplete|广告播放或计时完毕|
+|onAdError|广告错误|
+|onAdReward|获得广告激励|
+
 ### 导入 SDK 
 
 #### Android
@@ -209,97 +234,16 @@ dependencies {
 
 <!-- Pangle end================== -->
 
-<!-- admob end================== -->	
-<provider	
-    android:name="com.google.android.gms.ads.MobileAdsInitProvider"	
-    android:authorities="${applicationId}.mobileadsinitprovider"	
-    tools:replace="android:authorities" />	
-
-<!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->	
-<meta-data	
-    android:name="com.google.android.gms.ads.APPLICATION_ID"	
-    android:value="ca-app-pub-3940256099942544~3347511713" />	
-<!--This meta-data tag is required to use Google Play Services.-->	
-<!-- admob end================== -->	
-
-<!-- baidu start================== -->	
-<!-- 声明打开落地页的Activity（不建议修改主题配置）-->	
-<activity	
-    android:name="com.baidu.mobads.sdk.api.AppActivity"	
-    android:configChanges="screenSize|keyboard|keyboardHidden|orientation"	
-    android:theme="@android:style/Theme.NoTitleBar" />	
-<!-- 声明打开显示激励视频/全屏视频的Activity-->	
-<activity	
-    android:name="com.baidu.mobads.sdk.api.MobRewardVideoActivity"	
-    android:configChanges="screenSize|orientation|keyboardHidden"	
-    android:launchMode="singleTask"	
-    android:theme="@android:style/Theme.Translucent.NoTitleBar" />	
-
-<!-- 如果targetSdkVersion设置值>=24，则强烈建议添加以下provider，否则会影响app变现 -->	
-<!-- android:authorities="${packageName}.bd.provider" authorities中${packageName}部分必须替换成app自己的包名 -->	
-<!-- 原来的FileProvider在新版本中改为BdFileProvider,继承自v4的FileProvider,需要在应用内引用support-v4包 -->	
-<provider	
-    android:name="com.baidu.mobads.sdk.api.BdFileProvider"	
-    android:authorities="${applicationId}.bd.provider"	
-    android:exported="false"	
-    android:grantUriPermissions="true">	
-    <meta-data	
-        android:name="android.support.FILE_PROVIDER_PATHS"	
-        android:resource="@xml/bd_file_paths" />	
-</provider>	
-<!-- baidu end================== -->	
-
-<!-- sigmob start================== -->	
-<activity	
-    android:name="com.sigmob.sdk.base.common.AdActivity"	
-    android:configChanges="keyboard|keyboardHidden|orientation|screenSize"	
-    android:theme="@style/sig_transparent_style" />	
-
-<provider	
-    android:name="com.sigmob.sdk.SigmobFileProvider"	
-    android:authorities="${applicationId}.sigprovider"	
-    android:exported="false"	
-    android:grantUriPermissions="true">	
-    <meta-data	
-        android:name="android.support.FILE_PROVIDER_PATHS"	
-        android:resource="@xml/sigmob_provider_paths" />	
-</provider>	
-<!-- sigmob end================== -->	
-
-<!-- klevin start================== -->	
-
-<provider	
-    android:name="com.tencent.klevin.utils.FileProvider"	
-    android:authorities="${applicationId}.klevin.fileProvider"	
-    android:exported="false"	
-    android:grantUriPermissions="true">	
-    <meta-data	
-        android:name="android.support.FILE_PROVIDER_PATHS"	
-        android:resource="@xml/klevin_provider_paths" />	
-</provider>	
-
-<!--        <meta-data-->	
-<!--            android:name="Klevin.AppId"-->	
-<!--            android:value="30008" />-->	
-<!-- klevin end================== -->	
-
-
-<!-- mintegral start================== -->	
-<provider	
-    android:name="com.mbridge.msdk.foundation.tools.MBFileProvider"	
-    android:authorities="${applicationId}.mbFileProvider"	
-    android:exported="false"	
-    android:grantUriPermissions="true">	
-    <meta-data	
-        android:name="android.support.FILE_PROVIDER_PATHS"	
-        android:resource="@xml/mb_provider_paths" />	
-</provider>	
-<!-- mintegral end================== -->	
+<!-- 其他广告配置参考官方文档添加即可================== -->	
 ```
+
+- 动态请求权限（仅 Android）
 
 > 必要权限已添加，其他权限`参考示例`和`官方文档`酌情添加即可。
 
-
+``` Dart
+bool result = await FlutterGromoreAds.requestPermissionIfNecessary;
+```
 
 #### iOS
 
@@ -339,6 +283,40 @@ dependencies {
 <string>为了向您提供更优质、安全的个性化服务及内容，需要您允许使用相关权限</string>
 ```
 
+- 请求应用跟踪透明度授权（仅 iOS）
+此步骤必须要做，不然上架审核时候会被拒绝
+``` Dart
+bool result = await FlutterGromoreAds.requestIDFA;
+```
 
 
+## 分支说明
+|分支|说明|
+|-|-|
+|develop|开发分支，接受 PR|
+|master|稳定分支，非 Null Safety|
+|2x|稳定分支，Null Safety|
+
+## 更新日志
+[查看 Releases 版本日志](https://github.com/FlutterAds/flutter_gromore_ads/releases)
+
+## 遇到问题
+如果你遇到问题请提 [Issues](https://github.com/FlutterAds/flutter_gromore_ads/issues) 给我（提问前建议先搜索尝试，没有再提问）
+
+## 支持开源
+
+- 开源不易，需要牺牲大量休息时间加班熬夜来维护，你可以通过下方二维码赞赏支持我。
+
+- <a href="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
+    <img width="300" alt="coffee" src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/pay_qr_code/pay_qr_code.png">
+</a>
+
+- 用爱发电，给本项目点个免费的 [Star](https://github.com/FlutterAds/flutter_gromore_ads) ⭐️ 也是非常好的支持。
+
+## FlutterAds 广告插件系列
+|插件|描述|
+|-|-|
+|[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
+|[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
+|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、Gromore 聚合 Flutter 广告插件|
 
