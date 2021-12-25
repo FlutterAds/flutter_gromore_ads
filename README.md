@@ -1,7 +1,7 @@
 <p align="center">
 <a href="https://github.com/FlutterAds"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/logo/flutterads_logo.png" alt="logo"/></a>
 </p>
-<h3 align="center">一款优质的 Flutter 广告插件（Gromore、穿山甲）</h3>
+<h3 align="center">一款优质的 Flutter 广告插件（GroMore、穿山甲）</h3>
 
 <p align="center">
 <a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v0.0.1-success></a>
@@ -324,5 +324,5 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |-|-|
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
-|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、Gromore 聚合 Flutter 广告插件|
+|[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告插件|
 
