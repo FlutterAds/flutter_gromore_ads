@@ -318,6 +318,7 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |支持者|金额|备注|
 |--|--|--|
 |歌**|88|大佬 666|
+|Co**|66|大佬 888|
 
 ## FlutterAds 广告插件系列
 |插件|描述|
