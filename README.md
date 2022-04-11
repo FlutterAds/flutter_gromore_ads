@@ -292,8 +292,7 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |分支|说明|
 |-|-|
 |develop|开发分支，接受 PR|
-|master|稳定分支，非 Null Safety|
-|2x|稳定分支，Null Safety|
+|master|稳定分支，Null Safety|
 
 ## 更新日志
 [查看 Releases 版本日志](https://github.com/FlutterAds/flutter_gromore_ads/releases)
