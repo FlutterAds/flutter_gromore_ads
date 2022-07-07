@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ABUImage : NSObject <NSCoding>
+@interface ABUImage : NSObject
 // image.If is nil,Please use imageURL as the standard to display image.
 @property (nonatomic, copy) UIImage *image;
 
@@ -22,9 +22,5 @@
 
 // image scale
 @property (nonatomic, assign) float scale;
-
-- (instancetype)initWithDictionary:(NSDictionary *)dic;
-
-- (NSDictionary *)dictionaryValue;
 
 @end

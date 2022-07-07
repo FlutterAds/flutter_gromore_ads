@@ -27,9 +27,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// 广告关闭实现，在外部使用开发者调用`destoryAd`时触发
 - (void)dismissSplashAd;
 
+/// 当前加载的广告的状态
+- (ABUMediatedAdStatus)mediatedAdStatus;
+
 @optional
+
 /// 代理，开发者需使用该对象回调事件，Objective-C下自动生成无需设置，Swift需声明
-@property (nonatomic, weak, nullable) id<ABUCustomSplashAdapterBridge, ABUCustomSplashAdapterZoomOutViewBridge> bridge;
+@property (nonatomic, weak, nullable) id<ABUCustomSplashAdapterBridge, ABUCustomSplashAdapterZoomOutViewBridge, ABUCustomSplashAdapterCardViewBridge> bridge;
+
+/// 展示开屏cardView
+/// @param rootVC cardView要展示在的VC
+/// @param parameter 额外参数
+- (void)showSplashCardInRootVC:(UIViewController *)rootVC parameter:(NSDictionary *)parameter;
 
 @end
 

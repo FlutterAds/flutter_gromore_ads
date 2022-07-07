@@ -7,18 +7,25 @@
 
 #import <Foundation/Foundation.h>
 
-/// optional key. Whether to restrict personalized ads:0-not limit, 1-limit, the default is 0.Now only valid for pangle, Ks, Sigmob and Baidu adn.
+/// 【可选】NSNumber，是否限制个性化广告:0-不限制，1-限制，默认为0。官方维护版本中只适用于CSJ、Ks、Sigmob、百度、GDT。
 const static NSString *kABUPrivacyLimitPersonalAds = @"ABUPrivacyLimitPersonalAds";
-/// optional key. Whether to restrict programmatic ads:0-not limit, 1-limit, the default is 0.Now only valid for Ks adn.
+
+/// 【可选】NSNumber，是否限制程序化广告:0-不限制，1-限制，默认为0。官方维护版本中只适用于Ks。
 const static NSString *kABUPrivacyLimitProgrammaticAds = @"ABUPrivacyLimitProgrammaticAds";
-/// optional key. Whether to forbid CAID:0-not forbidden, 1-forbid, the default is 0.Now only valid for pangle Baidu adn.
+
+/// 【可选】NSNumber，是否禁止CAID：0-不禁止，1-禁止，默认为0。官方维护版本中只适用于百度。
 const static NSString *kABUPrivacyForbiddenCAID = @"ABUPrivacyForbiddenCAID";
-/// optional key. Whether to use location in adn SDK. If yes adn SDK will get the latitude and longitude by itself instead of using the passed in value(kABUPrivacyLongitude/kABUPrivacyLatitude). Now only valid for pangle adn.
+
+/// 【可选】NSNumber，是否在adn中使用位置，如果是，adn将自己获得纬度和经度，而不是使用传入的值（kABUPrivacyLongitude/kABUPrivacyLatitude）。官方维护版本中只适用于CSJ。
 const static NSString *kABUPrivacyCanLocation = @"ABUPrivacyCanLocation";
-/// optional key. The value of longitude & latitude.The default is 0.0. Now only valid for pangle adn.
+
+/// 【可选】NSNumber，经度的值。默认值是0.0。官方维护版本中只适用于CSJ。
 const static NSString *kABUPrivacyLongitude = @"ABUPrivacyLongitude";
+
+/// 【可选】NSNumber，纬度的值。默认值是0.0。官方维护版本中只适用于CSJ。
 const static NSString *kABUPrivacyLatitude = @"ABUPrivacyLatitude";
-/// optional key. Whether to be a adult or children:1-children, 0-adult, the default is 0(adult).Now only valid for sigmob adn.
+
+/// 【可选】NSNumber，是成人或者儿童，2-儿童(＜15),1-儿童(15-18岁), 0-成人，默认为0(成人)。官方维护版本中适用于CSJ/sigmob。
 const static NSString *kABUPrivacyNotAdult = @"ABUPrivacyNotAdult";
 
 

@@ -31,6 +31,7 @@ FOUNDATION_EXPORT const unsigned char ABUAdSDKVersionString[];
 #import "ABUInterstitialAd.h"
 #import "ABUInterstitialProAd.h"
 #import "ABUSplashUserData.h"
+#import "ABUDrawAdsManager.h"
 
 #pragma mark - adapter 开发专用
 #import "ABUAdapterRegister.h"
@@ -41,9 +42,11 @@ FOUNDATION_EXPORT const unsigned char ABUAdSDKVersionString[];
 #import "ABUCustomBannerAdapter.h"
 #import "ABUCustomRewardedVideoAdapter.h"
 #import "ABUCustomFullscreenVideoAdapter.h"
+#import "ABUCustomDrawAdapter.h"
 #import "ABUCustomNativeAdapter.h"
 #import "ABUCustomSplashAdapter.h"
 #import "ABUCustomInterstitialAdapter.h"
+#import "ABUCanvasView.h"
 
 #pragma mark - 辅助
 #import "ABUVersion.h"
