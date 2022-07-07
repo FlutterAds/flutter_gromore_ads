@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param parameter 展示广告的参数，由GroMore接入媒体配置
 - (BOOL)showAdFromRootViewController:(UIViewController *_Nonnull)viewController parameter:(NSDictionary *)parameter;
 
+/// 当前加载的广告的状态
+- (ABUMediatedAdStatus)mediatedAdStatus;
+
 @optional
 /// 代理，开发者需使用该对象回调事件，Objective-C下自动生成无需设置，Swift需声明
 @property (nonatomic, weak, nullable) id<ABUCustomInterstitialAdapterBridge> bridge;

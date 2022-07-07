@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSDictionary *ext;
 
 @property (nonatomic, strong, readonly) id originNativeAdData;
+
 @end
 
 NS_ASSUME_NONNULL_END

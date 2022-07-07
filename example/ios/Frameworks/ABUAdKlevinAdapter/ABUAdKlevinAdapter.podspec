@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ABUAdKlevinAdapter'
-  spec.version      = '2.3.0.222.0'
+  spec.version      = '2.5.1.202.0'
   spec.summary      = 'ABUAdKlevinAdapter is a adapter SDK from Bytedance providing media union AD service.'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   

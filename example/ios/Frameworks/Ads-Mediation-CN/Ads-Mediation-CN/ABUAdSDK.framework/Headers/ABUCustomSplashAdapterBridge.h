@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ABUZoomOutViewProperty.h"
+#import "ABUCardViewProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param view zoom out view
 /// @param property zoom out view属性
 - (void)splashAd:(id<ABUCustomSplashAdapter>)adapter hasZoomOutView:(UIView *)view withProperty:(void(^)(ABUZoomOutViewProperty *prop))property;
+
+/// 在广告加载完成后如果存在cardView时调用，直接调用即可，无需做响应判断
+/// @param adapter 当前适配器
+/// @param view cardView
+- (void)splashAd:(id<ABUCustomSplashAdapter>)adapter hasCardView:(UIView *)view withProperty:(void(^)(ABUCardViewProperty *prop))property;
 
 /// 在广告即将展示时调用，直接调用即可，无需做响应判断
 /// @param adapter 当前适配器
@@ -75,6 +81,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param adapter 当前适配器
 - (void)splashAdDidCountDownToZero:(id<ABUCustomSplashAdapter>_Nonnull)adapter;
 
+/// 在广告视频播放完成或者出错时调用，直接调用即可，无需做响应判断
+/// @param adapter 当前适配器
+/// @param error 播放错误
+- (void)splashAd:(id<ABUCustomSplashAdapter>_Nonnull)adapter didPlayFinishWithError:(NSError *)error;
+
 /// 广告点击跳转使用的控制器
 - (UIViewController *)viewControllerForPresentingModalView;
 @end
@@ -97,6 +108,27 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当zoom out 在广告已经关闭详情页或者app store时调用，直接调用即可，无需做响应判断
 /// @param splashZoomOutView zoom out 视图
 - (void)adapterAdSplashZoomOutViewDidDismissFullScreenModal:(UIView *_Nonnull)splashZoomOutView;
+
+@end
+
+/// 开屏广告cardView 视图协议
+@protocol ABUCustomSplashAdapterCardViewBridge <NSObject>
+
+/// 当zoom out 视图点击时调用，直接调用即可，无需做响应判断
+/// @param splashCardView cardView 视图
+- (void)adapterAdSplashCardViewDidClick:(UIView *_Nonnull)splashCardView;
+
+/// 当zoom out 视图关闭时调用，直接调用即可，无需做响应判断
+/// @param splashCardView cardView 视图
+- (void)adapterAdSplashCardViewDidClose:(UIView *_Nonnull)splashCardView;
+
+/// 当zoom out 在广告已经展示详情页或者app store时调用，直接调用即可，无需做响应判断
+/// @param splashCardView cardView 视图
+- (void)adapterAdSplashCardViewDidPresentFullScreenModal:(UIView *_Nonnull)splashCardView;
+
+/// 当zoom out 在广告已经关闭详情页或者app store时调用，直接调用即可，无需做响应判断
+/// @param splashCardView cardView 视图
+- (void)adapterAdSplashCardViewDidDismissFullScreenModal:(UIView *_Nonnull)splashCardView;
 
 @end
 

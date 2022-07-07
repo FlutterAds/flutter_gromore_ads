@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ABUAdSDKConst.h"
 #import "ABURitInfo.h"
+#import "ABUAdLoadInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 一次waterfall中各adn代码位加载广告失败原因，建议调用时机：展示广告时/超时时/全部返回报错时；返回nil表示一次加载无代码位加载失败或其加载无响应
 - (NSArray<NSDictionary *> *)waterfallFillFailMessages;
 
+/// 同`waterfallFillFailMessages`，返回数据为`ABUAdLoadInfo`类型
+- (NSArray<ABUAdLoadInfo *> *)getAdLoadInfoList;
+
 /// 是否已经加载配置
 @property (nonatomic, assign, readonly) BOOL hasAdConfig ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用 '+ [ABUAdSDKManager configDidLoad]' 方法代替");
 
@@ -40,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 在Bididing结束后是否回调ADN结果，默认NO
 @property (nonatomic, assign) BOOL bidNotify;
+
 @end
 
 NS_ASSUME_NONNULL_END

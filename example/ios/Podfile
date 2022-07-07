@@ -33,41 +33,44 @@ target 'Runner' do
   pod 'Ads-Mediation-CN', :path=>'Frameworks/Ads-Mediation-CN'
   # 2.GroMore官方适配adapter（请以接入文档0.3说明为准，请不要更换GroMoreSDK不支持的三方sdk版本）
   # 穿山甲
-  pod 'ABUAdSDKAdapter', :path=>'Frameworks/ABUAdSDKAdapter'
-  pod 'Ads-CN'
+  pod 'ABUAdCsjAdapter', :path=>'Frameworks/ABUAdCsjAdapter/'
+  pod 'Ads-CN','4.5.1.6'
   # 穿山甲beta灰度版
   #pod 'Ads-CN-Beta', '3.8.0.0'
   # 广点通/优量汇
   pod 'ABUAdGdtAdapter', :path=>'Frameworks/ABUAdGdtAdapter'
-  pod 'GDTMobSDK'
+  pod 'GDTMobSDK','4.13.66'
   # 百度SDK
 #  pod 'ABUAdBaiduAdapter', :path=>'Frameworks/ABUAdBaiduAdapter'
-#  pod 'BaiduMobAdSDK', '4.83'
+#  pod 'BaiduMobAdSDK', '4.87'
   # UnityAds
 #  pod 'ABUAdUnityAdapter', :path=>'Frameworks/ABUAdUnityAdapter'
-#  pod 'UnityAds', '3.7.5'
+#  pod 'UnityAds', '4.2.1'
   # Admob/GoogleAd
 #  pod 'ABUAdAdmobAdapter', :path=>'Frameworks/ABUAdAdmobAdapter'
-#  pod 'Google-Mobile-Ads-SDK', '8.13.0'
+#  pod 'Google-Mobile-Ads-SDK', '9.5.0'
   # SigmobAd
 #  pod 'ABUAdSigmobAdapter', :path=>'Frameworks/ABUAdSigmobAdapter'
-#  pod 'SigmobAd-iOS', '3.5.0'
+#  pod 'SigmobAd-iOS', '3.5.3'
   # MintegralAdSDK
 #  pod 'ABUAdMintegralAdapter', :path=>'Frameworks/ABUAdMintegralAdapter'
-#  pod 'MintegralAdSDK', '7.0.4', :subspecs => [
-#    'SplashAd',
-#    'InterstitialAd',
-#    'InterstitialVideoAd',
-#    'RewardVideoAd',
-#    'NativeAd',
-#    'NativeAdvancedAd',
-#    'BannerAd',
-#    'BidNativeAd'
-#  ]
-  # KlevinAdSDK 2.2.0.286
-  # ！！！请务必修改为KlevinAdSDK目录
-  #pod 'KlevinAdSDK', :path=>'Frameworks/KlevinAdSDK/'
-#  pod 'ABUAdKlevinAdapter', :path=>'Frameworks/ABUAdKlevinAdapter'
+  # MintegralAdSDK 使用时请务必使用cocoapod源
+  # pod 'MintegralAdSDK', '7.1.5.0', :subspecs => [
+  # 'SplashAd',
+  # 'InterstitialAd',
+  # 'NewInterstitialAd',
+  # 'InterstitialVideoAd',
+  # 'RewardVideoAd',
+  # 'NativeAd',
+  # 'NativeAdvancedAd',
+  # 'BannerAd',
+  # 'BidNativeAd',
+  # 'BidNewInterstitialAd',
+  # 'BidInterstitialVideoAd',
+  # 'BidRewardVideoAd'
+  # ]
+  #  pod 'ABUAdKlevinAdapter', :path=>'Frameworks/ABUAdKlevinAdapter'
+  #  pod 'KlevinAdSDK', '2.5.1.202'
   # 快手
 #  pod 'KSAdSDK'
   # 调试

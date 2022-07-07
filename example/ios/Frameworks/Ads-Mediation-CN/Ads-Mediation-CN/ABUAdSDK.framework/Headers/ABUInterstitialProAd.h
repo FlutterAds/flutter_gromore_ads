@@ -8,6 +8,8 @@
 #import "ABUBaseAd.h"
 #import "ABURewardedVideoModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class ABUInterstitialProAd, ABUAdapterRewardAdInfo;
 /// 插全屏广告代理协议
 @protocol ABUInterstitialProAdDelegate <NSObject>
@@ -98,17 +100,17 @@
 /// @param extroInfos 扩展信息，可选，与adapter及ADN是否实现有关，字段参见ABUADSDKConst.h中全屏视频、激励视频展示扩展部分
 - (BOOL)showAdFromRootViewController:(UIViewController *_Nonnull)viewController extroInfos:(NSDictionary *_Nullable)extroInfos;
 
-/// 返回显示广告对应的Adn，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (ABUAdnType)getAdNetworkPlaformId;
+/// 返回显示广告对应的rit
+- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
 
-/// 返回显示广告对应的rit，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (NSString *_Nullable)getAdNetworkRitId;
+/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
+- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
 
-/// 返回显示广告对应的ecpm，当未在平台配置ecpm会返回-1，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3 单位：分
-- (NSString *_Nullable)getPreEcpm;
+/// 返回显示广告对应的Adn名称
+- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
 
-/// 返回显示广告对应的Adn名称，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (NSString *_Nonnull)getAdNetworkPlatformName;
+/// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
+- (ABURitInfo *)getShowEcpmInfo;
 
 /// 填充后可调用，返回当前最佳广告的ecpm；当为server bidding ad时访问需要白名单权限；nil为无权限
 - (ABURitInfo *_Nullable)getCurrentBestEcpmInfo;
@@ -119,6 +121,9 @@
 /// 填充后可调用, 返回广告缓存池内所有信息；nil为无权限
 - (NSArray<ABURitInfo *> *_Nullable)cacheRitList;
 
+/// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
+- (nullable NSDictionary *)getMediaExtraInfo;
 
 @end
 
+NS_ASSUME_NONNULL_END

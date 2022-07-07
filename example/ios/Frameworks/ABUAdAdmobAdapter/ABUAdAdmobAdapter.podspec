@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ABUAdAdmobAdapter'
-  spec.version      = '8.13.0.0'
+  spec.version      = '9.5.0.0'
   spec.summary      = 'ABUAdAdmobAdapter is a adapter SDK from Bytedance providing media union AD service.'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   

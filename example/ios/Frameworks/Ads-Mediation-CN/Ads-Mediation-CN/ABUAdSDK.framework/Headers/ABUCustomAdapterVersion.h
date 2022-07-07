@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 自定义adapter协议版本，版本号 1.0
 extern ABUCustomAdapterVersion * const ABUCustomAdapterVersion1_0;
+/// 自定义adapter协议版本，版本号 1.1
+extern ABUCustomAdapterVersion * const ABUCustomAdapterVersion1_1;
 
 /// 自定义adapter使用的协议版本，请开发者实现/更新自定义adapter时使用最新版本的版本号即可
 /// GroMore会根据实际情况控制adapter是否可用，[及时更新]
