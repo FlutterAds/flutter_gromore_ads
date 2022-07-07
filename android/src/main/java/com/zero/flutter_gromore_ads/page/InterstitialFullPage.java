@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.bytedance.msdk.api.AdError;
+import com.bytedance.msdk.api.reward.RewardItem;
 import com.bytedance.msdk.api.v2.GMAdConstant;
 import com.bytedance.msdk.api.v2.ad.interstitialFull.GMInterstitialFullAd;
 import com.bytedance.msdk.api.v2.ad.interstitialFull.GMInterstitialFullAdListener;
@@ -115,6 +116,11 @@ public class InterstitialFullPage extends BaseAdPage implements GMInterstitialFu
     @Override
     public void onAdLeftApplication() {
         Log.i(TAG, "onAdLeftApplication");
+    }
+
+    @Override
+    public void onRewardVerify(@NonNull RewardItem rewardItem) {
+
     }
 
     @Override

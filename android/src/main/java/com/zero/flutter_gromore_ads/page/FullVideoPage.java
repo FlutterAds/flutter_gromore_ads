@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.bytedance.msdk.api.AdError;
+import com.bytedance.msdk.api.reward.RewardItem;
+import com.bytedance.msdk.api.v2.GMAdConstant;
 import com.bytedance.msdk.api.v2.ad.fullvideo.GMFullVideoAd;
 import com.bytedance.msdk.api.v2.ad.fullvideo.GMFullVideoAdListener;
 import com.bytedance.msdk.api.v2.ad.fullvideo.GMFullVideoAdLoadCallback;
@@ -103,6 +105,11 @@ public class FullVideoPage extends BaseAdPage implements GMFullVideoAdLoadCallba
         Log.i(TAG, "onSkippedVideo");
         // 添加广告事件
         sendEvent(AdEventAction.onAdSkip);
+    }
+
+    @Override
+    public void onRewardVerify(@NonNull RewardItem rewardItem) {
+
     }
 
     @Override
