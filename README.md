@@ -4,8 +4,8 @@
 <h3 align="center">一款优质的 Flutter 广告插件（GroMore、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v0.0.1-success></a>
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/null_safety-v0.0.1-success></a>
+<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v1.1.0-success></a>
+<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/null_safety-v1.1.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_gromore_ads?color=brightgreen></a>
@@ -22,8 +22,6 @@
 - 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展新广告形式、方便开发个性化需求）
 
 ## 支持功能
-> 开发中敬请期待，可以点 Star 支持我加快开发
-> 当前正在进行文档的整理和最后的测试，准备发布 1.0 版本啦 🎉
 
 - ✅ 开屏广告
 - ✅ 插屏广告
@@ -160,10 +158,10 @@ FlutterGromoreAds.onEventListener((event) {
 ``` gradle
 dependencies {
     //GroMore_sdk adapter
-    implementation "com.gromore.cn:gdt-adapter:4.422.1292.0"  //gdt adapter
-    implementation 'com.qq.e.union:union:4.422.1292'// 广点通广告 SDK
-    implementation "com.gromore.cn:pangle-adapter:4.0.1.9.1" //穿山甲 adapter
-    implementation 'com.pangle.cn:ads-sdk-pro:4.0.1.9'//穿山甲广告 SDK
+    implementation "com.gromore.cn:gdt-adapter:4.464.1334.0"  //gdt adapter
+    implementation 'com.qq.e.union:union:4.464.1334'// 广点通广告 SDK
+    implementation "com.gromore.cn:pangle-adapter:4.5.1.1.0" //穿山甲 adapter
+    implementation 'com.pangle.cn:ads-sdk-pro:4.5.1.1'//穿山甲广告 SDK
     // 其他参考官方文档 引入即可
 }
 ```
@@ -294,8 +292,7 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |分支|说明|
 |-|-|
 |develop|开发分支，接受 PR|
-|master|稳定分支，非 Null Safety|
-|2x|稳定分支，Null Safety|
+|master|稳定分支，Null Safety|
 
 ## 更新日志
 [查看 Releases 版本日志](https://github.com/FlutterAds/flutter_gromore_ads/releases)
@@ -318,6 +315,8 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |支持者|金额|备注|
 |--|--|--|
 |歌**|88|大佬 666|
+|Co**|66|大佬 888|
+|At**|200|大佬给力，帮我节省了很多时间|
 
 ## FlutterAds 广告插件系列
 |插件|描述|

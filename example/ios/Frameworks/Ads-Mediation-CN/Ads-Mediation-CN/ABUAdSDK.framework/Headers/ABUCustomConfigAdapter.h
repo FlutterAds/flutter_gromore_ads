@@ -12,6 +12,7 @@
 #import "ABUCustomInterstitialAdapter.h"
 #import "ABUCustomRewardedVideoAdapter.h"
 #import "ABUCustomFullscreenVideoAdapter.h"
+#import "ABUCustomDrawAdapter.h"
 #import "ABUCustomSplashAdapter.h"
 #import "ABUCustomNativeAdapter.h"
 #import "ABUCustomAdapterVersion.h"

@@ -7,6 +7,7 @@
 
 #import "ABUBaseAd.h"
 #import "ABUAdSDKConst.h"
+#import "ABUCanvasView.h"
 
 NS_ASSUME_NONNULL_BEGIN
     
@@ -21,15 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param bannerView 广告视图
 - (void)bannerAdDidLoad:(ABUBannerAd *)bannerAd bannerView:(UIView *)bannerView;
 
-/**
- This method is called when bannerAdView ad slot failed to load.
- @param error : the reason of error
- */
-
 /// 广告加载失败回调
 /// @param bannerAd 广告操作对象
 /// @param error 错误信息
 - (void)bannerAd:(ABUBannerAd *)bannerAd didLoadFailWithError:(NSError *_Nullable)error;
+
+/// 广告加载成功后为「混用的信息流自渲染广告」时会触发该回调，提供给开发者自渲染的时机
+/// @param bannerAd 广告操作对象
+/// @param canvasView 携带物料的画布，需要对其内部提供的物料及控件做布局及设置UI
+/// @warning 轮播开启时，每次轮播到自渲染广告均会触发该回调，并且canvasView为其他回调中bannerView的子控件
+- (void)bannerAdNeedLayoutUI:(ABUBannerAd *)bannerAd canvasView:(ABUCanvasView *)canvasView;
 
 /// 广告展示回调
 /// @param bannerAd 广告操作对象
@@ -51,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param bannerView 广告视图
 - (void)bannerAdWillDismissFullScreenModal:(ABUBannerAd *)ABUBannerAd bannerView:(UIView *)bannerView;
 
+/// 广告点击事件回调
 /// @param ABUBannerAd 广告操作对象
 /// @param bannerView 广告视图
 - (void)bannerAdDidClick:(ABUBannerAd *)ABUBannerAd bannerView:(UIView *)bannerView;
@@ -93,23 +96,47 @@ NS_ASSUME_NONNULL_BEGIN
 /// 实际的自动轮播定时间隔，有效值在30-120之间
 @property (nonatomic, assign, readonly) NSInteger autoRefreshTime __attribute__((unavailable("This attribute is invalid, get the value of refreshTime")));
 
-/// 平台设置的Banner轮播时间间隔, 范围[10, 180], 其他值按0处理, 默认为0
+/// 平台设置的Banner轮播时间间隔, 范围[10, 180], 其他值按0处理, 默认为0，单位秒
 @property (nonatomic, assign, readonly) NSInteger refreshTime;
 
-/// 返回显示广告对应的Adn，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (ABUAdnType)getAdNetworkPlaformId;
+/// 是否已经准备广告展示，理论上在广告加载回调后即为YES，但受一些因素的影响（例如广告失效），可能为NO。建议在广告展示前调用该方法进行是否可以展示
+@property (nonatomic, assign, readonly) BOOL isReady;
 
-/// 返回显示广告对应的rit，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (NSString *_Nullable)getAdNetworkRitId;
+/// 返回显示广告对应的rit
+- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
 
-/// 返回显示广告对应的ecpm，当未在平台配置ecpm会返回-1，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3 单位：分
-- (NSString *_Nullable)getPreEcpm;
+/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
+- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
 
 /// 返回显示广告对应的Adn名称，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (NSString *)getAdNetworkPlatformName;
+- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
+
+/// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
+- (nullable ABURitInfo *)getShowEcpmInfo;
 
 /// 填充后可调用, 返回广告缓存池内所有信息；nil为无权限
 - (NSArray<ABURitInfo *> *)cacheRitList;
+
+/// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
+- (nullable NSDictionary *)getMediaExtraInfo;
+
+/// 不再使用加载成功后回调的view时，可调用该方法释放占用的内存
+- (void)destory;
+
+@end
+
+
+/// banner广告位下混用了信息流代码位
+@interface ABUBannerAd (mixture)
+
+/// 是否使用模板广告，只对支持模板广告的第三方SDK有效，默认为NO，仅在广告加载前设置有效，优先以平台配置为准
+@property (nonatomic, assign) BOOL getExpressAdIfCan;
+
+/// 图片大小，包括视频媒体的大小设定
+@property (nonatomic, assign) CGSize imageOrVideoSize;
+
+/// 是否静音播放视频，是否真实静音由adapter确定，默认为YES，仅在广告加载前设置有效，优先以平台配置为准
+@property (nonatomic, assign) BOOL startMutedIfCan;
 
 @end
 

@@ -33,7 +33,7 @@ class AdsConfig {
     if (Platform.isIOS) {
       return '887383142';
     }
-    return '887382965';
+    return '887382967';
   }
 
   /// 获取插屏广告位id

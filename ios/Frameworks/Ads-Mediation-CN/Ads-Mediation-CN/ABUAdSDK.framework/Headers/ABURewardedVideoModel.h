@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 开发者提供给GroMore和ADN的奖励信息，适用于ADN的服务端验证和GroMore的S2S验证
 @interface ABURewardedVideoModel : NSObject
 /// 可选，三方用户ID。主要用于奖励发放，是服务器到服务器的回调传递参数。在非服务器回调模式下，当视频播放结束时，它也将被透传。是否有效依赖于adapter和adn。
 @property (nonatomic, copy) NSString *userId;

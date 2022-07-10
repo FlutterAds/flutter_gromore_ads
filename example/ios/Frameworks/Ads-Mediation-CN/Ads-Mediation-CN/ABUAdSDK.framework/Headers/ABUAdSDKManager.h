@@ -10,6 +10,7 @@
 #import "ABUUserInfoForSegment.h"
 #import "ABUAdSDKConst.h"
 
+@class ABUBaseAd;
 NS_ASSUME_NONNULL_BEGIN
 
 __attribute__((objc_subclassing_restricted))
@@ -61,6 +62,12 @@ __attribute__((objc_subclassing_restricted))
 
 /// 旧版本兼容，设置广告主题，扩展暗黑模式
 + (void)setThemeStatus:(ABUAdSDKThemeStatus)themeStatus ABU_DEPRECATED_MSG_ATTRIBUTE("Use setupSDKWithAppId:config: instead");
+
+/// 触发首次预缓存,针对特定广告位
+/// @param infos 广告对象
+/// @param interval 指定每轮请求的时间间隔, 允许时间范围:1-10
+/// @param concurrent 并发请求的广告数, 允许个数范围:1-20
++ (void)preloadAdsWithInfos:(NSArray<__kindof ABUBaseAd *> *)infos andInterval:(NSInteger)interval andConcurrent:(NSInteger)concurrent;
 
 @end
 

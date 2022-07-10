@@ -1,12 +1,12 @@
 
 Pod::Spec.new do |spec|
 
-  spec.name         = 'ABUAdSDKAdapter'
-  spec.version      = '4.1.0.3.0'
-  spec.summary      = 'ABUAdSDKAdapter is a adapter SDK from Bytedance providing media union AD service.'
+  spec.name         = 'ABUAdCsjAdapter'
+  spec.version      = '4.5.1.6.0'
+  spec.summary      = 'ABUAdCsjAdapter is a adapter SDK from Bytedance providing media union AD service.'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   
-  ABUAdSDKAdapter is a adapter SDK from Bytedance providing media union AD service.
+  ABUAdCsjAdapter is a adapter SDK from Bytedance providing media union AD service.
                        DESC
 
   spec.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
 
   valid_archs = ['arm64', 'armv7', 'x86_64', 'i386']
 
-	spec.ios.vendored_frameworks = 'ABUAdSDKAdapter/ABUAdSDKAdapter.framework'
+	spec.ios.vendored_frameworks = 'ABUAdCsjAdapter/ABUAdCsjAdapter.framework'
   spec.dependency 'Ads-Mediation-CN'
 
 end

@@ -60,15 +60,15 @@ typedef NS_ENUM (NSInteger, ABUAdnType) {
     ABUAdnNoPermission  = -3,  // 无权限访问
     ABUAdnNoData        = -2,  // 暂时无真实数据，未获取到最佳广告，一般在未展示之前提前调用
     ABUAdnNone          = 0,   // 未知adn
-    ABUAdnPangle        = 1,   // 穿山甲adn
-    ABUAdnAdmob         = 2,   // 谷歌Admob
-    ABUAdnGDT           = 3,   // 腾讯广点通adn
-    ABUAdnMTG           = 4,   // Mintegral adn
-    ABUAdnUnity         = 5,   // unity adn
-    ABUAdnBaidu         = 6,   // 百度adn
-    ABUAdnKs            = 7,   // 快手Adn
-    ABUAdnSigmob        = 8,   // Sigmob adn
-    ABUAdnKlevin        = 9,   // Klevin游可赢
+    ABUAdnPangle        = 1,   // pangle -> 穿山甲adn
+    ABUAdnAdmob         = 2,   // admob -> 谷歌Admob
+    ABUAdnGDT           = 3,   // gdt -> 腾讯广点通adn
+    ABUAdnMTG           = 4,   // mintegral -> Mintegral adn
+    ABUAdnUnity         = 5,   // unity -> unity adn
+    ABUAdnBaidu         = 6,   // baidu -> 百度adn
+    ABUAdnKs            = 7,   // ks -> 快手Adn
+    ABUAdnSigmob        = 8,   // sigmob -> Sigmob adn
+    ABUAdnKlevin        = 9,   // klevin -> Klevin游可赢
 };
 
 // MSDK目前实际只有1，2，3，5，7，8
@@ -80,6 +80,7 @@ typedef NS_ENUM (NSInteger, ABUAdSlotAdType) {
     ABUAdSlotAdTypeFeed            = 5,     // feed ads
     ABUAdSlotAdTypeRewardVideo     = 7,     // rewarded video ads
     ABUAdSlotAdTypeFullscreenVideo = 8,     // full-screen video ads
+    ABUAdSlotAdTypeDraw            = 9      // draw ads
 };
 
 typedef NS_ENUM(NSInteger, ABUAdSlotPosition) {
@@ -91,6 +92,7 @@ typedef NS_ENUM(NSInteger, ABUAdSlotPosition) {
 };
 
 typedef NS_ENUM(NSInteger, ABUBiddingType) {
+    ABUBiddingTypeUnknown = -1,
     ABUBiddingTypeNormal = 0,
     ABUBiddingTypeClient = 1,
     ABUBiddingTypeServer = 2,

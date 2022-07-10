@@ -104,8 +104,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIViewController *rootViewController;
 
 /// 加载广告方法
-/// @param count 加载广告的数量，建议单次不超过3个
+/// @param count 加载广告的数量，建议单次不超过3个，优先以平台上配置为准
 - (void)loadAdDataWithCount:(NSUInteger)count;
+
+- (void)loadAdData;
+
+/// 不再使用加载成功后回调的视图对象组时，可调用该方法释放占用的内存
+- (void)destory;
+
 @end
 
 NS_ASSUME_NONNULL_END

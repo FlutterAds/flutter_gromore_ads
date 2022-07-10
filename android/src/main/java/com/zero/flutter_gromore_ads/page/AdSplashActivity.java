@@ -142,6 +142,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
     public void onAdClicked() {
         Log.d(TAG, "onAdClicked");
         AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClicked));
+        finishPage();
     }
 
     @Override

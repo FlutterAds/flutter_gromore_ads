@@ -5,12 +5,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        //GroMore SDK依赖
-        maven {
-            url "https://artifact.bytedance.com/repository/pangle"
-        }
-        maven {
-            url "https://s3.amazonaws.com/moat-sdk-builds"
+        //GroMore SDK依赖	
+        maven {	
+            url "https://artifact.bytedance.com/repository/pangle"	
         }
         //mintegral sdk依赖
         maven {
@@ -27,9 +24,9 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        //GroMore SDK依赖
+        //GroMore SDK依赖	
         maven {
-            url "https://artifact.bytedance.com/repository/pangle"
+            url "https://artifact.bytedance.com/repository/pangle"	
         }
         //mintegral sdk依赖
         maven {
@@ -58,5 +55,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     //GroMore_sdk
-    implementation "com.gromore.cn:gromore-sdk:3.1.0.1"  //groMore sdk
+    implementation "com.gromore.cn:gromore-sdk:3.5.0.0"  //groMore sdk
 }

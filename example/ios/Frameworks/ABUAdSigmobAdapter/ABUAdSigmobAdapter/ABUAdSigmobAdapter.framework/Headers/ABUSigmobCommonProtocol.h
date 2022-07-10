@@ -9,9 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString * const kSMSplashExtraAdSize;
-extern NSString * const kSMSplashExtraRootViewController;
-
+extern __attribute__((weak)) NSString * const kSMSplashExtraAdSize;
+NSString *const kSMSplashExtraAdSize = @"";
+extern __attribute__((weak)) NSString * const kSMSplashExtraRootViewController;
+NSString *const kSMSplashExtraRootViewController = @"";
 
 typedef NS_ENUM(NSUInteger, WindLogLevel){
     WindLogLevelError=8,

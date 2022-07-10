@@ -61,7 +61,7 @@ typedef NSObject<ABUMediatedNativeAdData> ABUMaterialMeta;
 /// 广告logo，如果logo有宽高，请尽量配置width和height
 @property (nonatomic, strong, readonly, nullable) ABUImage *adLogo;
 
-/// 广告SDKlogo，如果logo有宽高，请尽量配置width和height
+/// 聚合广告SDKlogo
 @property (nonatomic, strong, readonly, nullable) ABUImage *sdkLogo;
 
 /// 广告标题
@@ -85,7 +85,7 @@ typedef NSObject<ABUMediatedNativeAdData> ABUMaterialMeta;
 /// 评论数量，如果没有值返回-1
 @property (nonatomic, assign, readonly) NSInteger commentNum;
 
-/// 广告安装包体大小，单位Byte，如果没有值返回-1
+/// 广告安装包体大小，单位KB，如果没有值返回-1
 @property (nonatomic, assign, readonly) NSInteger appSize;
 
 /// 视频时长，单位秒，如果没有值返回0

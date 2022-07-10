@@ -22,7 +22,8 @@
    <application
         android:label="FlutterAdsGroMore"
         android:icon="@mipmap/ic_launcher"
-       android:networkSecurityConfig="@xml/network_config">
+       android:networkSecurityConfig="@xml/network_config"
+       tools:replace="android:label">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

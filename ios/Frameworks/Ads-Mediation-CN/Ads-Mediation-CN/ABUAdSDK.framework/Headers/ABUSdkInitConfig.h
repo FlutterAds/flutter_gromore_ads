@@ -54,6 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 自定义adapter native广告的配置类名，该类对象遵循ABUCustomNativeAdapter协议
 @property (nonatomic, copy, readonly) NSString *customNativeAdapterClassName;
 
+/// 自定义adapter draw广告的配置类名，该类对象遵循ABUCustomDrawAdapter协议
+@property (nonatomic, copy, readonly) NSString *customDrawAdapterClassName;
+
 @end
 
 NS_ASSUME_NONNULL_END
