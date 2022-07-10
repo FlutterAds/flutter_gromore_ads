@@ -36,10 +36,10 @@
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^1.0.0
+  flutter_gromore_ads: ^1.1.0
 ```
 
-> 下面大 `导入 SDK` 是必须配置的，千万别省略了，仔细看文档来配置。
+> 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。
 
 ### 初始化广告
 
