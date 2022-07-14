@@ -56,7 +56,9 @@
 - (void) initAd:(FlutterMethodCall*) call result:(FlutterResult) result{
     NSString *appId=call.arguments[@"appId"];
     [ABUAdSDKManager setupSDKWithAppId:appId config:^ABUUserConfig *(ABUUserConfig *c) {
-        c.logEnable = YES;
+        #ifdef DEBUG
+            c.logEnable = YES;
+        #endif
         return c;
     }];
     result(@(YES));

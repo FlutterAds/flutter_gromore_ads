@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   # 这里仅加载 framework，在 Podfile 中加载 Ads-Mediation-CN 要去掉 framework 的加载，防止冲突
   s.vendored_frameworks = 'Frameworks/Ads-Mediation-CN/Ads-Mediation-CN/ABUAdSDK.framework'
   s.platform = :ios, '9.0'
+  s.static_framework = true
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   
