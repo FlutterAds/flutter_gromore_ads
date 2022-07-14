@@ -58,7 +58,7 @@ dependencies {
     //GroMore_sdk adapter
     implementation "com.gromore.cn:gdt-adapter:4.464.1334.0"  //gdt adapter
     implementation 'com.qq.e.union:union:4.464.1334'// 广点通广告 SDK
-    implementation "com.gromore.cn:pangle-adapter:4.5.1.1.0" //穿山甲 adapter
+    implementation "com.gromore.cn:pangle-adapter:4.5.1.1.3" //穿山甲 adapter
     implementation 'com.pangle.cn:ads-sdk-pro:4.5.1.1'//穿山甲广告 SDK
 
 }
