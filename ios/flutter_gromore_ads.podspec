@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_gromore_ads'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = '一款优质的 Flutter 广告插件（GroMore、穿山甲）'
   s.description      = <<-DESC
   FlutterAds 致力于构建优质的 Flutter 广告插件
@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   # 这里仅加载 framework，在 Podfile 中加载 Ads-Mediation-CN 要去掉 framework 的加载，防止冲突
   s.vendored_frameworks = 'Frameworks/Ads-Mediation-CN/Ads-Mediation-CN/ABUAdSDK.framework'
   s.platform = :ios, '9.0'
+  s.static_framework = true
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   
