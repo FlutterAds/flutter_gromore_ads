@@ -248,20 +248,13 @@ bool result = await FlutterGromoreAds.requestPermissionIfNecessary;
 
 |参考示例|官方文档|
 |--|--|
-|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/ios)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=79&docId=618372e19e41cf0042bc0016&osType=ios)|
+|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/master/example/ios)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=79&docId=618372e19e41cf0042bc0016&osType=ios)|
 
-1、将下载的 `SDK` 中的 `Ads-Mediation-CN` 及其其他所需要的 `Adapter` 复制到 `ios/Frameworks` 下，参考 [ios/Frameworks](https://github.com/FlutterAds/flutter_gromore_ads/tree/develop/example/ios/Frameworks)
+1、将下载的 `SDK` 中的 `Ads-Mediation-CN` 及其其他所需要的 `Adapter` 复制到 `ios/Frameworks` 下，参考 [ios/Frameworks](https://github.com/FlutterAds/flutter_gromore_ads/tree/master/example/ios/Frameworks)
 
 <img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381759-02ed1659-dc0a-4f18-b1dd-50c788c764af.png">
 
-> ⚠️⚠️⚠️ 下面这一步非常重要
-
-2、将 `ios/Frameworks/Ads-Mediation-CN/Ads-Mediation-CN.podspec` 中的 `#spec.ios.vendored_frameworks = 'Ads-Mediation-CN/ABUAdSDK.framework'` 注释掉，参考 [Ads-Mediation-CN.podspec 25~26 行](https://github.com/FlutterAds/flutter_gromore_ads/blob/56f8ac69747b7c123024511755d79d667cbc5ede/example/ios/Frameworks/Ads-Mediation-CN/Ads-Mediation-CN.podspec#L25-L26)
-
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381793-af75c511-466e-437f-81ff-c67866e2f041.png">
-
-
-3、修改 `ios/Podfile` 引入 `SDK`，参考 [Podfile](https://github.com/FlutterAds/flutter_gromore_ads/blob/56f8ac69747b7c123024511755d79d667cbc5ede/example/ios/Podfile#L32-L37)
+2、修改 `ios/Podfile` 引入 `SDK`，参考 [Podfile](https://github.com/FlutterAds/flutter_gromore_ads/blob/master/example/ios/Podfile)
 
 <img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381808-165f56d3-256e-4146-b57b-e4372d630bd4.png">
 
@@ -291,7 +284,7 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |分支|说明|
 |-|-|
 |develop|开发分支，接受 PR|
-|master|稳定分支，Null Safety|
+|master|稳定分支|
 
 ## 更新日志
 [查看 Releases 版本日志](https://github.com/FlutterAds/flutter_gromore_ads/releases)
