@@ -1,3 +1,8 @@
+## 1.2.0
+* 优化 iOS 静态库编译问题
+* 升级 Android `pangle-adapter`
+* iOS 根据环境切换是否判断显示 Log
+
 ## 1.1.0
 * 升级 Gromore SDK 到 v'3.5.0.0'
 

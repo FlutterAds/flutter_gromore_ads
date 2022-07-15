@@ -4,8 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（GroMore、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v1.1.0-success></a>
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/null_safety-v1.1.0-success></a>
+<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v1.2.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_gromore_ads?color=brightgreen></a>
@@ -36,7 +35,7 @@
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^1.1.0
+  flutter_gromore_ads: ^1.2.0
 ```
 
 > 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。
