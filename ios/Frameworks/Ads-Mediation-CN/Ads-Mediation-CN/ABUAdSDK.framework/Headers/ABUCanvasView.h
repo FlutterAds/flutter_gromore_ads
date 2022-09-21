@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) UIImageView *iconImageView;
 
 /// 广告大图，需要开发者根据广告物料自己指定展示内容，系统会自动创建，但内容需开发者自行校验
-@property (nonatomic, strong, readonly, nullable) UIImageView *imageView;
+@property (nonatomic, strong, readonly, nonnull) UIImageView *imageView;
 
 /// Ad CTA button. Need to be assigned from a data(ABUMaterialMeta), and need to be add to self(ABUNativeAdView).
 

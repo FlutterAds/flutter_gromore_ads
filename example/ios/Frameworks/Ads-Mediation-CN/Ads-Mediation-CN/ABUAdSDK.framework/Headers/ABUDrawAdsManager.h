@@ -52,6 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param error  加载出错信息
 - (void)drawAdsManager:(ABUDrawAdsManager *_Nonnull)adsManager didFailWithError:(NSError *_Nullable)error;
 
+/// 暂不开放使用
+- (void)drawAdsManager:(ABUDrawAdsManager *_Nonnull)adsManager didWaitingBiddingResultWithParameters:(NSDictionary *)parameters andResumeHandler:(void(^)(NSDictionary *_Nullable data, NSError *_Nullable error))handler;
+
+/// 暂不开放使用
+- (void)drawAdsManagerDidFinishLoadAdnAd:(ABUDrawAdsManager *_Nonnull)adsManager drawAd:(ABUDrawAdView *_Nullable)drawAd error:(NSError *_Nullable)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

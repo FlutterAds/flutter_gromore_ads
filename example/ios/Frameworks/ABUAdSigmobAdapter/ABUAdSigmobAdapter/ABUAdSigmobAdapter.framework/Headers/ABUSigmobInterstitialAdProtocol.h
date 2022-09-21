@@ -21,7 +21,17 @@
 
 - (instancetype)initWithPlacementId:(NSString *)placementId request:(WindAdRequest *)request;
 
+- (instancetype)initWithRequest:(WindAdRequest *)request;// v3600
+
 - (void)loadAdData;
+
+
+/**
+*  Called when load the ad
+*
+*  @param bidToken    - the token from bid request within Sigmob Ad Server
+*/
+- (void)loadAdDataWithBidToken:(NSString *)bidToken; // v3600
 
 /**
  Display video ad.

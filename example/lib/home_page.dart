@@ -118,6 +118,7 @@ class _HomePageState extends State<HomePage> {
     try {
       bool result = await FlutterGromoreAds.initAd(
         AdsConfig.appId,
+        config: AdsConfig.config,
         // directDownloadNetworkType: [
         //   NetworkType.kNetworkStateMobile,
         //   NetworkType.kNetworkStateWifi,

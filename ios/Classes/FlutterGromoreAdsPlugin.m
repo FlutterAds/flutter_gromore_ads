@@ -55,10 +55,15 @@
 // 初始化广告
 - (void) initAd:(FlutterMethodCall*) call result:(FlutterResult) result{
     NSString *appId=call.arguments[@"appId"];
+    NSString *config=call.arguments[@"config"];
     [ABUAdSDKManager setupSDKWithAppId:appId config:^ABUUserConfig *(ABUUserConfig *c) {
         #ifdef DEBUG
             c.logEnable = YES;
         #endif
+        // 导入本地配置
+        if (![config isKindOfClass:[NSNull class]] && [config length]!=0) {
+            c.advanceSDKConfigPath = [[NSBundle mainBundle] pathForResource:config ofType:@"json"];//支持媒体本地提前导入配置信息
+        }
         return c;
     }];
     result(@(YES));

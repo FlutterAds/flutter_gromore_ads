@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ABUAdKlevinAdapter'
-  spec.version      = '2.5.1.202.0'
+  spec.version      = '2.9.1.207.0'
   spec.summary      = 'ABUAdKlevinAdapter is a adapter SDK from Bytedance providing media union AD service.'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   
@@ -27,5 +27,6 @@ Pod::Spec.new do |spec|
 
 	spec.ios.vendored_frameworks = 'ABUAdKlevinAdapter/ABUAdKlevinAdapter.framework'
   spec.dependency 'Ads-Mediation-CN'
+  spec.dependency "BURelyFoundation"
   
 end

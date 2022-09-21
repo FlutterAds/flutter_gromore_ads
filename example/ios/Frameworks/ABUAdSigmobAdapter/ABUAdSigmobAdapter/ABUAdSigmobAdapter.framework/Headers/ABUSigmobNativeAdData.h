@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ABUSigmobNativeAdData : NSObject <ABUMediatedNativeAdData, ABUMediatedNativeAdViewCreator>
 - (instancetype)initWithOriginData:(WindNativeAd *)data andView:(WindNativeAdView *)adview;
+
+@property (nonatomic, copy) NSArray<UIImageView *> *imageViewList;
 @end
 
 NS_ASSUME_NONNULL_END

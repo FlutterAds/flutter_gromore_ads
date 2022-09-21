@@ -16,8 +16,19 @@
 @property (nonatomic, strong, readonly) NSString *placementId;
 @property (nonatomic, getter=isAdReady, readonly) BOOL ready;
 
+#pragma mark sigmob 4.1.0 废弃
 - (instancetype)initWithPlacementId:(NSString *)placementId request:(WindAdRequest *)request;
+#pragma mark sigmob 4.1.0 废弃
+- (instancetype)initWithRequest:(WindAdRequest *)request;// v3600
 - (void)loadAdData;
+
+/**
+*  Called when load the video
+*
+*  @param bidToken    - the token from bid request within Sigmob Ad Server
+*/
+- (void)loadAdDataWithBidToken:(NSString *)bidToken;// v3600
+
 /**
  Display video ad.
  @param rootViewController : root view controller for displaying ad.
@@ -31,6 +42,12 @@
 
 @protocol ABUSigmob_RewardVideoAd;
 @protocol ABUSigmob_RewardVideoAdDelegate <NSObject>
+
+@required
+/**
+ This method is called when video ad is can be motivated
+ */
+- (void)rewardVideoAd:(id<ABUSigmob_RewardVideoAd>)rewardVideoAd reward:(WindRewardInfo *)reward;// v3600
 
 /**
  This method is called when video ad material loaded successfully.
@@ -63,10 +80,17 @@
  */
 - (void)rewardVideoAdDidClickSkip:(id<ABUSigmob_RewardVideoAd>)rewardVideoAd;
 
+#pragma mark sigmob 4.1.0 废弃
 /**
  This method is called when video ad is about to close.
  */
 - (void)rewardVideoAdDidClose:(id<ABUSigmob_RewardVideoAd>)rewardVideoAd reward:(WindRewardInfo *)reward;
+#pragma mark sigmob 4.1.0 废弃
+
+/**
+ This method is called when video ad is about to close.
+ */
+- (void)rewardVideoAdDidClose:(id<ABUSigmob_RewardVideoAd>)rewardVideoAd;// v3600
 
 /**
  This method is called when video ad play completed or an error occurred.

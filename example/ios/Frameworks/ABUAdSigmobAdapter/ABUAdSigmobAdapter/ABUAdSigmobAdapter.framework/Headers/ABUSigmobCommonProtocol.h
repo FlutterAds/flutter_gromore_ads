@@ -43,6 +43,8 @@ typedef enum : NSUInteger {
     WindPersonalizedAdvertisingOff = 1,
 } WindPersonalizedAdvertisingState;
 
+#define ABUSigmob_Respond(_object, _selector) [_object respondsToSelector:@selector(_selector)]
+
 typedef void(^WindAdDebugCallBack)(NSString *msg, WindLogLevel level);
 
 
@@ -52,10 +54,10 @@ typedef void(^WindAdDebugCallBack)(NSString *msg, WindLogLevel level);
 @property (copy, nonatomic, readonly) NSString* appId;
 /// Sigmob平台申请的appKey
 @property (copy, nonatomic, readonly) NSString* appKey;
-/// 声明是否使用的是聚合 default = NO
-@property (nonatomic, assign, readonly) BOOL usedMediation;
 
 - (instancetype)initWithAppId:(NSString *)appId appKey:(NSString *)appKey usedMediation:(BOOL)usedMediation;
+
+- (instancetype)initWithAppId:(NSString *)appId appKey:(NSString *)appKey;// v3600
 
 @end
 typedef NSObject<ABUSigmob_WindAdOptions> WindAdOptions;
@@ -65,8 +67,14 @@ typedef NSObject<ABUSigmob_WindAdOptions> WindAdOptions;
 
 + (NSString *)sdkVersion;
 
+// 获取平台唯一ID，需要在一次广告请求后调研，否则返回为nil
++ (NSString *)getUid; // v3600
+
 // Initialize Wind Ads SDK
 + (void) startWithOptions:(WindAdOptions *)options;
+
+/// 初始化后，可以获得SdkToken
++ (NSString *)getSdkToken; // v3600
 
 /**
  *   DeBug开关显示
@@ -74,21 +82,6 @@ typedef NSObject<ABUSigmob_WindAdOptions> WindAdOptions;
  *  @param enable true 开启debug，false 关闭debug
  */
 + (void)setDebugEnable:(BOOL)enable;
-
-
-/**
- *   自定义debug 内容回调显示
- *
- *  @param callBack debugBlock，若不设置则在Xcode debug中显示，
- */
-+ (void)setDebugCallBack:(WindAdDebugCallBack)callBack;
-
-/// 提供新的资源包，需要把sigmob.bundle的文件放入到新的bundle内。
-/// @param name bundle名称（前缀）
-+ (void)setNewBundleName:(NSString *)name;
-
-
-
 
 #pragma mark - GDPR SUPPORT
 /**************************  GDPR  *********************************/
@@ -123,6 +116,7 @@ typedef NSObject<ABUSigmob_WindAds> WindAds;
 
 @protocol ABUSigmob_WindAdRequest <NSObject>
 @property (nonatomic,copy) NSString *placementId;
+@property (nonatomic,copy) NSString *userId;// v3600
 @end
 @protocol ABUSigmob_WindAdRequestClass <NSObject>
 - (id<ABUSigmob_WindAdRequest>)request;
@@ -132,6 +126,8 @@ typedef NSObject<ABUSigmob_WindAdRequest> WindAdRequest;
 
 
 @protocol ABUSigmob_WindRewardInfo <NSObject>
+// v3600
+#pragma mark sigmob 4.1.0 废弃
 /**
  *  The ID of the reward as defind on Self Service
  */
@@ -146,7 +142,7 @@ typedef NSObject<ABUSigmob_WindAdRequest> WindAdRequest;
  *  Amount of reward type given to the user
  */
 @property (nonatomic, assign) NSInteger rewardAmount;
-
+#pragma mark sigmob 4.1.0 废弃
 
 /**
  The isCompeltedView is Tell you if you've finished watching video.
@@ -154,6 +150,45 @@ typedef NSObject<ABUSigmob_WindAdRequest> WindAdRequest;
 @property (nonatomic,assign) BOOL isCompeltedView;
 @end
 typedef NSObject<ABUSigmob_WindRewardInfo> WindRewardInfo;
+
+// v3600
+@protocol ABUSigmob_WindMediaView <NSObject>
+
+/**
+ * 视频广告时长，单位 s
+ */
+- (CGFloat)totalTime;
+
+/**
+ * 视频广告已播放时长，单位 s
+ */
+- (CGFloat)currentTime;
+
+/**
+ 播放静音开关
+ @param flag 是否静音
+ */
+- (void)muteEnable:(BOOL)flag;
+
+/**
+ 播放视频
+ */
+- (void)play;
+
+/**
+ 暂停视频，调用 pause 后，需要被暂停的视频广告对象，不会再自动播放，需要调用 play 才能恢复播放。
+ */
+- (void)pause;
+
+/**
+ 停止播放
+ */
+- (void)stop;
+
+@property (nonatomic, copy) void(^ctaCallback)(UIControl *sender, UIEvent *event);
+
+@end
+typedef UIView <ABUSigmob_WindMediaView> WindMediaView;
 
 
 NS_ASSUME_NONNULL_END

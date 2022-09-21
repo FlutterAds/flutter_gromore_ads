@@ -24,7 +24,7 @@
 - (void)interstitialProAdDidLoad:(ABUInterstitialProAd *)interstitialProAd{
     NSLog(@"%s",__FUNCTION__);
     if(self.ad && self.ad.isReady){
-        [self.ad showAdFromRootViewController:self.rootController extroInfos:nil];
+        [self.ad showAdFromRootViewController:self.rootController extraInfos:nil];
     }
     // 发送事件
     [self sendEventAction:onAdLoaded];

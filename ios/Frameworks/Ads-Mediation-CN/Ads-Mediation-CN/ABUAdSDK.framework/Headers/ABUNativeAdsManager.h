@@ -34,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#define ABUAdSlotAdTypeFeed 0;
 #define ABUAdSlotPositionFeed 0;
 
 /// 旧版本广告配置类
@@ -67,6 +66,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param adsManager 广告管理对象
 /// @param error  加载出错信息
 - (void)nativeAdsManager:(ABUNativeAdsManager *_Nonnull)adsManager didFailWithError:(NSError *_Nullable)error;
+
+/// 暂不开放使用
+- (void)nativeAdsManager:(ABUNativeAdsManager *_Nonnull)adsManager didWaitingBiddingResultWithParameters:(NSDictionary *)parameters andResumeHandler:(void(^)(NSDictionary *_Nullable data, NSError *_Nullable error))handler;
+
+/// 暂不开放使用
+- (void)nativeAdsManagerDidFinishLoadAdnAd:(ABUNativeAdsManager *_Nonnull)adsManager nativeAd:(ABUNativeAdView *_Nullable)nativeAd error:(NSError *_Nullable)error;
 
 @end
 

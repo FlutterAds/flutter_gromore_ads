@@ -35,6 +35,9 @@ __attribute__((objc_subclassing_restricted))
 /// 获取当前主题模式
 + (ABUAdSDKThemeStatus)themeStatus;
 
+/// 获取各类补充信息
++ (NSDictionary *)getGMSDKExtraInfo;
+
 /// 获取配置是否已经加载
 + (BOOL)configDidLoad;
 
@@ -60,8 +63,8 @@ __attribute__((objc_subclassing_restricted))
 /// @param language 日志语言，已无效
 + (void)setLoglevel:(ABUAdSDKLogLevel)level language:(ABUAdSDKLogLanguage)language  ABU_DEPRECATED_MSG_ATTRIBUTE("Use setupSDKWithAppId:config: instead");
 
-/// 旧版本兼容，设置广告主题，扩展暗黑模式
-+ (void)setThemeStatus:(ABUAdSDKThemeStatus)themeStatus ABU_DEPRECATED_MSG_ATTRIBUTE("Use setupSDKWithAppId:config: instead");
+/// 设置广告主题，扩展暗黑模式
++ (void)setThemeStatus:(ABUAdSDKThemeStatus)themeStatus;
 
 /// 触发首次预缓存,针对特定广告位
 /// @param infos 广告对象
@@ -70,13 +73,5 @@ __attribute__((objc_subclassing_restricted))
 + (void)preloadAdsWithInfos:(NSArray<__kindof ABUBaseAd *> *)infos andInterval:(NSInteger)interval andConcurrent:(NSInteger)concurrent;
 
 @end
-
-// PLEASE DONOT use environment config if you do not clear what it means
-@interface ABUAdSDKManager (environment)
-
-+ (void)setEnvironmentControl:(id<ABUEnvironmentControl>)environmentControl;
-
-@end
-
 
 NS_ASSUME_NONNULL_END

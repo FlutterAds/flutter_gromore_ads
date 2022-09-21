@@ -39,6 +39,10 @@
 /// @param nativeAdView 广告视图
 - (void)nativeAdViewWillPresentFullScreenModal:(ABUNativeAdView *_Nonnull)nativeAdView;
 
+/// 广告即将退出全屏页面/商店时触发
+/// @param nativeAdView 广告视图
+- (void)nativeAdViewDidDismissFullScreenModal:(ABUNativeAdView *_Nonnull)nativeAdView;
+
 /// 模板广告点击关闭时触发
 /// @param nativeAdView 广告视图
 /// @param filterWords 广告关闭原因，adapter开发者透传数据

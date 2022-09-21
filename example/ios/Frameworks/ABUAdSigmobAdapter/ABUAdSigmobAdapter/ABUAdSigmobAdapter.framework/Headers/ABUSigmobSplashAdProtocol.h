@@ -11,7 +11,7 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
-
+#pragma mark sigmob 4.1.0 废弃
 @protocol ABUSigmob_WindSplashAdDelegate;
 @protocol ABUSigmob_WindSplashAd <NSObject>
 
@@ -169,5 +169,87 @@ typedef NSObject<ABUSigmob_WindSplashAd> WindSplashAd;
 - (void)onSplashAdClosed:(WindSplashAd *)splashAd;
 
 @end
+#pragma mark sigmob 4.1.0 废弃
+
+// v3600
+@protocol ABUSigmob_WindSplashAdViewDelegate;
+@protocol ABUSigmob_WindSplashAdView <NSObject>
+
+@property (nonatomic,weak) id<ABUSigmob_WindSplashAdViewDelegate> delegate;
+
+@property (nonatomic,strong, readonly) NSString *placementId;
+
+@property (nonatomic, weak) UIViewController *rootViewController;
+
+/**
+ *  拉取广告超时时间，默认为5秒
+ */
+@property (nonatomic, assign) int fetchDelay;
+
+/**
+ 广告是否有效
+ 广告加载后存在一定的时效性，在展示前请先验证adValid
+ */
+@property (nonatomic, getter=isAdValid, readonly) BOOL adValid;
+
+
+- (instancetype)initWithRequest:(WindAdRequest *)request;
+
+/// load ad data
+- (void)loadAdData;
+
+
+/**
+*  Called when load ad data
+*
+*  @param bidToken    - the token from bid request within Sigmob Ad Server
+*/
+- (void)loadAdDataWithBidToken:(NSString *)bidToken;
+
+@end
+typedef UIView <ABUSigmob_WindSplashAdView> WindSplashAdView;
+
+@protocol ABUSigmob_WindSplashAdViewDelegate <NSObject>
+@optional
+/**
+ *  开屏广告素材加载成功
+ */
+- (void)onSplashAdDidLoad:(WindSplashAdView *)splashAdView;
+
+/**
+ *  开屏广告展示失败
+ */
+-(void)onSplashAdLoadFail:(WindSplashAdView *)splashAdView error:(NSError *)error;
+
+/**
+ *  开屏广告成功展示
+ */
+-(void)onSplashAdSuccessPresentScreen:(WindSplashAdView *)splashAdView;
+
+/**
+ *  开屏广告展示失败
+ */
+-(void)onSplashAdFailToPresent:(WindSplashAdView *)splashAdView withError:(NSError *)error;
+
+
+/**
+ *  开屏广告点击回调
+ */
+- (void)onSplashAdClicked:(WindSplashAdView *)splashAdView;
+
+
+/**
+ *  开屏广告点击跳过
+ */
+- (void)onSplashAdSkiped:(WindSplashAdView *)splashAdView;
+
+/**
+ *  开屏广告关闭回调
+ */
+- (void)onSplashAdClosed:(WindSplashAdView *)splashAdView;
+
+@end
+
+
 
 NS_ASSUME_NONNULL_END

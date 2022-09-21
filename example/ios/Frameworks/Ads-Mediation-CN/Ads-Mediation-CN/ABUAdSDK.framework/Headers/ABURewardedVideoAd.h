@@ -64,18 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 广告视频播放完成或者出错回调
 /// @param rewardedVideoAd 广告管理对象
 /// @param error 播放出错时的信息，播放完成时为空
-- (void)rewardedVideoAdDidPlayFinish:(ABURewardedVideoAd * )rewardedVideoAd didFailWithError:(NSError *_Nullable)error ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用 rewardedVideoAd:didPlayFinishWithError:");
-
-/// 广告视频播放完成或者出错回调
-/// @param rewardedVideoAd 广告管理对象
-/// @param error 播放出错时的信息，播放完成时为空
 - (void)rewardedVideoAd:(ABURewardedVideoAd *)rewardedVideoAd didPlayFinishWithError:(NSError *_Nullable)error;
 
 @end
 
 @interface ABURewardedVideoAd : ABUBaseAd
-
-- (instancetype)initWithAdUnitID:(NSString *)unitID rewardedVideoModel:(ABURewardedVideoModel *)model ABU_DEPRECATED_MSG_ATTRIBUTE("Use initWithAdUnitID: && setRewardedVideoModel: instead");
 
 - (instancetype)initWithAdUnitID:(NSString *)unitID;
 
@@ -93,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  optional
  设定是否静音播放视频，YES = 静音，NO = 非静音
  PS:
- ①仅广点通支持设定mute
+ ①仅gdt、ks、mtg支持设定mute
  ②仅适用于视频播放器设定生效
  重点：请在loadAdData前设置,否则不生效
  */
@@ -115,17 +108,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 展示广告
 /// @param viewController 跳转控制器，必传
-/// @param extroInfos 扩展信息，可选，与adapter及ADN是否实现有关，字段参见ABUADSDKConst.h中全屏视频、激励视频展示扩展部分
-- (BOOL)showAdFromRootViewController:(UIViewController *)viewController extroInfos:(NSDictionary *_Nullable)extroInfos;
-
-/// 返回显示广告对应的rit
-- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
-- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的Adn名称
-- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
+/// @param extraInfos 扩展信息，可选，与adapter及ADN是否实现有关，字段参见ABUADSDKConst.h中全屏视频、激励视频展示扩展部分
+- (BOOL)showAdFromRootViewController:(UIViewController *)viewController extraInfos:(NSDictionary *_Nullable)extraInfos;
 
 /// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
 - (ABURitInfo *)getShowEcpmInfo;
@@ -139,17 +123,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 填充后可调用, 返回广告缓存池内所有信息；nil为无权限
 - (NSArray<ABURitInfo *> *)cacheRitList;
 
+/// 广告的扩展信息，可能为nil
+- (NSDictionary *_Nullable)extraData;
+
 /// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
 - (nullable NSDictionary *)getMediaExtraInfo;
-
-/// 是否有点击跳过回调，依赖adapter实现，准确度降低，不建议使用
-@property (nonatomic, assign, readonly) BOOL hasSkipCallback ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃");
-
-/// 是否有点击回调，依赖adapter实现，准确度降低，不建议使用
-@property (nonatomic, assign, readonly) BOOL hasClickCallback ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃");
-
-/// 返回是否为模板广告，值同`getExpressAdIfCan`
-@property (nonatomic, assign, readonly) BOOL hasExpressAdGot ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，在SDK V2900以上全屏视频客户端将无需区分模板非模板");
 
 @end
 

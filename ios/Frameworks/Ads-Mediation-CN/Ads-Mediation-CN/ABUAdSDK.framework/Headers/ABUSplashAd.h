@@ -53,10 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 关闭广告详情页回调
 /// @param splashAd 广告管理对象
-- (void)splashAdWillDissmissFullScreenModal:(ABUSplashAd *)splashAd ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用 splashAdWillDismissFullScreenModal:");
-
-/// 关闭广告详情页回调
-/// @param splashAd 广告管理对象
 - (void)splashAdWillDismissFullScreenModal:(ABUSplashAd *)splashAd;
 
 /// 广告倒计时结束回调
@@ -83,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开屏广告构建方法
 /// @param unitID 广告位ID
 - (instancetype)initWithAdUnitID:(NSString *)unitID;
+
 /// 代理回调对象
 @property (nonatomic, weak) id<ABUSplashAdDelegate> delegate;
 
@@ -121,6 +118,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) ABUSplashCardView *cardView;
 
 @property (nonatomic, assign, readonly) BOOL isReady;
+
+/// 广告的扩展信息，可能为nil
+- (NSDictionary *_Nullable)extraData;
 
 /// 返回显示广告对应的rit
 - (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");

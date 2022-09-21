@@ -14,7 +14,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ABUDrawAdsManager, ABURitInfo;
+@class ABUDrawAdsManager, ABURitInfo, ABUVideoAdReporter;
+@class ABUDictionary;
+
 @interface ABUDrawAdView : ABUCanvasView
 /// 广告管理者
 @property (nonatomic, weak, readonly) ABUDrawAdsManager *adManager;
@@ -34,8 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// [必传]跳转控制器
 @property (nonatomic, weak, readwrite) UIViewController *_Nullable rootViewController;
 
-- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
 /// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
 - (nullable ABURitInfo *)getShowEcpmInfo;
 
@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 填充后可调用，返回当前最佳广告的ecpm；当为server bidding ad时访问需要白名单权限
 - (ABURitInfo *)getCurrentBestEcpmInfo;
+
+/// 广告的扩展信息，可能为nil
+- (ABUDictionary *_Nullable)extraData;
 
 /// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
 - (nullable NSDictionary *)getMediaExtraInfo;
@@ -68,4 +71,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reSizeMediaView;
 
 @end
+
+@interface ABUDrawAdView (Native)
+
+/// 自渲染视频类广告事件上报对象，仅采用自定义视频播放器时需要上报，部分ADN需申请白名单
+@property (nonatomic, strong, readonly) ABUVideoAdReporter *videoAdReporter;
+
+@end
+
 NS_ASSUME_NONNULL_END

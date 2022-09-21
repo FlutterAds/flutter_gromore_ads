@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/services.dart';
+
 import 'event/ad_event_handler.dart';
+
 export 'event/ad_event_handler.dart';
 
 /// GroMore 广告插件
@@ -49,6 +52,7 @@ class FlutterGromoreAds {
   /// [directDownloadNetworkType] 允许直接下载的网络类型，默认是空会有下载确认提示，非空不会有提示
   static Future<bool> initAd(
     String appId, {
+    String? config,
     bool useTextureView = false,
     bool supportMultiProcess = false,
     bool allowShowNotify = true,
@@ -58,6 +62,7 @@ class FlutterGromoreAds {
       'initAd',
       {
         'appId': appId,
+        'config': config,
         'useTextureView': useTextureView,
         'supportMultiProcess': supportMultiProcess,
         'allowShowNotify': allowShowNotify,

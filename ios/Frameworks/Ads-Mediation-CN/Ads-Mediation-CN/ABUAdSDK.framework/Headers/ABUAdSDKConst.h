@@ -116,20 +116,4 @@ typedef NS_ENUM(NSInteger, ABUBiddingType) {
 #define ABU_DEPRECATED_ATTRIBUTE
 #endif
 
-@protocol ABUEnvironmentControl <NSObject>
-@optional
-
-- (NSString *)environmentKey;
-
-- (NSString *)deviceID;
-
-- (BOOL)underControl;
-
-- (NSDictionary *)environment;
-
-- (NSInteger)eventSlice;
-
-- (void)magic:(NSInteger)value supplement:(NSDictionary *)supplement;
-@end
-
 #endif /* ABUADSDK_const_h */

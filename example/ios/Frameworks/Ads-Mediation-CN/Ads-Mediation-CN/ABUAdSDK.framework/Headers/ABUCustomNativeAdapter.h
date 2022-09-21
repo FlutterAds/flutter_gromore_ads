@@ -8,8 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "ABUCustomAdapter.h"
 #import "ABUCustomNativeAdapterBridge.h"
+#import "ABUVideoAdReportSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class ABUDislikeReason;
 
 /// 自定义Native广告的adapter广告协议
 @protocol ABUCustomNativeAdapter <ABUCustomAdapter>
@@ -55,6 +58,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 代理，开发者需使用该对象回调事件，Objective-C下自动生成无需设置，Swift需声明
 @property (nonatomic, weak, nullable) id<ABUCustomNativeAdapterBridge> bridge;
+
+/// 上报dislike的原因，仅限非模板广告自定义关闭按钮时使用
+/// @param ad GroMore包装的非模板广告数据
+/// @param reasons dislike的原因。数据基于ADN提供的原因修改
+- (void)reportDislikeAd:(ABUMediatedNativeAd *)ad withReasons:(NSArray<ABUDislikeReason *> *)reasons;
+
+- (void)reportVideoEvent:(ABUVideoAdEvent)event forAd:(ABUMediatedNativeAd *)ad withParameters:(NSDictionary *)parameters;
 
 @end
 

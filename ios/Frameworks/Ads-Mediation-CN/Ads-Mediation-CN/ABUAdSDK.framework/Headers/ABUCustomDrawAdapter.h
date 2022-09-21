@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "ABUCustomAdapter.h"
 #import "ABUCustomDrawAdapterBridge.h"
+#import "ABUVideoAdReportSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,6 +53,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param expressAdView 模板广告视图
 /// @param drawAd GroMore包装的广告数据
 - (void)adViewWillAddToSuperViewWithExpressAdView:(__kindof UIView *)expressAdView orMediatedAd:(ABUMediatedNativeAd *)drawAd;
+
+/// 上报dislike的原因，仅限非模板广告自定义关闭按钮时使用
+/// @param ad GroMore包装的非模板广告数据
+/// @param reasons dislike的原因。数据基于ADN提供的原因修改
+- (void)reportDislikeAd:(ABUMediatedNativeAd *)ad withReasons:(NSArray<ABUDislikeReason *> *)reasons;
+
+- (void)reportVideoEvent:(ABUVideoAdEvent)event forAd:(ABUMediatedNativeAd *)ad withParameters:(NSDictionary *)parameters;
 
 @end
 
