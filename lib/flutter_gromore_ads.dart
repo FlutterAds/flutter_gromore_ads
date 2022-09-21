@@ -46,27 +46,13 @@ class FlutterGromoreAds {
 
   /// 初始化广告
   /// [appId] 应用ID
-  /// [useTextureView] (Android) 是否使用TextureView控件播放视频
-  /// [supportMultiProcess] (Android) 是否支持多进程
-  /// [allowShowNotify] (Android) 是否允许sdk展示通知栏提示
-  /// [directDownloadNetworkType] 允许直接下载的网络类型，默认是空会有下载确认提示，非空不会有提示
-  static Future<bool> initAd(
-    String appId, {
-    String? config,
-    bool useTextureView = false,
-    bool supportMultiProcess = false,
-    bool allowShowNotify = true,
-    List<int> directDownloadNetworkType = const [],
-  }) async {
+  /// [config] 配置文件名称
+  static Future<bool> initAd(String appId, {String? config}) async {
     final bool result = await _methodChannel.invokeMethod(
       'initAd',
       {
         'appId': appId,
         'config': config,
-        'useTextureView': useTextureView,
-        'supportMultiProcess': supportMultiProcess,
-        'allowShowNotify': allowShowNotify,
-        'directDownloadNetworkType': directDownloadNetworkType,
       },
     );
     return result;
