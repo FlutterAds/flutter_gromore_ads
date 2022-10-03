@@ -33,7 +33,7 @@ class AdsConfig {
     if (Platform.isIOS) {
       return 'ios_config_5209496';
     }
-    return 'ios_config_5209496';
+    return 'android_config_5216573.json';
   }
 
   /// 获取开屏广告位id

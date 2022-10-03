@@ -119,10 +119,6 @@ class _HomePageState extends State<HomePage> {
       bool result = await FlutterGromoreAds.initAd(
         AdsConfig.appId,
         config: AdsConfig.config,
-        // directDownloadNetworkType: [
-        //   NetworkType.kNetworkStateMobile,
-        //   NetworkType.kNetworkStateWifi,
-        // ],
       );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";
       setState(() {});
