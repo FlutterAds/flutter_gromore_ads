@@ -15,6 +15,7 @@
 
 - (void)loadAd:(FlutterMethodCall *)call{
     NSLog(@"%s",__FUNCTION__);
+    self.isDisplay=YES;
     NSString* logo=call.arguments[@"logo"];
     double timeout=[call.arguments[@"timeout"] doubleValue];
     int buttonType=[call.arguments[@"buttonType"] intValue];
@@ -54,6 +55,7 @@
     NSLog(@"%s-error:%@", __func__, error);
     // 发送事件
     [self sendErrorEvent:error];
+    self.isDisplay=NO;
 }
 
 - (void)splashAdWillVisible:(ABUSplashAd *)splashAd{
@@ -66,6 +68,7 @@
     NSLog(@"%s",__FUNCTION__);
     // 发送事件
     [self sendErrorEvent:error];
+    self.isDisplay=NO;
 }
 
 - (void)splashAdDidClick:(ABUSplashAd *)splashAd{
@@ -82,7 +85,7 @@
     if (self.ad) {
         [self.ad destoryAd];
     }
-    
+    self.isDisplay=NO;
 }
 
 - (void)splashAdCountdownToZero:(ABUSplashAd *)splashAd{

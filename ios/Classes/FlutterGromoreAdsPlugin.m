@@ -71,6 +71,10 @@
 
 // 开屏广告
 - (void) showSplashAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    if (self.sad!=nil&&self.sad.isDisplay) {
+        result(@(NO));
+        return;
+    }
     self.sad=[[FGMSplashPage alloc] init];
     [self.sad showAd:call eventSink:self.eventSink];
     result(@(YES));
