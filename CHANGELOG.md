@@ -1,3 +1,10 @@
+## 1.3.0
+* 开屏支持配置文件，优化配置获取率
+* SDK 版本升级到 `3.7.0.0`
+* 优化 Android 全面屏适配
+* 开屏去掉 `ButtonType` 支持
+
+
 ## 1.2.0
 * 优化 iOS 静态库编译问题
 * 升级 Android `pangle-adapter`
