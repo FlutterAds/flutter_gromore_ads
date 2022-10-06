@@ -82,7 +82,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
             }
         }
         int width = (int) UIUtils.getScreenWidthInPx(this);
-        int height = (int) UIUtils.getScreenHeightInPx(this);
+        int height = UIUtils.getRealHeight(this);
         // 判断最终的 Logo 是否显示
         if (!hasLogo) {
             ad_logo.setVisibility(View.GONE);
