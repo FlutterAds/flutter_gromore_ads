@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, ABUAdSDKThemeStatus) {
     ABUAdSDKThemeStatus_Night  = 1,
 };
 
-@interface ABUUserConfig : NSObject
+@interface ABUUserConfig : NSObject <NSCopying>
 
 /// 是否开启日志输出
 @property (nonatomic, assign) BOOL logEnable;
@@ -41,6 +41,9 @@ typedef NS_ENUM(NSInteger, ABUAdSDKThemeStatus) {
 
 /// 就版本兼容，是否开启调试模式。真实情况由adapter实现，官方adapter中Unity可用
 @property (nonatomic, assign) BOOL testMode;
+
+/// 设置预先从平台下载的SDKConfig文件路径，当首次安装网络请求SDKConfig失败时会使用。
+@property (nonatomic, copy, nullable) NSString *advanceSDKConfigPath;
 
 @end
 

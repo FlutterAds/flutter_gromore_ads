@@ -2,6 +2,7 @@ package com.zero.flutter_gromore_ads;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -12,9 +13,14 @@ import com.zero.flutter_gromore_ads.page.AdSplashActivity;
 import com.zero.flutter_gromore_ads.page.FullVideoPage;
 import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
 import com.zero.flutter_gromore_ads.page.InterstitialPage;
+import com.zero.flutter_gromore_ads.utils.FileUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import io.flutter.BuildConfig;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
@@ -166,20 +172,26 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      */
     public void initAd(MethodCall call, final MethodChannel.Result result) {
         String appId = call.argument("appId");
-        boolean useTextureView = call.argument("useTextureView");
-        boolean supportMultiProcess = call.argument("supportMultiProcess");
-        boolean allowShowNotify = call.argument("allowShowNotify");
-        ArrayList directDownloadNetworkType = call.argument("directDownloadNetworkType");
-//        int[] directDownloadNetworkTypeList = DataUtils.convertIntegers(directDownloadNetworkType);
+        String config = call.argument("config");
+        JSONObject localConfigJson= null;
+        if (!TextUtils.isEmpty(config)){
+            String localConfigStr= FileUtils.getJson(config,activity);
+            try {
+                localConfigJson=new JSONObject(localConfigStr);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         // 构建配置
-        GMAdConfig config = new GMAdConfig.Builder()
+        GMAdConfig adConfig = new GMAdConfig.Builder()
                 .setAppId(appId)
                 .setAppName("测试App")
                 .setDebug(BuildConfig.DEBUG)
                 .setOpenAdnTest(BuildConfig.DEBUG)
+                .setCustomLocalConfig(localConfigJson)
                 .build();
         // 初始化 SDK
-        GMMediationAdSdk.initialize(activity.getApplicationContext(), config);
+        GMMediationAdSdk.initialize(activity.getApplicationContext(), adConfig);
         result.success(true);
     }
 
@@ -193,12 +205,10 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         String posId = call.argument(KEY_POSID);
         String logo = call.argument(KEY_LOGO);
         double timeout = call.argument(KEY_TIMEOUT);
-        int buttonType = call.argument(KEY_SPLASH_BUTTON_TYPE);
         Intent intent = new Intent(activity, AdSplashActivity.class);
         intent.putExtra(KEY_POSID, posId);
         intent.putExtra(KEY_LOGO, logo);
         intent.putExtra(KEY_TIMEOUT, timeout);
-        intent.putExtra(KEY_SPLASH_BUTTON_TYPE, buttonType);
         activity.startActivity(intent);
         // 设置进入动画
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

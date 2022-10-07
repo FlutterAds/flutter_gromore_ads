@@ -61,11 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param error 展示失败的原因
 - (void)fullscreenVideoAdDidShowFailed:(ABUFullscreenVideoAd *)fullscreenVideoAd error:(NSError *_Nonnull)error;
 
-/// 广告视频播放完成或者出错回调
-/// @param fullscreenVideoAd 广告管理对象
-/// @param error 播放出错时的信息，播放完成时为空
-- (void)fullscreenVideoAdDidPlayFinish:(ABUFullscreenVideoAd *)fullscreenVideoAd didFailWithError:(NSError *_Nullable)error ABU_DEPRECATED_MSG_ATTRIBUTE("use '-fullscreenVideoAd:didPlayFinishWithError:' instead");
-
 /// 请求的服务器验证成功包括C2C和S2S方法回调;支持全屏视频，目前支持的adn:GDT, Load前可按需传入rewardModel信息
 /// @param fullscreenVideoAd 广告管理对象
 /// @param rewardInfo 奖励发放验证信息
@@ -108,15 +103,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param extroInfos 扩展信息，可选，与adapter及ADN是否实现有关，字段参见ABUADSDKConst.h中全屏视频、激励视频展示扩展部分
 - (BOOL)showAdFromRootViewController:(UIViewController *)viewController extroInfos:(NSDictionary *_Nullable)extroInfos;
 
-/// 返回显示广告对应的rit
-- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
-- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的Adn名称，当没有权限访问该部分会返回-3
-- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
 /// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
 - (ABURitInfo *)getShowEcpmInfo;
 
@@ -129,14 +115,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 填充后可调用, 返回广告缓存池内所有信息；nil为无权限
 - (NSArray<ABURitInfo *> *)cacheRitList;
 
+/// 广告的扩展信息，可能为nil
+- (NSDictionary *_Nullable)extraData;
+
 /// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
 - (nullable NSDictionary *)getMediaExtraInfo;
-
-/// 是否有点击跳过回调，依赖adapter实现，准确度降低，不建议使用
-@property (nonatomic, assign, readonly) BOOL hasSkipCallback ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃");
-
-/// 是否有点击回调，依赖adapter实现，准确度降低，不建议使用
-@property (nonatomic, assign, readonly) BOOL hasClickCallback ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃");
 
 /// 返回是否为模板广告，值同`getExpressAdIfCan`
 @property (nonatomic, assign, readonly) BOOL hasExpressAdGot ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，在SDK V2900以上全屏视频客户端将无需区分模板非模板");

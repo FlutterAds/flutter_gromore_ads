@@ -28,6 +28,14 @@ class AdsConfig {
     return '5001121';
   }
 
+  /// 获取 App Config
+  static String get config {
+    if (Platform.isIOS) {
+      return 'ios_config_5209496';
+    }
+    return 'android_config_5216573.json';
+  }
+
   /// 获取开屏广告位id
   static String get splashId {
     if (Platform.isIOS) {

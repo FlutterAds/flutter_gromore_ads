@@ -40,6 +40,7 @@ typedef NS_ENUM (NSInteger, ABUMediatedNativeAdMode) {
 typedef ABUMediatedNativeAdMode ABUFeedADMode;
 
 @protocol ABUMediatedNativeAdData;
+@class ABUDislikeReason;
 
 typedef NSObject<ABUMediatedNativeAdData> ABUMaterialMeta;
 
@@ -52,23 +53,17 @@ typedef NSObject<ABUMediatedNativeAdData> ABUMaterialMeta;
 /// 物料图片集，如果图片有宽高，请尽量配置width和height
 @property (nonatomic, copy, readonly, nullable) NSArray<ABUImage *> *imageList;
 
-/// 物料图片集，如果图片有宽高，请尽量配置width和height
-@property (nonatomic, copy, readonly, nullable) NSArray<ABUImage *> *imageAry ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用 'imageList' 代替");
-
-/// app图标，如果图标有宽高，请尽量配置width和height
+/// app类型广告的广告商app图标，如果图标有宽高，请尽量配置width和height
 @property (nonatomic, strong, readonly, nullable) ABUImage *icon;
 
-/// 广告logo，如果logo有宽高，请尽量配置width和height
+/// 广告adn的logo，如果logo有宽高，请尽量配置width和height
 @property (nonatomic, strong, readonly, nullable) ABUImage *adLogo;
 
-/// 聚合广告SDKlogo
-@property (nonatomic, strong, readonly, nullable) ABUImage *sdkLogo;
-
 /// 广告标题
-@property (nonatomic, copy, readonly, nullable) NSString *AdTitle;
+@property (nonatomic, copy, readonly, nullable) NSString *adTitle;
 
 /// 广告详情描述
-@property (nonatomic, copy, readonly, nullable) NSString *AdDescription;
+@property (nonatomic, copy, readonly, nullable) NSString *adDescription;
 
 /// 应用来源、市场，例如'App Store'
 @property (nonatomic, copy, readonly, nullable) NSString *source;
@@ -91,6 +86,9 @@ typedef NSObject<ABUMediatedNativeAdData> ABUMaterialMeta;
 /// 视频时长，单位秒，如果没有值返回0
 @property (nonatomic, assign, readonly) NSInteger videoDuration;
 
+/// 视频纵横比(width/height)，如果没有值或者异常返回0
+@property (nonatomic, assign, readonly) CGFloat videoAspectRatio;
+
 /// 媒体扩展数据
 @property (nonatomic, copy, readonly, nullable) NSDictionary *mediaExt;
 
@@ -102,6 +100,12 @@ typedef NSObject<ABUMediatedNativeAdData> ABUMaterialMeta;
 
 /// 品牌名称，若广告返回中无品牌名称则为空
 @property (copy, nonatomic, readonly, nullable) NSString *brandName;
+
+/// ADN提供的不喜欢广告的原因，可能为空
+@property (nonatomic, copy, readonly, nullable) NSArray<ABUDislikeReason *> *dislikeReasons;
+
+/// ADN提供的视频类型广告的资源路径，部分ADN需要申请白名单，可能为空
+@property (nonatomic, copy, readonly, nullable) NSString *videoUrl;
 
 @end
 

@@ -55,10 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param nativeAd 广告数据，native广告请传递原始数据（即ABUMediatedNativeAd.originMediatedNativeAd），express广告请传递上报GroMore的UIView
 - (void)nativeAd:(id<ABUCustomNativeAdapter>_Nonnull)adapter willPresentFullScreenModalWithMediatedNativeAd:(id _Nonnull)nativeAd;
 
-/// 在广告关闭详情页或者appstore时调用该方法，直接调用即可，无需做响应判断
+/// 在广告落地页关闭时调用，直接调用即可，无需做响应判断
 /// @param adapter 当前适配器
 /// @param nativeAd 广告数据，native广告请传递原始数据（即ABUMediatedNativeAd.originMediatedNativeAd），express广告请传递上报GroMore的UIView
-- (void)nativeAd:(id<ABUCustomNativeAdapter>_Nonnull)adapter willDismissFullScreenModalWithMediatedNativeAd:(id _Nonnull)nativeAd;
+- (void)nativeAd:(id<ABUCustomNativeAdapter>_Nonnull)adapter didDismissFullScreenModalWithMediatedNativeAd:(id _Nonnull)nativeAd;
 
 #pragma mark - Express ad
 /// 仅限模板广告，在渲染成功或者模板广告的尺寸更新时调用，直接调用即可，无需做响应判断

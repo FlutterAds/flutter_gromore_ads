@@ -14,4 +14,6 @@
 @property (strong,nonatomic) ABUSplashAd *ad;
 @property (retain,nonatomic) UIView *bottomView;
 @property (assign,nonatomic ) BOOL fullScreenAd;
+// 广告是否展示中
+@property (assign,nonatomic ) BOOL isDisplay;
 @end

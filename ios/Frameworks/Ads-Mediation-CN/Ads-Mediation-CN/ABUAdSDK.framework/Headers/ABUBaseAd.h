@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 广告位ID
 @property (nonatomic, copy, readonly) NSString *rit;
 
+/// 广告场景ID
+@property (nonatomic, copy, nullable) NSString *scenarioID;
+
 /// 广告是否加载中
 @property (nonatomic, assign, readonly) BOOL isLoading;
 
@@ -35,12 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 同`waterfallFillFailMessages`，返回数据为`ABUAdLoadInfo`类型
 - (NSArray<ABUAdLoadInfo *> *)getAdLoadInfoList;
-
-/// 是否已经加载配置
-@property (nonatomic, assign, readonly) BOOL hasAdConfig ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用 '+ [ABUAdSDKManager configDidLoad]' 方法代替");
-
-/// 配置加载成功回调，仅执行一次
-- (void)setConfigSuccessCallback:(void(^)(void))callback ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用 '+ [ABUAdSDKManager addConfigLoadSuccessObserver:withAction:]' 方法代替");
 
 /// 在Bididing结束后是否回调ADN结果，默认NO
 @property (nonatomic, assign) BOOL bidNotify;

@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（GroMore、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v1.2.0-success></a>
+<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v1.3.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_gromore_ads?color=brightgreen></a>
@@ -35,7 +35,7 @@
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^1.2.0
+  flutter_gromore_ads: ^1.3.0
 ```
 
 > 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。
@@ -57,11 +57,9 @@ FlutterGromoreAds.initAd(appId);
 /// [posId] 广告位 id
 /// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
 /// [timeout] 加载超时时间
-/// [buttonType] 开屏广告的点击区域，1：全都可以点击 2：仅有下载 Bar 区域可以点击
 FlutterGromoreAds.showSplashAd(
   posId,
   timeout: 3.5,
-  buttonType: 2,
 );
 ```
 
@@ -157,10 +155,10 @@ FlutterGromoreAds.onEventListener((event) {
 ``` gradle
 dependencies {
     //GroMore_sdk adapter
-    implementation "com.gromore.cn:gdt-adapter:4.464.1334.0"  //gdt adapter
-    implementation 'com.qq.e.union:union:4.464.1334'// 广点通广告 SDK
-    implementation "com.gromore.cn:pangle-adapter:4.5.1.1.3" //穿山甲 adapter
-    implementation 'com.pangle.cn:ads-sdk-pro:4.5.1.1'//穿山甲广告 SDK
+    implementation "com.gromore.cn:gdt-adapter:4.482.1352.1"  //gdt adapter
+    implementation 'com.qq.e.union:union:4.482.1352'// 广点通广告 SDK
+    implementation "com.gromore.cn:pangle-adapter:4.7.1.2.1" //穿山甲 adapter
+    implementation 'com.pangle.cn:ads-sdk-pro:4.7.1.2'//穿山甲广告 SDK
     // 其他参考官方文档 引入即可
 }
 ```

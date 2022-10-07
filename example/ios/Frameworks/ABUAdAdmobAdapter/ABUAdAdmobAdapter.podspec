@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ABUAdAdmobAdapter'
-  spec.version      = '9.5.0.0'
+  spec.version      = '9.9.0.0'
   spec.summary      = 'ABUAdAdmobAdapter is a adapter SDK from Bytedance providing media union AD service.'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   
@@ -27,5 +27,6 @@ Pod::Spec.new do |spec|
 
 	spec.ios.vendored_frameworks = 'ABUAdAdmobAdapter/ABUAdAdmobAdapter.framework'
   spec.dependency 'Ads-Mediation-CN'
+  spec.dependency "BURelyFoundation"
 
 end

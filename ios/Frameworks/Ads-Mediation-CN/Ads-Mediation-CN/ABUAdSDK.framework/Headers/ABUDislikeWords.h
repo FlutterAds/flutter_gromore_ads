@@ -14,6 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 //
 //@end
 
-typedef NSDictionary ABUDislikeWords;
+typedef NSString ABUDislikeWords;
 
 NS_ASSUME_NONNULL_END

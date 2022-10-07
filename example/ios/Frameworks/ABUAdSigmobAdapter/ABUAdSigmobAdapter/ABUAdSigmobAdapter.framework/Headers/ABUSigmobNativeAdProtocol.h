@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, ABUSigmob_WindFeedADMode) {
 
 @property (nonatomic, copy, readonly) NSString *dislikeId;
 @property (nonatomic, copy, readonly) NSString *name;
-
+@property (nonatomic, copy, readonly) NSArray<id<ABUSigmob_WindDislikeWords>> *options;// v3600
 @end
 
 typedef NSObject<ABUSigmob_WindDislikeWords> WindDislikeWords;
@@ -77,7 +77,7 @@ typedef NSObject<ABUSigmob_WindNativeAd> WindNativeAd;
 /**
  视频组件
  */
-@property (nonatomic, strong, readonly) UIView *mediaView;
+@property (nonatomic, strong, readonly) WindMediaView *mediaView;// 3600
 
 /**
  广告平台logo组件
@@ -89,6 +89,8 @@ typedef NSObject<ABUSigmob_WindNativeAd> WindNativeAd;
  */
 @property (nonatomic, strong, readonly) UIButton *dislikeButton;
 
+// v3600
+#pragma mark sigmob 4.1.0 废弃
 /**
  单图广告对应的图片组件
  */
@@ -100,6 +102,7 @@ typedef NSObject<ABUSigmob_WindNativeAd> WindNativeAd;
 @property (nonatomic, strong, readonly) UIImageView *leftImageView;
 @property (nonatomic, strong, readonly) UIImageView *midImageView;
 @property (nonatomic, strong, readonly) UIImageView *rightImageView;
+#pragma mark sigmob 4.1.0 废弃
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
@@ -111,9 +114,20 @@ typedef NSObject<ABUSigmob_WindNativeAd> WindNativeAd;
 /**
  在物料加载成功方法里获取相关广告信息赋值后，需调用 setClickableViews:绑定点击的View
  */
-- (void)setClickableViews:(NSArray<UIView *> *)clickableViews; //for TencentAd
+- (void)setClickableViews:(NSArray<UIView *> *)clickableViews;
 
+#pragma mark sigmob 4.1.0 废弃
 - (void)setPlaceholderImage:(UIImage *)placeholderImage;
+#pragma mark sigmob 4.1.0 废弃
+/**
+ * 绑定展示的图片视图
+ *
+ * (需要在refreshData方法之后绑定，否则数据无法渲染)
+ *
+ * @param imageViews     进行渲染的 imageView
+ * @param placeholder     图片加载过程中的占位图
+ */
+- (void)bindImageViews:(NSArray<UIImageView *> *)imageViews placeholder:(UIImage *)placeholder;
 
 /**
  注销数据对象，在 tableView、collectionView 等场景需要复用 WindNativeAdView 时，
@@ -123,7 +137,7 @@ typedef NSObject<ABUSigmob_WindNativeAd> WindNativeAd;
 - (void)unregisterDataObject;
 
 
-
+#pragma mark sigmob 4.1.0 废弃
 //****************************************************************************************************
 
 /**
@@ -158,7 +172,7 @@ typedef NSObject<ABUSigmob_WindNativeAd> WindNativeAd;
  @param size 自定义播放按钮大小，不设置为默认大小 44 * 44
  */
 //- (void)setPlayButtonImage:(UIImage *)image size:(CGSize)size;
-
+#pragma mark sigmob 4.1.0 废弃
 @end
 typedef UIView <ABUSigmob_WindNativeAdView> WindNativeAdView;
 
@@ -233,6 +247,8 @@ typedef NSObject<ABUSigmob_WindNativeAdsManager> WindNativeAdsManager;
 @optional
 - (void)nativeAdsManagerSuccessToLoad:(WindNativeAdsManager *)adsManager;
 
+- (void)nativeAdsManagerSuccessToLoad:(WindNativeAdsManager *)adsManager nativeAds:(NSArray<WindNativeAd *> *)nativeAdDataArray;// v3600
+
 - (void)nativeAdsManager:(WindNativeAdsManager *)adsManager didFailWithError:(NSError *_Nullable)error;
 
 @end
@@ -243,11 +259,24 @@ typedef NSObject<ABUSigmob_WindNativeAdsManager> WindNativeAdsManager;
 
 @property (nonatomic, strong, readonly) NSString *placementId;
 
+@property (nonatomic, strong) NSDictionary *extra;// v3600
+
 - (instancetype)initWithRequest:(WindAdRequest *)request;
 /**
  It is recommended to request no more than 3 ads.
  */
 - (void)loadAdDataWithCount:(NSInteger)count;
+
+/**
+*  Called when load the ad
+*
+*  @param bitToken      - the token from bid request within Sigmob Ad Server
+*
+*  @param count         - It is recommended to request no more than 3 ads.
+*/
+- (void)loadAdDataWithBitToken:(NSString *)bitToken
+                       adCount:(NSInteger)count;// v3600
+
 /**
  Get all ads when call methord: nativeAdsManagerSuccessToLoad
  */

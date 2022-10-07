@@ -52,6 +52,9 @@ ABUMediatedAdStatus ABUMediatedAdStatusMake(ABUMediatedAdStatusValue isReady, AB
 
 - (NSString *)serverBiddingTokenWithParams:(NSDictionary *)params error:(NSError **)error;
 
+/// 需要传递token以外值时,使用此方法
+- (NSString *)serverBiddingTokenWithParams:(NSDictionary *)params otherInfo:(NSMutableDictionary *)otherInfo error:(NSError **)error;
+
 /// 当前广告有广告正在展示时是否允许进行预加载广告，未实现则为NO。
 - (BOOL)enablePreloadWhenCurrentIsDisplay;
 

@@ -60,3 +60,9 @@
 + (BOOL)invokePersionaliseConfigWithKey:(NSString *)key;
 
 @end
+
+@interface ABUKlevinPersonaliseConfigAdapter ()
+
++ (BOOL)invokePersionaliseConfigWithKey:(NSString *)key;
+
+@end

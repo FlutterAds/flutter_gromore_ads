@@ -52,8 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 在广告关闭时调用该方法，直接调用即可，无需做响应判断
 /// @param adapter 当前适配器
 /// @param bannerView 广告视图
-/// @param filterwords 用户手动关闭时的关闭原因描述
-- (void)bannerAd:(id<ABUCustomBannerAdapter>)adapter bannerView:(UIView *)bannerView didClosedWithDislikeWithReason:(NSArray<ABUDislikeWords *> *_Nullable)filterwords;
+/// @param filterWords 用户手动关闭时的关闭原因描述
+- (void)bannerAd:(id<ABUCustomBannerAdapter>)adapter bannerView:(UIView *)bannerView didClosedWithDislikeWithReason:(NSArray<ABUDislikeWords *> *_Nullable)filterWords;
 
 /// 广告点击跳转使用的控制器
 - (UIViewController *)viewControllerForPresentingModalView;

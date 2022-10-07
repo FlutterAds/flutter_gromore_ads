@@ -14,7 +14,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ABUNativeAdsManager,ABURitInfo;
+@class ABUDictionary;
+
+@class ABUNativeAdsManager,ABURitInfo,ABUVideoAdReporter;
 
 /// native广告视图类
 @interface ABUNativeAdView : ABUCanvasView
@@ -40,17 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否已经准备广告展示，理论上在广告加载回调后即为YES，但受一些因素的影响（例如广告失效），可能为NO。建议在广告展示前调用该方法进行是否可以展示
 @property (nonatomic, assign, readonly) BOOL isReady;
 
-/// 返回显示广告对应的rit
-- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
-- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的Adn名称
-- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
 /// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
 - (nullable ABURitInfo *)getShowEcpmInfo;
+
+/// 广告的扩展信息，可能为nil
+- (ABUDictionary *_Nullable)extraData;
 
 /// 填充后可调用，但推荐展示后调用，返回竞价广告的ecpm；当为server bidding ad时访问需要白名单权限；
 - (NSArray<ABURitInfo *> *)multiBiddingEcpmInfos;
@@ -80,4 +76,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface ABUNativeAdView (Native)
+
+/// 自渲染视频类广告事件上报对象，仅采用自定义视频播放器时需要上报，部分ADN需申请白名单
+@property (nonatomic, strong, readonly) ABUVideoAdReporter *videoAdReporter;
+
+@end
 NS_ASSUME_NONNULL_END

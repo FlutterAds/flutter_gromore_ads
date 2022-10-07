@@ -36,4 +36,7 @@
 /// 视频视图
 @property (nonatomic, strong, nullable, readonly) UIView *mediaView;
 
+/// 广告图标视图
+@property (nonatomic, strong, nullable, readonly) UIView *adLogoView;
+
 @end

@@ -15,16 +15,15 @@
 
 - (void)loadAd:(FlutterMethodCall *)call{
     NSLog(@"%s",__FUNCTION__);
+    self.isDisplay=YES;
     NSString* logo=call.arguments[@"logo"];
     double timeout=[call.arguments[@"timeout"] doubleValue];
-    int buttonType=[call.arguments[@"buttonType"] intValue];
     // logo 判断为空，则全屏展示
     self.fullScreenAd=[logo isKindOfClass:[NSNull class]]||[logo length]==0;
     // 创建广告
     self.ad =[[ABUSplashAd alloc] initWithAdUnitID:self.posId];
     self.ad.delegate=self;
     self.ad.tolerateTimeout=timeout;
-    self.ad.splashButtonType=buttonType;
     self.ad.rootViewController=self.rootController;
     if (!self.fullScreenAd) {
         // 设置底部 logo
@@ -54,6 +53,7 @@
     NSLog(@"%s-error:%@", __func__, error);
     // 发送事件
     [self sendErrorEvent:error];
+    self.isDisplay=NO;
 }
 
 - (void)splashAdWillVisible:(ABUSplashAd *)splashAd{
@@ -66,6 +66,7 @@
     NSLog(@"%s",__FUNCTION__);
     // 发送事件
     [self sendErrorEvent:error];
+    self.isDisplay=NO;
 }
 
 - (void)splashAdDidClick:(ABUSplashAd *)splashAd{
@@ -82,7 +83,7 @@
     if (self.ad) {
         [self.ad destoryAd];
     }
-    
+    self.isDisplay=NO;
 }
 
 - (void)splashAdCountdownToZero:(ABUSplashAd *)splashAd{

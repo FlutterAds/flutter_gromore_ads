@@ -36,12 +36,12 @@ target 'Runner' do
   # 2.GroMore官方适配adapter（请以接入文档0.3说明为准，请不要更换GroMoreSDK不支持的三方sdk版本）
   # 穿山甲
   pod 'ABUAdCsjAdapter', :path=>'Frameworks/ABUAdCsjAdapter/'
-  pod 'Ads-CN','4.5.1.6'
+  pod 'Ads-CN','4.7.1.1'
   # 穿山甲beta灰度版
   #pod 'Ads-CN-Beta', '3.8.0.0'
   # 广点通/优量汇
   pod 'ABUAdGdtAdapter', :path=>'Frameworks/ABUAdGdtAdapter'
-  pod 'GDTMobSDK','4.13.66'
+  pod 'GDTMobSDK','4.13.81'
   # 百度SDK
 #  pod 'ABUAdBaiduAdapter', :path=>'Frameworks/ABUAdBaiduAdapter'
 #  pod 'BaiduMobAdSDK', '4.87'

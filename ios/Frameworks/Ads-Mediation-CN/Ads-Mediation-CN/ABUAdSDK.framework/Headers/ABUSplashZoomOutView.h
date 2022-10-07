@@ -29,10 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param splashZoomOutView zoom out view
 - (void)splashZoomOutViewAdDidClose:(UIView *_Nonnull)splashZoomOutView;
 
-/// 开屏广告zoomoutview即将打开全屏页面事件回调
-/// @param splashZoomOutView zoom out view
-- (void)splashZoomOutViewAdWillPresentFullScreenModal:(UIView *_Nonnull)splashZoomOutView ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废");
-
 /// 开屏广告zoomoutview已经打开全屏页面事件回调
 /// @param splashZoomOutView zoom out view
 - (void)splashZoomOutViewAdDidPresentFullScreenModal:(UIView *_Nonnull)splashZoomOutView;

@@ -38,11 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param bannerView 广告视图
 - (void)bannerAdDidBecomeVisible:(ABUBannerAd *)bannerAd bannerView:(UIView *)bannerView;
 
-/// 广告展示回调
-/// @param bannerAd 广告操作对象
-/// @param bannerView 广告视图
-- (void)bannerAdDidBecomVisible:(ABUBannerAd *)bannerAd bannerView:(UIView *)bannerView ABU_DEPRECATED_MSG_ATTRIBUTE("Use bannerAdDidBecomeVisible:bannerView: instead");
-
 /// 即将弹出广告详情页
 /// @param ABUBannerAd 广告操作对象
 /// @param bannerView 广告视图
@@ -61,23 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 广告关闭回调
 /// @param ABUBannerAd 广告操作对象
 /// @param bannerView 广告视图
-/// @param filterwords 不喜欢广告的原因，由adapter开发者配置，可能为空
-- (void)bannerAdDidClosed:(ABUBannerAd *)ABUBannerAd bannerView:(UIView *)bannerView dislikeWithReason:(NSArray<NSDictionary *> *_Nullable)filterwords;
+/// @param filterWords 不喜欢广告的原因，由adapter开发者配置，可能为空
+- (void)bannerAdDidClosed:(ABUBannerAd *)ABUBannerAd bannerView:(UIView *)bannerView dislikeWithReason:(NSArray<NSDictionary *> *_Nullable)filterWords;
 
 @end
 
 /// banner广告操作类
 @interface ABUBannerAd : ABUBaseAd
-
-/// banner广告操作对象构建
-/// @param adUnitID 广告位ID
-/// @param rootViewController 页面跳转控制器
-/// @param adSize 广告尺寸
-/// @param autoRefreshTime 自动轮播定时间隔，有效值在30-120之间，如不启动轮播请设置为0
-- (instancetype _Nonnull)initWithAdUnitID:(NSString *_Nonnull)adUnitID
-                       rootViewController:(UIViewController *_Nonnull)rootViewController
-                                   adSize:(CGSize)adSize
-                          autoRefreshTime:(NSInteger)autoRefreshTime ABU_DEPRECATED_MSG_ATTRIBUTE("The interface is about to be deprecated, please use' 'initWithAdUnitID:rootViewController:adSize'[轮播功能(autoRefreshTime)端上已不支持控制，需要在GroMore平台“瀑布流属性配置”模块配置]");
 
 /// banner广告操作对象构建
 /// @param adUnitID 广告位ID
@@ -102,20 +87,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否已经准备广告展示，理论上在广告加载回调后即为YES，但受一些因素的影响（例如广告失效），可能为NO。建议在广告展示前调用该方法进行是否可以展示
 @property (nonatomic, assign, readonly) BOOL isReady;
 
-/// 返回显示广告对应的rit
-- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
-- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的Adn名称，当广告加载中未显示会返回-2，当没有权限访问该部分会返回-3
-- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
 /// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
 - (nullable ABURitInfo *)getShowEcpmInfo;
 
 /// 填充后可调用, 返回广告缓存池内所有信息；nil为无权限
 - (NSArray<ABURitInfo *> *)cacheRitList;
+
+/// 广告的扩展信息，可能为nil
+- (NSDictionary *_Nullable)extraData;
 
 /// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
 - (nullable NSDictionary *)getMediaExtraInfo;

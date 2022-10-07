@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ABUVisualDebug'
-  spec.version      = '3.5.0.0'
+  spec.version      = '3.7.0.0'
   spec.summary      = 'ABUVisualDebug is a debug SDK for Bytedance GroMore'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   
@@ -28,5 +28,6 @@ Pod::Spec.new do |spec|
 	spec.ios.vendored_frameworks = 'ABUVisualDebug/ABUVisualDebug.framework'
 	spec.resource = 'ABUVisualDebug/ABUVisualDebug.bundle'
   spec.dependency 'Ads-Mediation-CN'
+  spec.dependency "BURelyFoundation"
 
 end

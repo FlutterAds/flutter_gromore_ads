@@ -47,10 +47,14 @@ FOUNDATION_EXPORT const unsigned char ABUAdSDKVersionString[];
 #import "ABUCustomSplashAdapter.h"
 #import "ABUCustomInterstitialAdapter.h"
 #import "ABUCanvasView.h"
+#import "ABUDislikeReason.h"
 
 #pragma mark - 辅助
 #import "ABUVersion.h"
+#import "ABUDictionary.h"
 #import "UIWindow+GroMore.h"
 #import "ABUViewTracker.h"
 #import "ABUViewTrackerHelper.h"
 #import "ABUAdViewWitnessChecker.h"
+#import "ABUVideoAdReporter.h"
+#import "ABUDislikeReporter.h"

@@ -95,19 +95,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否已经准备广告展示，理论上在广告加载回调后即为YES，但受一些因素的影响（例如广告失效），可能为NO。建议在广告展示前调用该方法进行是否可以展示
 @property (nonatomic, assign, readonly) BOOL isReady;
 
+/// 广告的扩展信息，可能为nil
+- (NSDictionary *_Nullable)extraData;
+
 /// 展示广告
 /// @param viewController 跳转控制器，必传
-/// @param extroInfos 扩展信息，可选，与adapter及ADN是否实现有关，字段参见ABUADSDKConst.h中全屏视频、激励视频展示扩展部分
-- (BOOL)showAdFromRootViewController:(UIViewController *_Nonnull)viewController extroInfos:(NSDictionary *_Nullable)extroInfos;
-
-/// 返回显示广告对应的rit
-- (NSString *)getAdNetworkRitId ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的ecpm，当没有权限访问该部分会返回-3 单位：分
-- (NSString *)getPreEcpm ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
-
-/// 返回显示广告对应的Adn名称
-- (NSString *)getAdNetworkPlatformName ABU_DEPRECATED_MSG_ATTRIBUTE("接口即将废弃，请使用`getShowEcpmInfo`代替");
+/// @param extraInfos 扩展信息，可选，与adapter及ADN是否实现有关，字段参见ABUADSDKConst.h中全屏视频、激励视频展示扩展部分
+- (BOOL)showAdFromRootViewController:(UIViewController *_Nonnull)viewController extraInfos:(NSDictionary *_Nullable)extraInfos;
 
 /// 返回显示广告对应的披露信息，当没有权限访问时Ecpm会返回'-3'
 - (ABURitInfo *)getShowEcpmInfo;

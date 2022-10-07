@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/services.dart';
+
 import 'event/ad_event_handler.dart';
+
 export 'event/ad_event_handler.dart';
 
 /// GroMore 广告插件
@@ -43,25 +46,13 @@ class FlutterGromoreAds {
 
   /// 初始化广告
   /// [appId] 应用ID
-  /// [useTextureView] (Android) 是否使用TextureView控件播放视频
-  /// [supportMultiProcess] (Android) 是否支持多进程
-  /// [allowShowNotify] (Android) 是否允许sdk展示通知栏提示
-  /// [directDownloadNetworkType] 允许直接下载的网络类型，默认是空会有下载确认提示，非空不会有提示
-  static Future<bool> initAd(
-    String appId, {
-    bool useTextureView = false,
-    bool supportMultiProcess = false,
-    bool allowShowNotify = true,
-    List<int> directDownloadNetworkType = const [],
-  }) async {
+  /// [config] 配置文件名称
+  static Future<bool> initAd(String appId, {String? config}) async {
     final bool result = await _methodChannel.invokeMethod(
       'initAd',
       {
         'appId': appId,
-        'useTextureView': useTextureView,
-        'supportMultiProcess': supportMultiProcess,
-        'allowShowNotify': allowShowNotify,
-        'directDownloadNetworkType': directDownloadNetworkType,
+        'config': config,
       },
     );
     return result;
@@ -71,16 +62,14 @@ class FlutterGromoreAds {
   /// [posId] 广告位 id
   /// [logo] 如果传值则展示底部logo，不传不展示，则全屏展示
   /// [timeout] 加载超时时间
-  /// [buttonType] 开屏广告的点击区域，1：全都可以点击 2：仅有下载 Bar 区域可以点击。具体参考：https://www.csjplatform.com/support/doc/611f0f0c1b039f004611e4da
   static Future<bool> showSplashAd(String posId,
-      {String? logo, double timeout = 3.5, int buttonType = 1}) async {
+      {String? logo, double timeout = 3.5}) async {
     final bool result = await _methodChannel.invokeMethod(
       'showSplashAd',
       {
         'posId': posId,
         'logo': logo,
         'timeout': timeout,
-        'buttonType': buttonType,
       },
     );
     return result;

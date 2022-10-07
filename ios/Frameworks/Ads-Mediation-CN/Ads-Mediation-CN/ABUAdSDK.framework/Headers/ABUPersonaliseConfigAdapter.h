@@ -72,4 +72,11 @@ FOUNDATION_EXTERN API_DEPRECATED("ABUKsPersonaliseConfigAdapter is deprecated. U
 
 @end
 
+FOUNDATION_EXTERN API_DEPRECATED("ABUKlevinPersonaliseConfigAdapter is deprecated. Use ABUPersonaliseConfigAdapter with a key 'klevin' of network instead", ios(2.0, 9.0))
+@interface ABUKlevinPersonaliseConfigAdapter : NSObject
+
++ (void)configAdapterWithBlock:(void(^)(void))block API_DEPRECATED("Use ABUPersonaliseConfigAdapter instead.", ios(2.0, 9.0));
+
+@end
+
 NS_ASSUME_NONNULL_END

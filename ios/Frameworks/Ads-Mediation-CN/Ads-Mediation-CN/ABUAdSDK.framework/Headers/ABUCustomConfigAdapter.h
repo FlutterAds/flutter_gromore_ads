@@ -39,6 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 隐私权限更新，用户更新隐私配置时触发，初始化方法调用前一定会触发一次
 - (void)didRequestAdPrivacyConfigUpdate:(NSDictionary *)config;
 
+/// 收到配置更新请求时触发，如主题更新，初始化时设定配置不会触发，具体修改项需自行校验
+- (void)didReceiveConfigUpdateRequest:(ABUUserConfig *)config;
+
 @optional
 
 /// 无需实现

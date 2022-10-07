@@ -65,7 +65,6 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
-        int buttonType = getIntent().getIntExtra(PluginDelegate.KEY_SPLASH_BUTTON_TYPE, GMAdConstant.SPLASH_BUTTON_TYPE_FULL_SCREEN);
         double timeout = getIntent().getDoubleExtra(PluginDelegate.KEY_TIMEOUT, 3.5);
         int absTimeout = (int) (timeout * 1000);
         // 判断是否有 Logo
@@ -82,7 +81,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
             }
         }
         int width = (int) UIUtils.getScreenWidthInPx(this);
-        int height = (int) UIUtils.getScreenHeightInPx(this);
+        int height = UIUtils.getRealHeight(this);
         // 判断最终的 Logo 是否显示
         if (!hasLogo) {
             ad_logo.setVisibility(View.GONE);
@@ -96,8 +95,6 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
         GMAdSlotSplash adSlot = new GMAdSlotSplash.Builder()
                 .setImageAdSize(width, height) // 既适用于原生类型，也适用于模版类型。
                 .setTimeOut(absTimeout)//设置超时
-                .setSplashButtonType(buttonType)
-                .setDownloadType(GMAdConstant.DOWNLOAD_TYPE_POPUP)
                 .build();
         // 加载广告
         gmSplashAd.loadAd(adSlot,this);
