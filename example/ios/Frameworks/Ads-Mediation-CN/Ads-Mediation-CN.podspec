@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |spec|
   spec.name = 'Ads-Mediation-CN'
-  spec.version = '3.7.0.0'
+  spec.version = '3.7.0.3'
   spec.summary = 'Ads-Mediation-CN is a SDK from Bytedance providing media union AD service.'
   spec.homepage = 'https://www.csjplatform.com/gromore'
   spec.description = <<-DESC
