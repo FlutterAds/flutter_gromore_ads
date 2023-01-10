@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ABURewardedVideoAd,ABUAdapterRewardAdInfo;
+@class ABURewardedVideoAd,ABUAdapterRewardAdInfo, ABUDictionary;
 
 /// 激励视频广告代理协议
 @protocol ABURewardedVideoAdDelegate <NSObject>
@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<ABURitInfo *> *)cacheRitList;
 
 /// 广告的扩展信息，可能为nil
-- (NSDictionary *_Nullable)extraData;
+- (ABUDictionary *_Nullable)extraData;
 
 /// 填充后可调用，获取广告中的extra信息。目前只支持穿山甲，并且只支持获取coupon, live_room, product信息。
 - (nullable NSDictionary *)getMediaExtraInfo;

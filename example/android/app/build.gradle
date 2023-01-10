@@ -58,9 +58,9 @@ flutter {
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     //GroMore_sdk adapter
-    implementation "com.gromore.cn:gdt-adapter:4.482.1352.1"  //gdt adapter
-    implementation 'com.qq.e.union:union:4.482.1352'// 广点通广告 SDK
-    implementation "com.gromore.cn:pangle-adapter:4.7.1.2.1" //穿山甲 adapter
-    implementation 'com.pangle.cn:ads-sdk-pro:4.7.1.2'//穿山甲广告 SDK
+    implementation "com.gromore.cn:gdt-adapter:4.500.1370.0"  //gdt adapter
+    implementation 'com.qq.e.union:union:4.500.1370'// 广点通广告 SDK
+    implementation "com.gromore.cn:pangle-adapter:5.0.0.4.0" //穿山甲 adapter
+    implementation 'com.pangle.cn:ads-sdk-pro:5.0.0.4'//穿山甲广告 SDK
 
 }
