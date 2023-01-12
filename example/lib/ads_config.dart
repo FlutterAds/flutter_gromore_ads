@@ -25,7 +25,7 @@ class AdsConfig {
     if (Platform.isIOS) {
       return '5000546';
     }
-    return '5001121';
+    return '5216573';
   }
 
   /// 获取 App Config
@@ -80,13 +80,7 @@ class AdsConfig {
   static String get rewardVideoId => '946584890';
 
   /// 获取 Banner 广告位id
-  static String get bannerId => '946651948';
-
-  /// 获取 Banner 广告位id 01
-  static String get bannerId01 => '946651966';
-
-  /// 获取 Banner 广告位id 02
-  static String get bannerId02 => '946651971';
+  static String get bannerId => '102252466';
 
   /// 获取 Feed 信息流列表
   static List<String> get feedIdList =>

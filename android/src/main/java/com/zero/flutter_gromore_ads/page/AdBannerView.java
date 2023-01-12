@@ -1,22 +1,46 @@
-package com.zero.flutter_pangle_ads.page;
+package com.zero.flutter_gromore_ads.page;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bytedance.sdk.openadsdk.AdSlot;
-import com.bytedance.sdk.openadsdk.TTAdDislike;
-import com.bytedance.sdk.openadsdk.TTAdNative;
-import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
-import com.zero.flutter_pangle_ads.PluginDelegate;
-import com.zero.flutter_pangle_ads.event.AdEventAction;
 
+import com.bumptech.glide.Glide;
+import com.bytedance.msdk.api.AdError;
+import com.bytedance.msdk.api.TToast;
+import com.bytedance.msdk.api.nativeAd.TTNativeAdAppInfo;
+import com.bytedance.msdk.api.nativeAd.TTViewBinder;
+import com.bytedance.msdk.api.v2.GMAdConstant;
+import com.bytedance.msdk.api.v2.GMAdDislike;
+import com.bytedance.msdk.api.v2.GMAdSize;
+import com.bytedance.msdk.api.v2.GMDislikeCallback;
+import com.bytedance.msdk.api.v2.ad.banner.GMBannerAd;
+import com.bytedance.msdk.api.v2.ad.banner.GMBannerAdListener;
+import com.bytedance.msdk.api.v2.ad.banner.GMBannerAdLoadCallback;
+import com.bytedance.msdk.api.v2.ad.banner.GMNativeAdInfo;
+import com.bytedance.msdk.api.v2.ad.banner.GMNativeToBannerListener;
+import com.bytedance.msdk.api.v2.ad.nativeAd.GMViewBinder;
+import com.bytedance.msdk.api.v2.slot.GMAdSlotBanner;
+import com.zero.flutter_gromore_ads.PluginDelegate;
+import com.zero.flutter_gromore_ads.R;
+import com.zero.flutter_gromore_ads.event.AdEventAction;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.platform.PlatformView;
@@ -24,15 +48,13 @@ import io.flutter.plugin.platform.PlatformView;
 /**
  * Banner 广告 View
  */
-class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.NativeExpressAdListener, TTNativeExpressAd.AdInteractionListener {
+class AdBannerView extends BaseAdPage implements PlatformView, GMBannerAdListener, GMBannerAdLoadCallback {
     private final String TAG = AdBannerView.class.getSimpleName();
     @NonNull
     private final FrameLayout frameLayout;
     private final PluginDelegate pluginDelegate;
-    private int id;
-    private TTNativeExpressAd bad;
-    private int interval;
-    private boolean autoClose;
+    private final int id;
+    private GMBannerAd bad;
 
 
     AdBannerView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, PluginDelegate pluginDelegate) {
@@ -56,20 +78,20 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
 
     @Override
     public void loadAd(@NonNull MethodCall call) {
-        // 获取轮播时间间隔参数
-        interval = call.argument("interval");
         // 获取请求模板广告素材的尺寸
         int expressViewWidth = call.argument("width");
         int expressViewHeight = call.argument("height");
-        // 是否自动关闭
-        autoClose = call.argument("autoClose");
-        adSlot = new AdSlot.Builder()
-                .setCodeId(posId)
-                .setAdCount(1)
-                .setSupportDeepLink(true)
-                .setExpressViewAcceptedSize(expressViewWidth, expressViewHeight)
+        bad = new GMBannerAd(activity, posId);
+        // 设置广告事件监听
+        bad.setAdBannerListener(this);
+        // 设置广告配置
+        GMAdSlotBanner slotBanner = new GMAdSlotBanner.Builder()
+                .setBannerSize(GMAdSize.BANNER_CUSTOME)
+                .setImageAdSize(expressViewWidth, expressViewHeight)// GMAdSize.BANNER_CUSTOME可以调用setImageAdSize设置大小
+                .setMuted(true) // 控制视频是否静音
                 .build();
-        ad.loadBannerExpressAd(adSlot, this);
+        // 加载广告
+        bad.loadAd(slotBanner, this);
     }
 
     /**
@@ -82,103 +104,63 @@ class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.Native
         }
     }
 
-
     @Override
-    public void onError(int i, String s) {
-        Log.e(TAG, "onError code:" + i + " msg:" + s);
-        sendErrorEvent(i, s);
-        disposeAd();
-    }
-
-    @Override
-    public void onNativeExpressAdLoad(List<TTNativeExpressAd> list) {
-        Log.i(TAG, "onRenderSuccess");
-        if (list == null || list.size() == 0) {
-            return;
-        }
-        bad = list.get(0);
-        bad.setExpressInteractionListener(this);
-        bindDislikeAction(bad);
-        // 设置广告轮播间隔
-        if (interval > 0) {
-            bad.setSlideIntervalTime(interval * 1000);
-        }
-
-        bad.render();
-        // 添加广告事件
-        sendEvent(AdEventAction.onAdLoaded);
-    }
-
-    @Override
-    public void onAdDismiss() {
-        Log.i(TAG, "onAdDismiss");
-        // 添加广告事件
-        sendEvent(AdEventAction.onAdClosed);
-        // 点击如不感兴趣后，自动关闭
-        if (autoClose) {
-            disposeAd();
-        }
-    }
-
-    @Override
-    public void onAdClicked(View view, int i) {
+    public void onAdClicked() {
         Log.i(TAG, "onAdClicked");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClicked);
     }
 
     @Override
-    public void onAdShow(View view, int i) {
+    public void onAdClosed() {
+        Log.i(TAG, "onAdClosed");
+        // 添加广告事件
+        sendEvent(AdEventAction.onAdClosed);
+        disposeAd();
+    }
+
+    @Override
+    public void onAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onAdOpened() {
+
+    }
+
+    @Override
+    public void onAdShow() {
         Log.i(TAG, "onAdShow");
         // 添加广告事件
         sendEvent(AdEventAction.onAdExposure);
     }
 
     @Override
-    public void onRenderFail(View view, String s, int i) {
-        Log.e(TAG, "onRenderFail code:" + i + " msg:" + s);
-        // 添加广告错误事件
-        sendErrorEvent(i, s);
+    public void onAdShowFail(@NonNull AdError adError) {
+        Log.e(TAG, "onAdShowFail code:" + adError.code + " msg:" + adError.message);
+        sendErrorEvent(adError.code, adError.message);
+        disposeAd();
     }
 
     @Override
-    public void onRenderSuccess(View view, float v, float v1) {
-        Log.i(TAG, "onRenderSuccess");
-        if (bad != null && activity != null) {
-            frameLayout.addView(view);
+    public void onAdFailedToLoad(@NonNull AdError adError) {
+        Log.e(TAG, "onAdFailedToLoad code:" + adError.code + " msg:" + adError.message);
+        sendErrorEvent(adError.code, adError.message);
+        disposeAd();
+    }
+
+    @Override
+    public void onAdLoaded() {
+        Log.i(TAG, "onAdLoaded");
+        if (bad != null && bad.isReady()) {
+            frameLayout.removeAllViews();
+            frameLayout.addView(bad.getBannerView());
             // 添加广告事件
             sendEvent(AdEventAction.onAdPresent);
         }
+        // 添加广告事件
+        sendEvent(AdEventAction.onAdLoaded);
     }
-
-    /**
-     * 接入dislike 逻辑，有助于提示广告精准投放度
-     * 和后续广告关闭逻辑处理
-     *
-     * @param ad 广告 View
-     */
-    private void bindDislikeAction(TTNativeExpressAd ad) {
-        // 使用默认Dislike
-        final TTAdDislike ttAdDislike = ad.getDislikeDialog(activity);
-        if (ttAdDislike != null) {
-            ttAdDislike.setDislikeInteractionCallback(new TTAdDislike.DislikeInteractionCallback() {
-                @Override
-                public void onShow() {
-
-                }
-
-                @Override
-                public void onSelected(int position, String value, boolean enforce) {
-                    onAdDismiss();
-                }
-
-                @Override
-                public void onCancel() {
-
-                }
-            });
-        }
-    }
-
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
+import 'package:flutter_gromore_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
 
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     setAdEvent();
     init().then((value) {
       if (value) {
-        showSplashAd(AdsConfig.logo);
+        // showSplashAd(AdsConfig.logo);
       }
     });
     super.initState();
@@ -106,6 +107,17 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               const SizedBox(height: 20),
+              AdBannerWidget(
+                posId: AdsConfig.bannerId,
+                width: 300,
+                height: 75,
+              ),
+              const SizedBox(height: 20),
+              // AdBannerWidget(
+              //   posId: AdsConfig.bannerId,
+              //   width: 300,
+              //   height: 75,
+              // ),
             ],
           ),
         ),
