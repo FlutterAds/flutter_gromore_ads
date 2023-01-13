@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ABUInterstitialAd;
+@class ABUInterstitialAd, ABUDictionary;
 
 /// 插屏广告代理协议
 @protocol ABUInterstitialAdDelegate <NSObject>
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isReady;
 
 /// 广告的扩展信息，可能为nil
-- (NSDictionary *_Nullable)extraData;
+- (ABUDictionary *_Nullable)extraData;
 
 /// 展示广告
 /// @param rootViewController 跳转控制器，必传

@@ -13,6 +13,7 @@ import com.zero.flutter_gromore_ads.page.AdSplashActivity;
 import com.zero.flutter_gromore_ads.page.FullVideoPage;
 import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
 import com.zero.flutter_gromore_ads.page.InterstitialPage;
+import com.zero.flutter_gromore_ads.page.NativeViewFactory;
 import com.zero.flutter_gromore_ads.utils.FileUtils;
 
 import org.json.JSONException;
@@ -141,8 +142,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * 展示 Banner 广告
      */
     public void registerBannerView() {
-//        bind.getPlatformViewRegistry()
-//                .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW, this));
+        bind.getPlatformViewRegistry()
+                .registerViewFactory(KEY_BANNER_VIEW, new NativeViewFactory(KEY_BANNER_VIEW, this));
     }
 
     /**
@@ -173,11 +174,11 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public void initAd(MethodCall call, final MethodChannel.Result result) {
         String appId = call.argument("appId");
         String config = call.argument("config");
-        JSONObject localConfigJson= null;
-        if (!TextUtils.isEmpty(config)){
-            String localConfigStr= FileUtils.getJson(config,activity);
+        JSONObject localConfigJson = null;
+        if (!TextUtils.isEmpty(config)) {
+            String localConfigStr = FileUtils.getJson(config, activity);
             try {
-                localConfigJson=new JSONObject(localConfigStr);
+                localConfigJson = new JSONObject(localConfigStr);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
