@@ -4,6 +4,7 @@ import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
 import 'package:flutter_gromore_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
+import 'feed_page.dart';
 
 /// 首页
 class HomePage extends StatefulWidget {
@@ -104,6 +105,17 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('展示全屏视频广告(横向)'),
                 onPressed: () {
                   showFullVideoAd(2);
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                child: const Text('信息流广告'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FeedPage(),
+                      ));
                 },
               ),
               const SizedBox(height: 20),
