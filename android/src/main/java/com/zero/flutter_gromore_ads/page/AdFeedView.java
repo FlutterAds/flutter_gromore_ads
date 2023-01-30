@@ -27,7 +27,7 @@ import io.flutter.plugin.platform.PlatformView;
 /**
  * Feed 信息流广告 View
  */
-class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdListener, View.OnLayoutChangeListener {
+class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdListener {
     private final String TAG = AdFeedView.class.getSimpleName();
     @NonNull
     private final FrameLayout frameLayout;
@@ -43,7 +43,8 @@ class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdLi
         this.pluginDelegate = pluginDelegate;
         methodChannel = new MethodChannel(this.pluginDelegate.bind.getBinaryMessenger(), PluginDelegate.KEY_FEED_VIEW + "/" + id);
         frameLayout = new FrameLayout(context);
-        frameLayout.addOnLayoutChangeListener(this);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        frameLayout.setLayoutParams(params);
         MethodCall call = new MethodCall("AdFeedView", creationParams);
         showAd(this.pluginDelegate.activity, call);
     }
@@ -65,16 +66,14 @@ class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdLi
         if (fad != null) {
             fad.setNativeAdListener(this);
             bindDislikeAction(fad);
-            View expressView = fad.getExpressView();
-            adView = expressView;
-            if (expressView != null && expressView.getParent() != null) {
-                ((ViewGroup) expressView.getParent()).removeAllViews();
+            adView = fad.getExpressView();
+            if (adView != null && adView.getParent() != null) {
+                ((ViewGroup) adView.getParent()).removeAllViews();
             }
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, UIUtils.getScreenHeightInPx(activity));
             frameLayout.setLayoutParams(params);
-            frameLayout.addView(expressView);
+            frameLayout.addView(adView);
             fad.render();
-            frameLayout.requestLayout();
         }
     }
 
@@ -135,43 +134,7 @@ class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdLi
         sendEvent(AdEventAction.onAdPresent);
         if (width > 0 && height > 0) {
             setFlutterViewSize(width, height);
-        } else {
-            resizeAdView(adView);
         }
-
-
-    }
-
-    /**
-     * 重新计算真实的广告 View 的宽高
-     */
-    private void resizeAdView(View view) {
-        Log.d(TAG, "resizeAdView fad mw:" + fad.getImageWidth() + " mh:" + fad.getImageHeight());
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-                int width = view.getWidth();
-                int height = view.getHeight();
-
-                Log.d(TAG, "resizeAdView post View width:" + width + " height:" + height);
-
-            }
-        });
-        int mwidth = View.getDefaultSize(10, ViewGroup.LayoutParams.WRAP_CONTENT);
-        int mheight = View.getDefaultSize(10,ViewGroup.LayoutParams.WRAP_CONTENT);
-        Log.d(TAG, "resizeAdView measure  mw:" + mwidth + " mh:" + mheight);
-        frameLayout.measure(mwidth, mheight);
-        int width = frameLayout.getMeasuredWidth();
-        int height = frameLayout.getMeasuredHeight();
-        Log.d(TAG, "resizeAdView mw:" + width + " mh:" + height);
-        // Do something with the width and height
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, height);
-        frameLayout.setLayoutParams(params);
-        frameLayout.requestLayout();
-        int widthPd = UIUtils.px2dip(activity, width);
-        int heightPd = UIUtils.px2dip(activity, height);
-        Log.i(TAG, "resizeAdView widthPd:" + widthPd + " heightPd:" + heightPd);
-        setFlutterViewSize(widthPd, heightPd);
     }
 
     /**
@@ -181,8 +144,6 @@ class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdLi
      * @param height 高度
      */
     private void setFlutterViewSize(float width, float height) {
-
-        // 更新宽高
         Map<String, Double> sizeMap = new HashMap<>();
         sizeMap.put("width", (double) width);
         sizeMap.put("height", (double) height);
@@ -220,18 +181,4 @@ class AdFeedView extends BaseAdPage implements PlatformView, GMNativeExpressAdLi
             }
         });
     }
-
-    @Override
-    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-//        Log.i(TAG, "onLayoutChange left:" + left + " top:" + top + " right:" + right + " bottom:" + bottom);
-
-        if (right > 0 && bottom > 0) {
-            int width = right - left;
-            int height = bottom - top;
-//            Log.i(TAG, "onLayoutChange width:" + width + " height:" + height);
-//            setFlutterViewSize(width, height);
-        }
-    }
-
-
 }

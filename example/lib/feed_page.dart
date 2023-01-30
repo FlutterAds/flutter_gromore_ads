@@ -62,8 +62,8 @@ class _FeedPageState extends State<FeedPage> {
                     int adId = feedAdList[adIndex];
                     return AdFeedWidget(
                       posId: '$adId',
-                      width: 375,
-                      height: 128,
+                      width: 360,
+                      height: 120,
                       show: true,
                     );
                   }
