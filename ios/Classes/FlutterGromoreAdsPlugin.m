@@ -2,8 +2,12 @@
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import <AdSupport/AdSupport.h>
 #import "FGMGroMore.h"
+#import "FGMNativeViewFactory.h"
 
 @implementation FlutterGromoreAdsPlugin
+// AdBannerView
+NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* methodChannel = [FlutterMethodChannel
                                      methodChannelWithName:@"flutter_gromore_ads"
@@ -14,10 +18,14 @@
     FlutterGromoreAdsPlugin* instance = [[FlutterGromoreAdsPlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:methodChannel];
     [eventChannel setStreamHandler:instance];
-    
+
+    // 注册平台View 工厂
+    FGMNativeViewFactory *bannerFactory=[[FGMNativeViewFactory alloc] initWithViewName:kGMAdBannerViewId withMessenger:registrar.messenger withPlugin:instance];
+    // 注册 Banner View
+    [registrar registerViewFactory:bannerFactory withId:kGMAdBannerViewId];
+
     
 }
-
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSString *methodStr=call.method;
     if ([@"getPlatformVersion" isEqualToString:methodStr]) {

@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = 'ABUVisualDebug'
-  spec.version      = '3.7.0.0'
+  spec.version      = '3.9.0.2'
   spec.summary      = 'ABUVisualDebug is a debug SDK for Bytedance GroMore'
   spec.homepage     = 'https://www.csjplatform.com/gromore'
   spec.description  = <<-DESC   

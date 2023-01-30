@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |spec|
   spec.name = 'Ads-Mediation-CN'
-  spec.version = '3.7.0.0'
+  spec.version = '3.9.0.2'
   spec.summary = 'Ads-Mediation-CN is a SDK from Bytedance providing media union AD service.'
   spec.homepage = 'https://www.csjplatform.com/gromore'
   spec.description = <<-DESC
@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
   valid_archs = ['arm64', 'armv7', 'x86_64', 'i386']
 
 	# 这里不加载 framework 因为在插件中已经加载了
-	#spec.ios.vendored_frameworks = 'Ads-Mediation-CN/ABUAdSDK.framework'
+	# spec.ios.vendored_frameworks = 'Ads-Mediation-CN/ABUAdSDK.framework'
   spec.dependency "BURelyFoundation"
   spec.libraries = 'sqlite3', 'xml2', 'z'
   spec.frameworks = 'SystemConfiguration', 'CoreGraphics', 'Foundation', 'UIKit', 'AdSupport', 'StoreKit', 'QuartzCore', 'CoreTelephony', 'MobileCoreServices', 'Accelerate', 'AVFoundation', 'WebKit'

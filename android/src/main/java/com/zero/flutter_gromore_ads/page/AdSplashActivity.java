@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+
 import com.bytedance.msdk.api.AdError;
 import com.bytedance.msdk.api.v2.GMAdConstant;
 import com.bytedance.msdk.api.v2.ad.splash.GMSplashAd;
@@ -97,7 +98,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
                 .setTimeOut(absTimeout)//设置超时
                 .build();
         // 加载广告
-        gmSplashAd.loadAd(adSlot,this);
+        gmSplashAd.loadAd(adSlot, this);
     }
 
     /**
@@ -110,7 +111,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
         // 销毁
         if (gmSplashAd != null) {
             gmSplashAd.destroy();
-            gmSplashAd=null;
+            gmSplashAd = null;
         }
     }
 

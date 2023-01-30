@@ -8,7 +8,7 @@
 #import "FGMAdErrorEvent.h"
 
 @implementation FGMAdErrorEvent
-- (id)initWithAdId:(NSString *)adId errCode:(NSNumber *)errCode errMsg:(NSString *)errMsg{
+- (id)initWithAdId:(NSString *)adId errCode:(NSInteger)errCode errMsg:(NSString *)errMsg{
     self.adId=adId;
     self.action=onAdError;
     self.errCode=errCode;
@@ -17,12 +17,12 @@
 }
 
 - (id)initWithAdId:(NSString *)adId error:(NSError *)error{
-    return [self initWithAdId:adId errCode:[NSNumber numberWithInteger:error.code] errMsg:error.localizedDescription];
+    return [self initWithAdId:adId errCode:error.code errMsg:error.localizedDescription];
 }
 
 - (NSDictionary *)toMap{
     NSMutableDictionary *errData=[[NSMutableDictionary alloc] initWithDictionary:[super toMap]];
-    [errData setObject:self.errCode forKey:@"errCode"];
+    [errData setObject:@(self.errCode) forKey:@"errCode"];
     [errData setObject:self.errMsg forKey:@"errMsg"];
     return errData;
 }
