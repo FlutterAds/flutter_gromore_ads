@@ -82,6 +82,6 @@ class AdsConfig {
   /// 获取 Banner 广告位id
   static String get bannerId => Platform.isIOS ? '102253640' : '102252466';
 
-  /// 获取 Feed 信息流广告位id
-  static String get feedId => '102254613';
+  /// 获取 Feed 信息流广告位 id
+  static String get feedId => Platform.isIOS ? '102255258' : '102254613';
 }
