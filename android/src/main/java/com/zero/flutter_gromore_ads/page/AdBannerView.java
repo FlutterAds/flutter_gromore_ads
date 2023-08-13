@@ -100,6 +100,7 @@ class AdBannerView extends BaseAdPage implements PlatformView, GMBannerAdListene
     private void disposeAd() {
         frameLayout.removeAllViews();
         if (bad != null) {
+            bad.setAdBannerListener(null);
             bad.destroy();
         }
     }

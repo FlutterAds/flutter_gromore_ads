@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 
 import com.bytedance.msdk.api.v2.GMAdConfig;
 import com.bytedance.msdk.api.v2.GMMediationAdSdk;
+import com.bytedance.msdk.api.v2.GMPangleOption;
+import com.zero.flutter_gromore_ads.load.FeedAdLoad;
+import com.zero.flutter_gromore_ads.load.FeedAdManager;
 import com.zero.flutter_gromore_ads.page.AdSplashActivity;
 import com.zero.flutter_gromore_ads.page.FullVideoPage;
 import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
@@ -20,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.flutter.BuildConfig;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -150,8 +154,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * 展示 Feed 信息流广告
      */
     public void registerFeedView() {
-//        bind.getPlatformViewRegistry()
-//                .registerViewFactory(KEY_FEED_VIEW, new NativeViewFactory(KEY_FEED_VIEW, this));
+        bind.getPlatformViewRegistry()
+                .registerViewFactory(KEY_FEED_VIEW, new NativeViewFactory(KEY_FEED_VIEW, this));
     }
 
     /**
@@ -183,6 +187,10 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 e.printStackTrace();
             }
         }
+        // 穿山甲配置
+        GMPangleOption gmPangleOption=new GMPangleOption.Builder()
+                .setIsUseTextureView(true)
+                .build();
         // 构建配置
         GMAdConfig adConfig = new GMAdConfig.Builder()
                 .setAppId(appId)
@@ -190,6 +198,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 .setDebug(BuildConfig.DEBUG)
                 .setOpenAdnTest(BuildConfig.DEBUG)
                 .setCustomLocalConfig(localConfigJson)
+                .setPangleOption(gmPangleOption)
                 .build();
         // 初始化 SDK
         GMMediationAdSdk.initialize(activity.getApplicationContext(), adConfig);
@@ -271,8 +280,8 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
-//        FeedAdLoad feedAd = new FeedAdLoad();
-//        feedAd.loadFeedAdList(activity, call, result);
+        FeedAdLoad feedAd = new FeedAdLoad();
+        feedAd.loadFeedAdList(activity, call, result);
     }
 
     /**
@@ -282,13 +291,13 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      * @param result Result
      */
     public void clearFeedAd(MethodCall call, MethodChannel.Result result) {
-//        List<Integer> adList = call.argument("list");
-//        if (adList != null) {
-//            for (int ad : adList) {
-//                FeedAdManager.getInstance().removeAd(ad);
-//            }
-//        }
-//        result.success(true);
+        List<Integer> adList = call.argument("list");
+        if (adList != null) {
+            for (int ad : adList) {
+                FeedAdManager.getInstance().removeAd(ad);
+            }
+        }
+        result.success(true);
 
     }
 }

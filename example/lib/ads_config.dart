@@ -23,7 +23,7 @@ class AdsConfig {
   /// 获取 App id
   static String get appId {
     if (Platform.isIOS) {
-      return '5000546';
+      return '5209496';
     }
     return '5216573';
   }
@@ -80,24 +80,8 @@ class AdsConfig {
   static String get rewardVideoId => '946584890';
 
   /// 获取 Banner 广告位id
-  static String get bannerId => '102252466';
+  static String get bannerId => Platform.isIOS ? '102253640' : '102252466';
 
-  /// 获取 Feed 信息流列表
-  static List<String> get feedIdList =>
-      [feedId01, feedId02, feedId03, feedId04, feedId05];
-
-  /// 获取 Feed 信息流广告位id(左右图文 2.4)
-  static String get feedId01 => '947186177';
-
-  /// 获取 Feed 信息流广告位id(上下文图0.9)
-  static String get feedId02 => '947186943';
-
-  /// 获取 Feed 信息流广告位id(三图2)
-  static String get feedId03 => '947186944';
-
-  /// 获取 Feed 信息流广告位id(文字悬浮1)
-  static String get feedId04 => '947186945';
-
-  /// 获取 Feed 信息流广告位id(竖版0.5)
-  static String get feedId05 => '947186946';
+  /// 获取 Feed 信息流广告位 id
+  static String get feedId => Platform.isIOS ? '102255258' : '102254613';
 }

@@ -26,8 +26,8 @@
 - ✅ 插屏广告
 - ✅ 全屏视频
 - ✅ Banner
+- ✅ 信息流
 - 🔲 激励视频
-- 🔲 信息流
 
 ## 入门使用
 
@@ -35,7 +35,7 @@
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^1.3.0
+  flutter_gromore_ads: ^1.3.3
 ```
 
 > 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。

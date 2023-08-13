@@ -7,6 +7,8 @@
 @implementation FlutterGromoreAdsPlugin
 // AdBannerView
 NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
+// AdFeedView
+NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* methodChannel = [FlutterMethodChannel
@@ -21,8 +23,10 @@ NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
 
     // 注册平台View 工厂
     FGMNativeViewFactory *bannerFactory=[[FGMNativeViewFactory alloc] initWithViewName:kGMAdBannerViewId withMessenger:registrar.messenger withPlugin:instance];
-    // 注册 Banner View
+    FGMNativeViewFactory *feedFactory=[[FGMNativeViewFactory alloc] initWithViewName:kGMAdFeedViewId withMessenger:registrar.messenger withPlugin:instance];
+    // 注册 View
     [registrar registerViewFactory:bannerFactory withId:kGMAdBannerViewId];
+    [registrar registerViewFactory:feedFactory withId:kGMAdFeedViewId];
 
     
 }
@@ -42,6 +46,10 @@ NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
         [self showInterstitialFullAd:call result:result];
     }else if ([@"showFullVideoAd" isEqualToString:methodStr]) {
         [self showFullVideoAd:call result:result];
+    }else if ([@"loadFeedAd" isEqualToString:methodStr]) {
+        [self loadFeedAd:call result:result];
+    }else if ([@"clearFeedAd" isEqualToString:methodStr]) {
+        [self clearFeedAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -106,6 +114,21 @@ NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
 - (void) showFullVideoAd:(FlutterMethodCall *) call result:(FlutterResult) result{
     self.fvad=[[FGMFullVideoPage alloc] init];
     [self.fvad showAd:call eventSink:self.eventSink];
+    result(@(YES));
+}
+
+// 加载信息流广告
+- (void) loadFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    self.fad=[[FGMFeedAdLoad alloc] init];
+    [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
+}
+
+// 清除信息流广告
+- (void) clearFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
+    NSArray *list= call.arguments[@"list"];
+    for (NSNumber *ad in list) {
+        [FGMFeedAdManager.share removeAd:ad];
+    }
     result(@(YES));
 }
 
