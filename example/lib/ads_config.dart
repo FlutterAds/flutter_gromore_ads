@@ -23,7 +23,7 @@ class AdsConfig {
   /// 获取 App id
   static String get appId {
     if (Platform.isIOS) {
-      return '5209496';
+      return '5324024';
     }
     return '5216573';
   }
@@ -39,7 +39,7 @@ class AdsConfig {
   /// 获取开屏广告位id
   static String get splashId {
     if (Platform.isIOS) {
-      return '887383142';
+      return '102420790';
     }
     return '887382967';
   }

@@ -9,5 +9,5 @@
 
 // 全屏视频
 @interface FGMFullVideoPage : FGMBasePage
-@property (strong,nonatomic) ABUFullscreenVideoAd *ad;
+@property (strong,nonatomic) BUFullscreenVideoAd *ad;
 @end

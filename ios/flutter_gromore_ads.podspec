@@ -17,7 +17,8 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   # 这里仅加载 framework，在 Podfile 中加载 Ads-Mediation-CN 要去掉 framework 的加载，防止冲突
-  s.vendored_frameworks = 'Frameworks/Ads-Mediation-CN/Ads-Mediation-CN/ABUAdSDK.framework'
+  # s.vendored_frameworks = 'Frameworks/Ads-Mediation-CN/Ads-Mediation-CN/ABUAdSDK.framework'
+  s.dependency 'Ads-Fusion-CN-Beta', '5.3.6.1'
   s.platform = :ios, '9.0'
   s.static_framework = true
   # Flutter.framework does not contain a i386 slice.

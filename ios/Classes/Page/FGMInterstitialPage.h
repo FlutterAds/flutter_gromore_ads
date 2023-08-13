@@ -8,5 +8,5 @@
 #import "FGMBasePage.h"
 // 插屏广告
 @interface FGMInterstitialPage : FGMBasePage
-@property (strong,nonatomic) ABUInterstitialAd *ad;
+@property (strong,nonatomic) BUNativeExpressFullscreenVideoAd *ad;
 @end

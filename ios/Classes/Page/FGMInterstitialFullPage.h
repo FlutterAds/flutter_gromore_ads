@@ -9,5 +9,5 @@
 
 // 插屏全屏广告
 @interface FGMInterstitialFullPage : FGMBasePage
-@property (strong,nonatomic) ABUInterstitialProAd *ad;
+@property (strong,nonatomic) BUNativeExpressFullscreenVideoAd *ad;
 @end

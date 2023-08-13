@@ -32,6 +32,7 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 }
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSString *methodStr=call.method;
+    NSLog(methodStr);
     if ([@"getPlatformVersion" isEqualToString:methodStr]) {
         result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
     }else if ([@"requestIDFA" isEqualToString:methodStr]) {
@@ -72,17 +73,35 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 - (void) initAd:(FlutterMethodCall*) call result:(FlutterResult) result{
     NSString *appId=call.arguments[@"appId"];
     NSString *config=call.arguments[@"config"];
-    [ABUAdSDKManager setupSDKWithAppId:appId config:^ABUUserConfig *(ABUUserConfig *c) {
-        #ifdef DEBUG
-            c.logEnable = YES;
-        #endif
-        // 导入本地配置
-        if (![config isKindOfClass:[NSNull class]] && [config length]!=0) {
-            c.advanceSDKConfigPath = [[NSBundle mainBundle] pathForResource:config ofType:@"json"];//支持媒体本地提前导入配置信息
+    NSLog(@"appid:%@",appId);
+    BUAdSDKConfiguration *configuration = [BUAdSDKConfiguration configuration];
+    configuration.appID = appId;
+//    configuration.privacyProvider = [[BUDPrivacyProvider alloc] init];
+//    configuration.appLogoImage = [UIImage imageNamed:@"AppIcon"];
+    configuration.useMediation = YES;
+    configuration.debugLog = @(1);
+    
+    [BUAdSDKManager startWithAsyncCompletionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+////                [self useMediationPreload];
+//            });
+            result(@(YES));
         }
-        return c;
     }];
-    result(@(YES));
+    
+    
+//    [ABUAdSDKManager setupSDKWithAppId:appId config:^ABUUserConfig *(ABUUserConfig *c) {
+//        #ifdef DEBUG
+//            c.logEnable = YES;
+//        #endif
+//        // 导入本地配置
+//        if (![config isKindOfClass:[NSNull class]] && [config length]!=0) {
+//            c.advanceSDKConfigPath = [[NSBundle mainBundle] pathForResource:config ofType:@"json"];//支持媒体本地提前导入配置信息
+//        }
+//        return c;
+//    }];
+    
 }
 
 // 开屏广告
@@ -98,29 +117,29 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 
 // 插屏广告
 - (void) showInterstitialAd:(FlutterMethodCall *)call result:(FlutterResult) result{
-    self.iad=[[FGMInterstitialPage alloc] init];
-    [self.iad showAd:call eventSink:self.eventSink];
+//    self.iad=[[FGMInterstitialPage alloc] init];
+//    [self.iad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
 // 插屏全屏广告
 - (void) showInterstitialFullAd:(FlutterMethodCall *)call result:(FlutterResult) result{
-    self.ifad=[[FGMInterstitialFullPage alloc] init];
-    [self.ifad showAd:call eventSink:self.eventSink];
+//    self.ifad=[[FGMInterstitialFullPage alloc] init];
+//    [self.ifad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
 // 全屏视频广告
 - (void) showFullVideoAd:(FlutterMethodCall *) call result:(FlutterResult) result{
-    self.fvad=[[FGMFullVideoPage alloc] init];
-    [self.fvad showAd:call eventSink:self.eventSink];
+//    self.fvad=[[FGMFullVideoPage alloc] init];
+//    [self.fvad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 
 // 加载信息流广告
 - (void) loadFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    self.fad=[[FGMFeedAdLoad alloc] init];
-    [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
+//    self.fad=[[FGMFeedAdLoad alloc] init];
+//    [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
 }
 
 // 清除信息流广告

@@ -24,11 +24,17 @@
     int count = [call.arguments[@"count"] intValue];
     // 配置广告加载
     if(!self.adManager){
-        self.adManager= [[ABUNativeAdsManager alloc] initWithAdUnitID:self.posId adSize:CGSizeMake(width, height)];
+//        ABUNativeAdSlot slot=[[ABUNativeAdSlot alloc] ini];
+        BUAdSlot* slot=[[BUAdSlot alloc] init];
+        slot.ID = self.posId;
+        slot.AdType = BUAdSlotAdTypeFeed;
+        slot.position = BUAdSlotPositionMiddle;
+        slot.imgSize = [BUSize sizeBy:BUProposalSize_Banner600_400];
+        self.adManager= [[BUNativeAdsManager alloc] initWithSlot:slot];
     }
     self.adManager.adSize=CGSizeMake(width, height);
-    self.adManager.rootViewController=self.rootController;
-    self.adManager.startMutedIfCan= YES;
+//    self.adManager.rootViewController=self.rootController;
+//    self.adManager.startMutedIfCan= YES;
     self.adManager.delegate=self;
     // 加载广告
     [self.adManager loadAdDataWithCount:count];
@@ -36,13 +42,13 @@
 
 #pragma mark ABUNativeAdsManagerDelegate
 
-- (void)nativeAdsManager:(ABUNativeAdsManager *)adsManager didFailWithError:(NSError *)error{
+- (void)nativeAdsManager:(BUNativeAdsManager *)adsManager didFailWithError:(NSError *)error{
     NSLog(@"%s",__FUNCTION__);
     // 发送广告错误事件
     [self sendErrorEvent:error];
 }
 
-- (void)nativeAdsManagerSuccessToLoad:(ABUNativeAdsManager *)adsManager nativeAds:(NSArray<ABUNativeAdView *> *)views{
+- (void)nativeAdsManagerSuccessToLoad:(BUNativeAdsManager *)adsManager nativeAds:(NSArray<BUNativeAd *> *)views{
     NSLog(@"%s",__FUNCTION__);
     if (views.count) {
         // 广告列表，用于返回 Flutter 层
