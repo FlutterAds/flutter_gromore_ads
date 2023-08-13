@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_gromore_ads'
-  s.version          = '1.3.2'
+  s.version          = '1.3.3'
   s.summary          = '一款优质的 Flutter 广告插件（GroMore、穿山甲）'
   s.description      = <<-DESC
   FlutterAds 致力于构建优质的 Flutter 广告插件

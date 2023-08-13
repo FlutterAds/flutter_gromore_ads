@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'event/ad_event_handler.dart';
 
 export 'event/ad_event_handler.dart';
+export 'view/ad_banner_widget.dart';
+export 'view/ad_feed_widget.dart';
 
 /// GroMore 广告插件
 class FlutterGromoreAds {
