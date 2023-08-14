@@ -117,8 +117,8 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 
 // 插屏广告
 - (void) showInterstitialAd:(FlutterMethodCall *)call result:(FlutterResult) result{
-//    self.iad=[[FGMInterstitialPage alloc] init];
-//    [self.iad showAd:call eventSink:self.eventSink];
+    self.iad=[[FGMInterstitialPage alloc] init];
+    [self.iad showAd:call eventSink:self.eventSink];
     result(@(YES));
 }
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
-import 'package:flutter_gromore_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
 import 'feed_page.dart';
@@ -84,27 +83,6 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('展示插屏广告'),
                 onPressed: () {
                   showInterstitialAd();
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示插屏全屏广告'),
-                onPressed: () {
-                  showInterstitialFullAd();
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示全屏视频广告(纵向)'),
-                onPressed: () {
-                  showFullVideoAd(1);
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示全屏视频广告(横向)'),
-                onPressed: () {
-                  showFullVideoAd(2);
                 },
               ),
               const SizedBox(height: 20),
@@ -220,38 +198,6 @@ class _HomePageState extends State<HomePage> {
       _result = "展示插屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
       _result = "展示插屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-  }
-
-  /// 展示插屏全屏广告
-  Future<void> showInterstitialFullAd() async {
-    try {
-      bool result = await FlutterGromoreAds.showInterstitialFullAd(
-        AdsConfig.interstitialFullId,
-        muted: true,
-      );
-      _result = "展示插屏全屏广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示插屏全屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-  }
-
-  /// 展示全屏视频广告
-  Future<void> showFullVideoAd(int orientation) async {
-    try {
-      bool result = await FlutterGromoreAds.showFullVideoAd(
-        orientation == 1
-            ? AdsConfig.fullVideoVerticalId
-            : AdsConfig.fullVideoHorizontalId,
-        orientation: orientation,
-      );
-      _result = "展示全屏视频广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示全屏视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
     setState(() {});
   }
