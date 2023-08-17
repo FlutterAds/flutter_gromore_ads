@@ -43,10 +43,6 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
         [self showSplashAd:call result:result];
     }else if ([@"showInterstitialAd" isEqualToString:methodStr]) {
         [self showInterstitialAd:call result:result];
-    }else if ([@"showInterstitialFullAd" isEqualToString:methodStr]) {
-        [self showInterstitialFullAd:call result:result];
-    }else if ([@"showFullVideoAd" isEqualToString:methodStr]) {
-        [self showFullVideoAd:call result:result];
     }else if ([@"loadFeedAd" isEqualToString:methodStr]) {
         [self loadFeedAd:call result:result];
     }else if ([@"clearFeedAd" isEqualToString:methodStr]) {

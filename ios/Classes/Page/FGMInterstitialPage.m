@@ -21,52 +21,6 @@
     [self.ad loadAdData];
 }
 
-//- (void)interstitialAdDidLoad:(BUInterstitialAd *)interstitialAd{
-//    NSLog(@"%s",__FUNCTION__);
-//    if(self.ad && self.ad.isReady){
-//        [self.ad showAdFromRootViewController:self.rootController];
-//    }
-//    // 发送事件
-//    [self sendEventAction:onAdLoaded];
-//}
-//
-//- (void)interstitialAd:(BUInterstitialAd *)interstitialAd didFailWithError:(NSError *)error{
-//    NSLog(@"%s-error:%@", __FUNCTION__, error);
-//    // 发送事件
-//    [self sendErrorEvent:error];
-//}
-//
-//- (void)interstitialAdDidVisible:(BUInterstitialAd *)interstitialAd{
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送事件
-//    [self sendEventAction:onAdExposure];
-//}
-//
-//- (void)interstitialAdDidShowFailed:(BUInterstitialAd *)interstitialAd error:(NSError *)error{
-//    NSLog(@"%s-error:%@", __FUNCTION__, error);
-//    // 发送事件
-//    [self sendErrorEvent:error];
-//}
-//
-//- (void)interstitialAdViewRenderFail:(BUInterstitialAd *)interstitialAd error:(NSError *)error{
-//    NSLog(@"%s-error:%@", __FUNCTION__, error);
-//    // 发送事件
-//    [self sendErrorEvent:error];
-//}
-//
-//- (void)interstitialAdDidClick:(BUInterstitialAd *)interstitialAd{
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送事件
-//    [self sendEventAction:onAdClicked];
-//}
-//
-//- (void)interstitialAdDidClose:(BUInterstitialAd *)interstitialAd{
-//    NSLog(@"%s",__FUNCTION__);
-//    // 发送事件
-//    [self sendEventAction:onAdClosed];
-//}
-
-
 #pragma mark - BUMNativeExpressFullscreenVideoAdDelegate
 - (void)nativeExpressFullscreenVideoAdDidLoad:(BUNativeExpressFullscreenVideoAd *)fullscreenVideoAd {
     NSLog(@"%s",__FUNCTION__);
