@@ -49,12 +49,14 @@ class FlutterGromoreAds {
   /// 初始化广告
   /// [appId] 应用ID
   /// [config] 配置文件名称
-  static Future<bool> initAd(String appId, {String? config}) async {
+  static Future<bool> initAd(String appId,
+      {String? config, int limitPersonalAds = 0}) async {
     final bool result = await _methodChannel.invokeMethod(
       'initAd',
       {
         'appId': appId,
         'config': config,
+        'limitPersonalAds': limitPersonalAds,
       },
     );
     return result;

@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                child: const Text('展示开屏广告（Logo2）'),
+                child: const Text('展示开屏广告'),
                 onPressed: () {
                   showSplashAd(AdsConfig.logo2);
                 },
@@ -103,11 +103,11 @@ class _HomePageState extends State<HomePage> {
                 height: 75,
               ),
               const SizedBox(height: 20),
-              // AdBannerWidget(
-              //   posId: AdsConfig.bannerId,
-              //   width: 300,
-              //   height: 75,
-              // ),
+              AdBannerWidget(
+                posId: AdsConfig.bannerId,
+                width: 300,
+                height: 75,
+              ),
             ],
           ),
         ),
@@ -120,7 +120,8 @@ class _HomePageState extends State<HomePage> {
     try {
       bool result = await FlutterGromoreAds.initAd(
         AdsConfig.appId,
-        // config: AdsConfig.config,
+        config: AdsConfig.config,
+        limitPersonalAds: 1,
       );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";
       setState(() {});

@@ -69,13 +69,24 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 - (void) initAd:(FlutterMethodCall*) call result:(FlutterResult) result{
     NSString *appId=call.arguments[@"appId"];
     NSString *config=call.arguments[@"config"];
+    int limitPersonalAds=[call.arguments[@"limitPersonalAds"] intValue];
     NSLog(@"appid:%@",appId);
     BUAdSDKConfiguration *configuration = [BUAdSDKConfiguration configuration];
+    // 是否开启调试
+    #ifdef DEBUG
+        configuration.debugLog = @(1);
+    #endif
+    // 配置 appid 和使用聚合
     configuration.appID = appId;
-//    configuration.privacyProvider = [[BUDPrivacyProvider alloc] init];
-//    configuration.appLogoImage = [UIImage imageNamed:@"AppIcon"];
     configuration.useMediation = YES;
-    configuration.debugLog = @(1);
+    // 隐私合规
+    configuration.mediation.limitPersonalAds = @(limitPersonalAds);
+    configuration.mediation.limitProgrammaticAds = @(limitPersonalAds);
+    configuration.mediation.forbiddenCAID = @(limitPersonalAds);
+    // 提前导入配置
+    if (![config isKindOfClass:[NSNull class]] && [config length]!=0) {
+        configuration.mediation.advanceSDKConfigPath = [[NSBundle mainBundle]pathForResource:config ofType:@"json"];
+    }
     
     [BUAdSDKManager startWithAsyncCompletionHandler:^(BOOL success, NSError *error) {
         if (success) {
@@ -85,18 +96,6 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
             result(@(YES));
         }
     }];
-    
-    
-//    [ABUAdSDKManager setupSDKWithAppId:appId config:^ABUUserConfig *(ABUUserConfig *c) {
-//        #ifdef DEBUG
-//            c.logEnable = YES;
-//        #endif
-//        // 导入本地配置
-//        if (![config isKindOfClass:[NSNull class]] && [config length]!=0) {
-//            c.advanceSDKConfigPath = [[NSBundle mainBundle] pathForResource:config ofType:@"json"];//支持媒体本地提前导入配置信息
-//        }
-//        return c;
-//    }];
     
 }
 
