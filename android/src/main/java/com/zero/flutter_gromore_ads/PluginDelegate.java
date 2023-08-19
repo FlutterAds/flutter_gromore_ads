@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 //import com.zero.flutter_gromore_ads.load.FeedAdManager;
 import com.bytedance.sdk.openadsdk.TTAdConfig;
 import com.bytedance.sdk.openadsdk.TTAdSdk;
+import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.MediationConfig;
+import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
 import com.zero.flutter_gromore_ads.page.AdSplashActivity;
 //import com.zero.flutter_gromore_ads.page.FullVideoPage;
 //import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
@@ -180,6 +182,7 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public void initAd(MethodCall call, final MethodChannel.Result result) {
         String appId = call.argument("appId");
         String config = call.argument("config");
+        int limitPersonalAds=call.argument("limitPersonalAds");
 
         // 构建基础配置
         TTAdConfig.Builder configBuilder = new TTAdConfig.Builder()
@@ -200,11 +203,15 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         // 构建配置
         TTAdConfig gmPangleOption;
         if (localConfigJson != null) {
-            gmPangleOption = configBuilder.setMediationConfig(new MediationConfig.Builder()
+            gmPangleOption = configBuilder
+                    .customController(getTTCustomController(limitPersonalAds==0))
+                    .setMediationConfig(new MediationConfig.Builder()
                     .setCustomLocalConfig(localConfigJson)
                     .build()).build();
         } else {
-            gmPangleOption = configBuilder.build();
+            gmPangleOption = configBuilder
+                    .customController(getTTCustomController(limitPersonalAds==0))
+                    .build();
         }
         // 初始化 SDK
         TTAdSdk.init(activity.getApplicationContext(), gmPangleOption, new TTAdSdk.InitCallback() {
@@ -218,6 +225,63 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 result.success(false);
             }
         });
+    }
+
+
+    private TTCustomController getTTCustomController(boolean limitPersonalAds){
+        return new TTCustomController() {
+
+            @Override
+            public boolean isCanUseWifiState() {
+                return super.isCanUseWifiState();
+            }
+
+            @Override
+            public String getMacAddress() {
+                return super.getMacAddress();
+            }
+
+            @Override
+            public boolean isCanUseWriteExternal() {
+                return super.isCanUseWriteExternal();
+            }
+
+            @Override
+            public String getDevOaid() {
+                return super.getDevOaid();
+            }
+
+            @Override
+            public boolean isCanUseAndroidId() {
+                return super.isCanUseAndroidId();
+            }
+
+            @Override
+            public String getAndroidId() {
+                return super.getAndroidId();
+            }
+
+            @Override
+            public MediationPrivacyConfig getMediationPrivacyConfig() {
+                return new MediationPrivacyConfig() {
+
+                    @Override
+                    public boolean isLimitPersonalAds() {
+                        return limitPersonalAds;
+                    }
+
+                    @Override
+                    public boolean isProgrammaticRecommend() {
+                        return limitPersonalAds;
+                    }
+                };
+            }
+
+            @Override
+            public boolean isCanUsePermissionRecordAudio() {
+                return super.isCanUsePermissionRecordAudio();
+            }
+        };
     }
 
     /**
