@@ -103,11 +103,11 @@ class _HomePageState extends State<HomePage> {
                 height: 75,
               ),
               const SizedBox(height: 20),
-              AdBannerWidget(
-                posId: AdsConfig.bannerId,
-                width: 300,
-                height: 75,
-              ),
+              // AdBannerWidget(
+              //   posId: AdsConfig.bannerId,
+              //   width: 300,
+              //   height: 75,
+              // ),
             ],
           ),
         ),

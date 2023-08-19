@@ -11,12 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.bytedance.msdk.api.AdError;
-import com.bytedance.msdk.api.v2.GMAdConstant;
-import com.bytedance.msdk.api.v2.ad.splash.GMSplashAd;
-import com.bytedance.msdk.api.v2.ad.splash.GMSplashAdListener;
-import com.bytedance.msdk.api.v2.ad.splash.GMSplashAdLoadCallback;
-import com.bytedance.msdk.api.v2.slot.GMAdSlotSplash;
+import com.bytedance.sdk.openadsdk.AdSlot;
+import com.bytedance.sdk.openadsdk.CSJAdError;
+import com.bytedance.sdk.openadsdk.CSJSplashAd;
+import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.zero.flutter_gromore_ads.PluginDelegate;
 import com.zero.flutter_gromore_ads.R;
 import com.zero.flutter_gromore_ads.event.AdErrorEvent;
@@ -29,7 +28,7 @@ import com.zero.flutter_gromore_ads.utils.UIUtils;
 /**
  * 开屏广告
  */
-public class AdSplashActivity extends AppCompatActivity implements GMSplashAdListener, GMSplashAdLoadCallback {
+public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CSJSplashAdListener,CSJSplashAd.SplashAdListener {
     private final String TAG = AdSplashActivity.class.getSimpleName();
     // 广告容器
     private FrameLayout ad_container;
@@ -38,7 +37,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
     // 广告位 id
     private String posId;
     // 开屏广告
-    private GMSplashAd gmSplashAd;
+    private CSJSplashAd gmSplashAd;
 
 
     @Override
@@ -63,6 +62,7 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
      * 初始化数据
      */
     private void initData() {
+
         // 获取参数
         posId = getIntent().getStringExtra(PluginDelegate.KEY_POSID);
         String logo = getIntent().getStringExtra(PluginDelegate.KEY_LOGO);
@@ -91,14 +91,12 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
             height = height - ad_logo.getLayoutParams().height;
         }
         // 创建开屏广告
-        gmSplashAd = new GMSplashAd(this, posId);
-        gmSplashAd.setAdSplashListener(this);
-        GMAdSlotSplash adSlot = new GMAdSlotSplash.Builder()
-                .setImageAdSize(width, height) // 既适用于原生类型，也适用于模版类型。
-                .setTimeOut(absTimeout)//设置超时
+        AdSlot adSlot = new AdSlot.Builder()
+                .setCodeId(posId)
+                .setImageAcceptedSize(width, height) // 单位是px
                 .build();
         // 加载广告
-        gmSplashAd.loadAd(adSlot, this);
+        TTAdSdk.getAdManager().createAdNative(this).loadSplashAd(adSlot,this,absTimeout);
     }
 
     /**
@@ -109,8 +107,9 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
         // 设置退出动画
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         // 销毁
-        if (gmSplashAd != null) {
-            gmSplashAd.destroy();
+        if (gmSplashAd != null&&gmSplashAd.getMediationManager()!=null) {
+            gmSplashAd.setSplashAdListener(null);
+            gmSplashAd.getMediationManager().destroy();
             gmSplashAd = null;
         }
     }
@@ -137,62 +136,62 @@ public class AdSplashActivity extends AppCompatActivity implements GMSplashAdLis
     }
 
     @Override
-    public void onAdClicked() {
+    public void onSplashLoadSuccess() {
+        Log.d(TAG, "onSplashLoadSuccess");
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdLoaded));
+    }
+
+    @Override
+    public void onSplashLoadFail(CSJAdError adError) {
+        Log.e(TAG, "onSplashLoadFail code:" + adError.getCode() + " msg:" + adError.getMsg());
+        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, adError.getCode(), adError.getMsg()));
+        finishPage();
+    }
+
+    @Override
+    public void onSplashRenderSuccess(CSJSplashAd csjSplashAd) {
+        //获取SplashView
+        if (this.isFinishing()) {
+            finishPage();
+            return;
+        }
+        gmSplashAd=csjSplashAd;
+        csjSplashAd.setSplashAdListener(this);
+        View splashView = csjSplashAd.getSplashView();
+        if (splashView == null) {
+            finishPage();
+            return;
+        }
+        UIUtils.removeFromParent(splashView);
+        ad_container.removeAllViews();
+        ad_container.addView(splashView);
+        // 加载事件
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdPresent));
+    }
+
+    @Override
+    public void onSplashRenderFail(CSJSplashAd csjSplashAd, CSJAdError adError) {
+        Log.e(TAG, "onSplashRenderFail code:" + adError.getCode() + " msg:" + adError.getMsg());
+        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, adError.getCode(), adError.getMsg()));
+    }
+
+    @Override
+    public void onSplashAdShow(CSJSplashAd csjSplashAd) {
+        Log.d(TAG, "onAdShow");
+        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdExposure));
+    }
+
+    @Override
+    public void onSplashAdClick(CSJSplashAd csjSplashAd) {
         Log.d(TAG, "onAdClicked");
         AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClicked));
         finishPage();
     }
 
     @Override
-    public void onAdShow() {
-        Log.d(TAG, "onAdShow");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdExposure));
-    }
-
-    @Override
-    public void onAdShowFail(@NonNull AdError adError) {
-        Log.e(TAG, "onAdShowFail code:" + adError.code + " msg:" + adError.message);
-        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, adError.code, adError.message));
-    }
-
-    @Override
-    public void onAdSkip() {
-        Log.d(TAG, "onAdSkip");
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdSkip));
-        finishPage();
-    }
-
-    @Override
-    public void onAdDismiss() {
-        Log.d(TAG, "onAdDismiss");
+    public void onSplashAdClose(CSJSplashAd csjSplashAd, int i) {
+        Log.d(TAG, "onSplashAdClose");
         AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdClosed));
-        finishPage();
-    }
-
-    @Override
-    public void onSplashAdLoadFail(@NonNull AdError adError) {
-        Log.e(TAG, "onSplashAdLoadFail code:" + adError.code + " msg:" + adError.message);
-        AdEventHandler.getInstance().sendEvent(new AdErrorEvent(this.posId, adError.code, adError.message));
-        finishPage();
-    }
-
-    @Override
-    public void onSplashAdLoadSuccess() {
-        Log.d(TAG, "onSplashAdLoad");
-        //获取SplashView
-        if (!this.isFinishing()) {
-            ad_container.removeAllViews();
-            gmSplashAd.showAd(ad_container);
-        } else {
-            finishPage();
-        }
-        // 加载事件
-        AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdLoaded));
-    }
-
-    @Override
-    public void onAdLoadTimeout() {
-        Log.e(TAG, "onAdLoadTimeout");
         finishPage();
     }
 }

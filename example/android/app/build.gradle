@@ -34,7 +34,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.zero.flutter_gromore_ads_example"
+        applicationId "com.flutterads.app"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -58,7 +58,7 @@ flutter {
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     //GroMore_sdk adapter
-    implementation "com.pangle.cn:mediation-gdt-adapter:4.530.1400.3" //gdt adapter
-    implementation 'com.qq.e.union:union:4.530.1400'// 广点通广告 SDK
+    implementation "com.pangle.cn:mediation-gdt-adapter:4.540.1410.1" //gdt adapter
+    implementation 'com.qq.e.union:union:4.540.1410'// 广点通广告 SDK
     // 其他厂商参考 https://www.csjplatform.com/union/media/union/download/detail?id=142&docId=27562&osType=android
 }

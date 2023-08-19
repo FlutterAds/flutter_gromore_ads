@@ -1,16 +1,13 @@
 package com.zero.flutter_gromore_ads.page;
 
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.bytedance.msdk.api.AdError;
-import com.bytedance.msdk.api.v2.ad.interstitial.GMInterstitialAd;
-import com.bytedance.msdk.api.v2.ad.interstitial.GMInterstitialAdListener;
-import com.bytedance.msdk.api.v2.ad.interstitial.GMInterstitialAdLoadCallback;
-import com.bytedance.msdk.api.v2.slot.GMAdOptionUtil;
-import com.bytedance.msdk.api.v2.slot.GMAdSlotInterstitial;
+import com.bytedance.sdk.openadsdk.AdSlot;
+import com.bytedance.sdk.openadsdk.TTAdConstant;
+import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.TTFullScreenVideoAd;
 import com.zero.flutter_gromore_ads.event.AdEventAction;
 
 import io.flutter.plugin.common.MethodCall;
@@ -18,79 +15,80 @@ import io.flutter.plugin.common.MethodCall;
 /**
  * 插屏广告
  */
-public class InterstitialPage extends BaseAdPage implements GMInterstitialAdLoadCallback, GMInterstitialAdListener {
+public class InterstitialPage extends BaseAdPage implements TTAdNative.FullScreenVideoAdListener, TTFullScreenVideoAd.FullScreenVideoAdInteractionListener {
     private final String TAG = InterstitialPage.class.getSimpleName();
-    private GMInterstitialAd ad;
+    private TTFullScreenVideoAd ad;
 
     @Override
     public void loadAd(@NonNull MethodCall call) {
-        int width = call.argument("width");
-        int height = call.argument("height");
-        ad = new GMInterstitialAd(activity, this.posId);
-        GMAdSlotInterstitial adSlot = new GMAdSlotInterstitial.Builder()
-                .setGMAdSlotBaiduOption(GMAdOptionUtil.getGMAdSlotBaiduOption().build())
-                .setGMAdSlotGDTOption(GMAdOptionUtil.getGMAdSlotGDTOption().build())
-                .setImageAdSize(width, height)
+        adslot = new AdSlot.Builder()
+                .setCodeId(this.posId)
                 .build();
-        ad.loadAd(adSlot, this);
+        adNativeLoader.loadFullScreenVideoAd(adslot, this);
     }
 
     @Override
-    public void onInterstitialLoadFail(@NonNull AdError adError) {
-        Log.e(TAG, "onInterstitialLoadFail code:" + adError.code + " msg:" + adError.message);
-        sendErrorEvent(adError.code, adError.message);
+    public void onError(int i, String s) {
+        Log.e(TAG, "onInterstitialLoadFail code:" + i + " msg:" + s);
+        sendErrorEvent(i, s);
     }
 
     @Override
-    public void onInterstitialLoad() {
-        Log.i(TAG, "onInterstitialLoad");
+    public void onFullScreenVideoAdLoad(TTFullScreenVideoAd ttFullScreenVideoAd) {
+        Log.i(TAG, "onFullScreenVideoAdLoad");
+        ad=ttFullScreenVideoAd;
+        ad.setFullScreenVideoAdInteractionListener(this);
+        ad.showFullScreenVideoAd(activity);
         // 添加广告事件
         sendEvent(AdEventAction.onAdLoaded);
-        // 显示广告
-        if (ad != null && ad.isReady()) {
-            ad.setAdInterstitialListener(this);
-            ad.showAd(activity);
-        }
     }
 
     @Override
-    public void onInterstitialShow() {
-        Log.i(TAG, "onInterstitialShow");
+    public void onFullScreenVideoCached() {
+
+    }
+
+    @Override
+    public void onFullScreenVideoCached(TTFullScreenVideoAd ttFullScreenVideoAd) {
+
+    }
+
+    @Override
+    public void onAdShow() {
+        Log.i(TAG, "onAdShow");
         // 添加广告事件
         sendEvent(AdEventAction.onAdExposure);
     }
 
     @Override
-    public void onInterstitialShowFail(@NonNull AdError adError) {
-        Log.e(TAG, "onInterstitialLoadFail code:" + adError.code + " msg:" + adError.message);
-        sendErrorEvent(adError.code, adError.message);
-    }
-
-    @Override
-    public void onInterstitialAdClick() {
-        Log.i(TAG, "onInterstitialAdClick");
+    public void onAdVideoBarClick() {
+        Log.i(TAG, "onAdVideoBarClick");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClicked);
     }
 
     @Override
-    public void onInterstitialClosed() {
-        Log.i(TAG, "onInterstitialClosed");
+    public void onAdClose() {
+        Log.i(TAG, "onAdClose");
+        if (ad != null && ad.getMediationManager() != null) {
+            ad.setFullScreenVideoAdInteractionListener(null);
+            ad.getMediationManager().destroy();
+        }
         // 添加广告事件
         sendEvent(AdEventAction.onAdClosed);
-        if (ad != null) {
-            ad.destroy();
-            ad = null;
-        }
     }
 
     @Override
-    public void onAdOpened() {
-        Log.i(TAG, "onAdOpened");
+    public void onVideoComplete() {
+        Log.i(TAG, "onVideoComplete");
+        // 添加广告事件
+        sendEvent(AdEventAction.onAdComplete);
     }
 
     @Override
-    public void onAdLeftApplication() {
-        Log.i(TAG, "onAdLeftApplication");
+    public void onSkippedVideo() {
+        Log.i(TAG, "onSkippedVideo");
+        // 添加广告事件
+        sendEvent(AdEventAction.onAdSkip);
     }
 }
