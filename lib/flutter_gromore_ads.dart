@@ -84,9 +84,7 @@ class FlutterGromoreAds {
   static Future<bool> showInterstitialAd(String posId) async {
     final bool result = await _methodChannel.invokeMethod(
       'showInterstitialAd',
-      {
-        'posId': posId
-      },
+      {'posId': posId},
     );
     return result;
   }
