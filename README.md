@@ -38,7 +38,7 @@
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^1.3.3
+  flutter_gromore_ads: ^2.0.0
 ```
 
 > 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。

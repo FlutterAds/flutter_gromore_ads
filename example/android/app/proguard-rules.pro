@@ -19,7 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-//聚合混淆
+# 聚合混淆
 -keep class bykvm*.**
 -keep class com.bytedance.msdk.adapter.**{ public *; }
 -keep class com.bytedance.msdk.api.** {
