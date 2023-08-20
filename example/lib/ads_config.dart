@@ -38,10 +38,14 @@ class AdsConfig {
     return '102420790';
   }
 
-  /// 获取插屏广告位id
-  static String get interstitialId {
-    return '102421471';
-  }
+  /// 获取插屏广告位id 竖屏
+  static String get interstitialId => '102421471';
+
+  /// 获取插屏广告位id 横屏
+  static String get interstitialIdHorizontal => '102428790';
+
+  /// 获取插屏广告位id 半屏
+  static String get interstitialIdHalf => '102428146';
 
   /// 获取激励视频广告位id
   static String get rewardVideoId => '102421199';

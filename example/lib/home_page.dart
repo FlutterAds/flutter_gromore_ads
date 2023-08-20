@@ -94,15 +94,35 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(
-              width: double.maxFinite,
-              child: ElevatedButton(
-                child: const Text('展示插屏广告'),
-                onPressed: () {
-                  showInterstitialAd();
-                },
-              ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  child: const Text('插竖屏)'),
+                  onPressed: () {
+                    showInterstitialAd(AdsConfig.interstitialId);
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  child: const Text('插横屏)'),
+                  onPressed: () {
+                    showInterstitialAd(AdsConfig.interstitialIdHorizontal);
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  child: const Text('插半屏)'),
+                  onPressed: () {
+                    showInterstitialAd(AdsConfig.interstitialIdHalf);
+                  },
+                ),
+              ],
             ),
+            const SizedBox(height: 20),
+            const Center(child: Text('🏆 付费 Pro 版功能 🏆')),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -130,22 +150,27 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            const Center(child: Text('👇🏻 Banner 广告 👇🏻')),
           ],
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
-          width: double.maxFinite,
-          height: 100,
-          alignment: Alignment.center,
-          child: AdBannerWidget(
-            posId: AdsConfig.bannerId,
-            width: 300,
-            height: 75,
-          ),
-        ),
+            width: double.maxFinite,
+            height: 140,
+            color: Colors.grey[200],
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                const Center(child: Text('👇🏻 Banner 广告 👇🏻')),
+                const SizedBox(height: 10),
+                AdBannerWidget(
+                  posId: AdsConfig.bannerId,
+                  width: 300,
+                  height: 75,
+                ),
+              ],
+            )),
       ),
     );
   }
@@ -224,13 +249,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   /// 展示插屏广告
-  Future<void> showInterstitialAd() async {
+  Future<void> showInterstitialAd(String posid) async {
     try {
-      bool result = await FlutterGromoreAds.showInterstitialAd(
-        AdsConfig.interstitialId,
-        width: 300,
-        height: 300,
-      );
+      bool result = await FlutterGromoreAds.showInterstitialAd(posid);
       _result = "展示插屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
       _result = "展示插屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
