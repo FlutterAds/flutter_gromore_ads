@@ -132,19 +132,19 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 20),
             const Center(child: Text('👇🏻 Banner 广告 👇🏻')),
-            const SizedBox(height: 10),
-            AdBannerWidget(
-              posId: AdsConfig.bannerId,
-              width: 300,
-              height: 75,
-            ),
-            const SizedBox(height: 20),
-            AdBannerWidget(
-              posId: AdsConfig.bannerId,
-              width: 300,
-              height: 75,
-            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          width: double.maxFinite,
+          height: 100,
+          alignment: Alignment.center,
+          child: AdBannerWidget(
+            posId: AdsConfig.bannerId,
+            width: 300,
+            height: 75,
+          ),
         ),
       ),
     );

@@ -24,10 +24,9 @@
 
 - ✅ 开屏广告
 - ✅ 插屏广告
-- ✅ 全屏视频
-- ✅ Banner
-- ✅ 信息流
-- 🔲 激励视频
+- ✅ 横幅广告
+- 🤴信息流[Pro 版本](example/README.md)
+- 🤴激励视频[Pro 版本](example/README.md)
 
 ## 入门使用
 
