@@ -84,16 +84,12 @@ FlutterGromoreAds.showSplashAd(
 
 ### 插屏广告
 
-- 半插屏
+> 全屏插屏、半插屏、横插屏 都是由后台配置的，所以这里只传入广告位 id 即可。
 
 ``` Dart
 /// [posId] 广告位 id
-/// [width] 宽度
-/// [height] 高度
 FlutterGromoreAds.showInterstitialAd(
     posId,
-    width: 300,
-    height: 300,
 );
 ```
 
