@@ -49,6 +49,7 @@ class FlutterGromoreAds {
   /// 初始化广告
   /// [appId] 应用ID
   /// [config] 配置文件名称
+  /// [limitPersonalAds] 是否限制个性化广告，0：不限制 1：限制
   static Future<bool> initAd(String appId,
       {String? config, int limitPersonalAds = 0}) async {
     final bool result = await _methodChannel.invokeMethod(
