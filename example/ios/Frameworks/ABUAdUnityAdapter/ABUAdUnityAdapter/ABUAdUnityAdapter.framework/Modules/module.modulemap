@@ -1,6 +1,0 @@
-framework module ABUAdUnityAdapter {
-  umbrella header "ABUAdUnityAdapter.h"
-
-  export *
-  module * { export * }
-}
