@@ -46,7 +46,6 @@ public class FlutterGromoreAdsPlugin implements FlutterPlugin, ActivityAware {
     methodChannel.setMethodCallHandler(delegate);
     eventChannel.setStreamHandler(delegate);
     this.delegate.registerBannerView();
-    this.delegate.registerFeedView();
   }
 
   @Override
