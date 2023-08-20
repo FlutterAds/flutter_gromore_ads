@@ -36,13 +36,6 @@
                                    binaryMessenger:self.messenger
                                             plugin:self.plugin];
     }
-//    else if (self.viewName==kGMAdFeedViewId) {
-//        return [[FGMAdFeedView alloc] initWithFrame:frame
-//                                    viewIdentifier:viewId
-//                                         arguments:args
-//                                   binaryMessenger:self.messenger
-//                                            plugin:self.plugin];
-//    }
     return nil;
 }
 

@@ -99,21 +99,21 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  child: const Text('插竖屏)'),
+                  child: const Text('插竖屏'),
                   onPressed: () {
                     showInterstitialAd(AdsConfig.interstitialId);
                   },
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  child: const Text('插横屏)'),
+                  child: const Text('插横屏'),
                   onPressed: () {
                     showInterstitialAd(AdsConfig.interstitialIdHorizontal);
                   },
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  child: const Text('插半屏)'),
+                  child: const Text('插半屏'),
                   onPressed: () {
                     showInterstitialAd(AdsConfig.interstitialIdHalf);
                   },
@@ -121,7 +121,15 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             const SizedBox(height: 20),
-            const Center(child: Text('🏆 付费 Pro 版功能 🏆')),
+            const Center(
+              child: Text(
+                '🏆 Pro 版付费功能 🏆',
+                style: TextStyle(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

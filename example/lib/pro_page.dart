@@ -13,7 +13,7 @@ class _ProPageState extends State<ProPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pro 付费功能'),
+        title: const Text('Pro 版付费功能'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -22,7 +22,7 @@ class _ProPageState extends State<ProPage> {
               child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  '此功能是插件 Pro 付费功能，需要购买插件后才能使用\n请联系微信：toponelan 咨询购买并获得技术支持',
+                  '此功能是插件 Pro 版付费功能，需要购买插件后才能使用\n请联系微信：toponelan 咨询购买并获得技术支持',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -35,7 +35,7 @@ class _ProPageState extends State<ProPage> {
               child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  '日活 10W 以上，可咨询其他合作模式，目前已合作百万级别的 App 客户',
+                  '日活 10W 以上，可咨询其他合作模式，目前已有百万级别的客户在合作，获得了非常好的收益提升',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.purple,

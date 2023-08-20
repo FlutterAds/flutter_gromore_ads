@@ -8,8 +8,6 @@
 @property (strong,nonatomic) FlutterEventSink eventSink;// 事件
 @property (strong,nonatomic) FGMSplashPage *sad;// 开屏广告
 @property (strong,nonatomic) FGMInterstitialPage *iad;// 插屏广告
-//@property (strong,nonatomic) FGMFeedAdLoad * fad;// 信息流广告加载
 
 extern NSString *const kGMAdBannerViewId;
-extern NSString *const kGMAdFeedViewId;
 @end

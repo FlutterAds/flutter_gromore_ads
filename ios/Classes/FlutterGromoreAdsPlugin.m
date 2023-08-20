@@ -7,8 +7,6 @@
 @implementation FlutterGromoreAdsPlugin
 // AdBannerView
 NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
-// AdFeedView
-NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     FlutterMethodChannel* methodChannel = [FlutterMethodChannel
@@ -23,16 +21,13 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 
     // 注册平台View 工厂
     FGMNativeViewFactory *bannerFactory=[[FGMNativeViewFactory alloc] initWithViewName:kGMAdBannerViewId withMessenger:registrar.messenger withPlugin:instance];
-    FGMNativeViewFactory *feedFactory=[[FGMNativeViewFactory alloc] initWithViewName:kGMAdFeedViewId withMessenger:registrar.messenger withPlugin:instance];
     // 注册 View
     [registrar registerViewFactory:bannerFactory withId:kGMAdBannerViewId];
-    [registrar registerViewFactory:feedFactory withId:kGMAdFeedViewId];
 
     
 }
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSString *methodStr=call.method;
-    NSLog(methodStr);
     if ([@"getPlatformVersion" isEqualToString:methodStr]) {
         result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
     }else if ([@"requestIDFA" isEqualToString:methodStr]) {
@@ -43,10 +38,6 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
         [self showSplashAd:call result:result];
     }else if ([@"showInterstitialAd" isEqualToString:methodStr]) {
         [self showInterstitialAd:call result:result];
-    }else if ([@"loadFeedAd" isEqualToString:methodStr]) {
-        [self loadFeedAd:call result:result];
-    }else if ([@"clearFeedAd" isEqualToString:methodStr]) {
-        [self clearFeedAd:call result:result];
     }else {
         result(FlutterMethodNotImplemented);
     }
@@ -90,9 +81,6 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
     
     [BUAdSDKManager startWithAsyncCompletionHandler:^(BOOL success, NSError *error) {
         if (success) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-////                [self useMediationPreload];
-//            });
             result(@(YES));
         }
     }];
@@ -114,35 +102,6 @@ NSString *const kGMAdFeedViewId=@"flutter_gromore_ads_feed";
 - (void) showInterstitialAd:(FlutterMethodCall *)call result:(FlutterResult) result{
     self.iad=[[FGMInterstitialPage alloc] init];
     [self.iad showAd:call eventSink:self.eventSink];
-    result(@(YES));
-}
-
-// 插屏全屏广告
-- (void) showInterstitialFullAd:(FlutterMethodCall *)call result:(FlutterResult) result{
-//    self.ifad=[[FGMInterstitialFullPage alloc] init];
-//    [self.ifad showAd:call eventSink:self.eventSink];
-    result(@(YES));
-}
-
-// 全屏视频广告
-- (void) showFullVideoAd:(FlutterMethodCall *) call result:(FlutterResult) result{
-//    self.fvad=[[FGMFullVideoPage alloc] init];
-//    [self.fvad showAd:call eventSink:self.eventSink];
-    result(@(YES));
-}
-
-// 加载信息流广告
-- (void) loadFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-//    self.fad=[[FGMFeedAdLoad alloc] init];
-//    [self.fad loadFeedAdList:call result:result eventSink:self.eventSink];
-}
-
-// 清除信息流广告
-- (void) clearFeedAd:(FlutterMethodCall*) call result:(FlutterResult) result{
-    NSArray *list= call.arguments[@"list"];
-    for (NSNumber *ad in list) {
-        [FGMFeedAdManager.share removeAd:ad];
-    }
     result(@(YES));
 }
 
