@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 /// Feed 信息流广告组件
 /// 建议在个性化模板的广告view中，宽度自动铺满整个view，期望模板尺寸的参数设置中，高度可以设置为0，高度会自适应，达到最佳的展示比例
 class AdFeedWidget extends StatefulWidget {
-  AdFeedWidget({
+  const AdFeedWidget({
     Key? key,
     required this.posId,
     this.show = true,
