@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（GroMore、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v1.3.0-success></a>
+<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v2.0.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_gromore_ads?color=brightgreen></a>
