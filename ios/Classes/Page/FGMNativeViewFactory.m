@@ -7,7 +7,7 @@
 
 #import "FGMNativeViewFactory.h"
 #import "FGMAdBannerView.h"
-#import "FGMAdFeedView.h"
+//#import "FGMAdFeedView.h"
 
 @implementation FGMNativeViewFactory
 
@@ -31,12 +31,6 @@
                                         arguments:(id _Nullable)args {
     if (self.viewName==kGMAdBannerViewId) {
         return [[FGMAdBannerView alloc] initWithFrame:frame
-                                    viewIdentifier:viewId
-                                         arguments:args
-                                   binaryMessenger:self.messenger
-                                            plugin:self.plugin];
-    }else if (self.viewName==kGMAdFeedViewId) {
-        return [[FGMAdFeedView alloc] initWithFrame:frame
                                     viewIdentifier:viewId
                                          arguments:args
                                    binaryMessenger:self.messenger

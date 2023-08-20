@@ -7,8 +7,8 @@
 
 #import "FGMAdBannerView.h"
 
-@interface FGMAdBannerView()<FlutterPlatformView,ABUBannerAdDelegate>
-@property (strong,nonatomic) ABUBannerAd *bad;
+@interface FGMAdBannerView()<FlutterPlatformView,BUMNativeExpressBannerViewDelegate>
+@property (strong,nonatomic) BUNativeExpressBannerView *bad;
 @property (strong,nonatomic) UIView *bannerView;
 
 @end
@@ -36,7 +36,7 @@
     // 刷新间隔
     int width = [call.arguments[@"width"] intValue];
     int height = [call.arguments[@"height"] intValue];
-    self.bad=[[ABUBannerAd alloc] initWithAdUnitID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height)];
+    self.bad=[[BUNativeExpressBannerView alloc] initWithSlotID:self.posId rootViewController:self.rootController adSize:CGSizeMake(width, height)];
     self.bad.delegate=self;
     [self.bad loadAdData];
 }
@@ -44,15 +44,15 @@
 
 #pragma mark ----- ABUBannerAdDelegate -----
 /// 加载成功回调
-- (void)bannerAdDidLoad:(ABUBannerAd *)bannerAd bannerView:(UIView *)bannerView {
+- (void)nativeExpressBannerAdViewDidLoad:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
-    [self.bannerView addSubview:bannerView];
+    [self.bannerView addSubview:bannerAdView];
     // 发送事件
     [self sendEventAction:onAdLoaded];
 }
 
 /// 加载失败回调
-- (void)bannerAd:(ABUBannerAd *)bannerAd didLoadFailWithError:(NSError *)error {
+- (void)nativeExpressBannerAdView:(BUNativeExpressBannerView *)bannerAdView didLoadFailWithError:(NSError *)error {
     NSLog(@"%s-error:%@", __FUNCTION__, error);
     // 发送事件
     [self sendErrorEvent:error];
@@ -61,24 +61,31 @@
 }
 
 /// 展示成功回调
-- (void)bannerAdDidBecomeVisible:(ABUBannerAd *)bannerAd bannerView:(UIView *)bannerView {
+- (void)nativeExpressBannerAdViewDidBecomeVisible:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
     // 发送事件
     [self sendEventAction:onAdExposure];
 }
 
 /// 广告点击回调
-- (void)bannerAdDidClick:(ABUBannerAd *)ABUBannerAd bannerView:(UIView *)bannerView {
+- (void)nativeExpressBannerAdViewDidClick:(BUNativeExpressBannerView *)bannerAdView {
     NSLog(@"%s",__FUNCTION__);
     // 发送事件
     [self sendEventAction:onAdClicked];
 }
 
-/// 广告关闭回调
-- (void)bannerAdDidClosed:(ABUBannerAd *)ABUBannerAd bannerView:(UIView *)bannerView dislikeWithReason:(NSArray<NSDictionary *> *)filterwords {
+- (void)nativeExpressBannerAdView:(BUNativeExpressBannerView *)bannerAdView dislikeWithReason:(NSArray<BUDislikeWords *> *)filterwords {
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)nativeExpressBannerAdViewDidCloseOtherController:(BUNativeExpressBannerView *)bannerAdView interactionType:(BUInteractionType)interactionType {
+    NSLog(@"%s",__FUNCTION__);
+}
+
+- (void)nativeExpressBannerAdViewDidRemoved:(BUNativeExpressBannerView *)nativeExpressAdView {
     NSLog(@"%s",__FUNCTION__);
     // 可于此处移除广告view
-    [self destoryAd:bannerView];
+    [self destoryAd:self.bannerView];
     // 发送事件
     [self sendEventAction:onAdClosed];
 }

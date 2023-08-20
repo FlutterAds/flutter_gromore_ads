@@ -14,20 +14,23 @@
 <a href="https://www.csjplatform.com/gromore"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/images/gromore/gromore_introduce.jpeg" alt="gromore"/></a>
 </p>
 
+## Gromore 有什么特点？
+
+就一点可以帮你较大幅度的提升收益，但是需要技术和运营都懂，其他就不多说了。
+
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
 - 📡 事件统一返回（将原生端各种重要回调事件统一返回，方便业务处理和埋点统计等需求）
 - 🎁 注重优化体验（无闪烁 Logo 开屏、iOS 开屏防止事件穿透、权限申请、隐私跟踪申请等）
-- 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展新广告形式、方便开发个性化需求）
+- 🏆 极客代码封装（原生端代码不凑合，两端统一基础框架、广告事件封装抽象、易扩展）
 
 ## 支持功能
 
 - ✅ 开屏广告
 - ✅ 插屏广告
-- ✅ 全屏视频
-- ✅ Banner
-- ✅ 信息流
-- 🔲 激励视频
+- ✅ 横幅广告
+- 🏆 信息流（[Pro 版本](example/README.md)）
+- 🏆 激励视频 ([Pro 版本](example/README.md))
 
 ## 入门使用
 
@@ -35,7 +38,7 @@
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^1.3.3
+  flutter_gromore_ads: ^2.0.0
 ```
 
 > 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。
@@ -46,6 +49,8 @@ dependencies:
 // 导包
 import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
 /// [appId] 应用ID
+/// [config] 配置文件名称
+/// [limitPersonalAds] 是否限制个性化广告，0：不限制 1：限制
 FlutterGromoreAds.initAd(appId);
 ```
 
@@ -92,27 +97,26 @@ FlutterGromoreAds.showInterstitialAd(
 );
 ```
 
-- 全插屏
+### 横幅广告
 
 ``` Dart
 /// [posId] 广告位 id
-/// [muted] 是否静音播放视频
-FlutterGromoreAds.showInterstitialFullAd(
-    posId,
-    muted: false,
-);
+/// [width] 宽度
+/// [height] 高度
+AdBannerWidget(
+    posId: posId,
+    width: 300,
+    height: 75,
+)
 ```
 
-### 全屏视频
+### 🏆 信息流广告
 
-``` Dart
-/// [posId] 广告位 id
-/// [orientation] 期望视频的播放方向，1：VERTICAL 2：HORIZONTAL
-FlutterGromoreAds.showFullVideoAd(
-    posId,
-    orientation: 1,
-);
-```
+- 查看 [🚀 Pro 版本](example/README.md)
+
+### 🏆 激励视频广告
+
+- 查看 [🚀 Pro 版本](example/README.md)
 
 
 ### 设置广告事件监听
@@ -148,18 +152,15 @@ FlutterGromoreAds.onEventListener((event) {
 
 |参考示例|官方文档|
 |--|--|
-|[build.gradle](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/android/app/build.gradle)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=75&docId=604de8b510af03004cbcbf69&osType=android#_1-1sdk包的导入)|
+|[build.gradle](https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/example/android/app/build.gradle)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=142&docId=27562&osType=android)|
 
 打开 `android/app/build.gradle` 添加依赖，需要哪个添加哪个，`Adapter` 和 `SDK` 要成对添加
 
 ``` gradle
 dependencies {
     //GroMore_sdk adapter
-    implementation "com.gromore.cn:gdt-adapter:4.482.1352.1"  //gdt adapter
-    implementation 'com.qq.e.union:union:4.482.1352'// 广点通广告 SDK
-    implementation "com.gromore.cn:pangle-adapter:4.7.1.2.1" //穿山甲 adapter
-    implementation 'com.pangle.cn:ads-sdk-pro:4.7.1.2'//穿山甲广告 SDK
-    // 其他参考官方文档 引入即可
+    implementation "com.pangle.cn:mediation-gdt-adapter:4.540.1410.1" //gdt adapter
+    implementation 'com.qq.e.union:union:4.540.1410'// 广点通广告 SDK
 }
 ```
 
@@ -202,7 +203,7 @@ dependencies {
 <service
     android:name="com.qq.e.comm.DownloadService"
     android:exported="false" />
-<!-- 请开发者注意字母的大小写，ADActivity，而不是AdActivity -->
+<!-- 请开发者注意字母的大小写，ADActdivity，而不是AdActivity -->
 
 <activity
     android:name="com.qq.e.ads.ADActivity"
@@ -246,15 +247,16 @@ bool result = await FlutterGromoreAds.requestPermissionIfNecessary;
 
 |参考示例|官方文档|
 |--|--|
-|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/master/example/ios)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=79&docId=618372e19e41cf0042bc0016&osType=ios)|
+|[example](https://github.com/FlutterAds/flutter_gromore_ads/blob/master/example/ios)|[点击这里](https://www.csjplatform.com/union/media/union/download/detail?id=143&docId=27487&osType=ios)|
 
-1、将下载的 `SDK` 中的 `Ads-Mediation-CN` 及其其他所需要的 `Adapter` 复制到 `ios/Frameworks` 下，参考 [ios/Frameworks](https://github.com/FlutterAds/flutter_gromore_ads/tree/master/example/ios/Frameworks)
+1、在修改 `ios/Podfile` 引入 `SDK`，参考 [Podfile](https://github.com/FlutterAds/flutter_gromore_ads/blob/master/example/ios/Podfile)
 
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381759-02ed1659-dc0a-4f18-b1dd-50c788c764af.png">
-
-2、修改 `ios/Podfile` 引入 `SDK`，参考 [Podfile](https://github.com/FlutterAds/flutter_gromore_ads/blob/master/example/ios/Podfile)
-
-<img width="480" alt="image" src="https://user-images.githubusercontent.com/8764899/147381808-165f56d3-256e-4146-b57b-e4372d630bd4.png">
+``` ruby
+#1.GroMoreSDK核心库
+# 广点通/优量汇
+pod 'CSJMGdtAdapter', '4.14.30.0'
+pod 'GDTMobSDK','4.14.30'
+```
 
 
 - 添加配置文件

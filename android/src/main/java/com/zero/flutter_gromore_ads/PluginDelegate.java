@@ -7,23 +7,18 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.bytedance.msdk.api.v2.GMAdConfig;
-import com.bytedance.msdk.api.v2.GMMediationAdSdk;
-import com.bytedance.msdk.api.v2.GMPangleOption;
-import com.zero.flutter_gromore_ads.load.FeedAdLoad;
-import com.zero.flutter_gromore_ads.load.FeedAdManager;
+import com.bytedance.sdk.openadsdk.TTAdConfig;
+import com.bytedance.sdk.openadsdk.TTAdSdk;
+import com.bytedance.sdk.openadsdk.TTCustomController;
+import com.bytedance.sdk.openadsdk.mediation.init.MediationConfig;
+import com.bytedance.sdk.openadsdk.mediation.init.MediationPrivacyConfig;
 import com.zero.flutter_gromore_ads.page.AdSplashActivity;
-import com.zero.flutter_gromore_ads.page.FullVideoPage;
-import com.zero.flutter_gromore_ads.page.InterstitialFullPage;
 import com.zero.flutter_gromore_ads.page.InterstitialPage;
 import com.zero.flutter_gromore_ads.page.NativeViewFactory;
 import com.zero.flutter_gromore_ads.utils.FileUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.flutter.BuildConfig;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -51,16 +46,12 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
 
     // Banner View
     public static final String KEY_BANNER_VIEW = "flutter_gromore_ads_banner";
-    // Feed View
-    public static final String KEY_FEED_VIEW = "flutter_gromore_ads_feed";
     // 广告参数
     public static final String KEY_POSID = "posId";
     // logo 参数
     public static final String KEY_LOGO = "logo";
     // timeout 参数
     public static final String KEY_TIMEOUT = "timeout";
-    // splashButtonType 参数
-    public static final String KEY_SPLASH_BUTTON_TYPE = "buttonType";
 
     /**
      * 插件代理构造函数构造函数
@@ -92,16 +83,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
             showSplashAd(call, result);
         } else if ("showInterstitialAd".equals(method)) {
             showInterstitialAd(call, result);
-        } else if ("showInterstitialFullAd".equals(method)) {
-            showInterstitialFullAd(call, result);
-        } else if ("showFullVideoAd".equals(method)) {
-            showFullVideoAd(call, result);
-        } else if ("showRewardVideoAd".equals(method)) {
-            showRewardVideoAd(call, result);
-        } else if ("loadFeedAd".equals(method)) {
-            loadFeedAd(call, result);
-        } else if ("clearFeedAd".equals(method)) {
-            clearFeedAd(call, result);
         } else {
             result.notImplemented();
         }
@@ -151,21 +132,13 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     }
 
     /**
-     * 展示 Feed 信息流广告
-     */
-    public void registerFeedView() {
-        bind.getPlatformViewRegistry()
-                .registerViewFactory(KEY_FEED_VIEW, new NativeViewFactory(KEY_FEED_VIEW, this));
-    }
-
-    /**
      * 请求权限
      *
      * @param call   MethodCall
      * @param result Result
      */
     public void requestPermissionIfNecessary(MethodCall call, MethodChannel.Result result) {
-        GMMediationAdSdk.requestPermissionIfNecessary(activity);
+        TTAdSdk.getMediationManager().requestPermissionIfNecessary(activity);
         result.success(true);
     }
 
@@ -178,6 +151,15 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
     public void initAd(MethodCall call, final MethodChannel.Result result) {
         String appId = call.argument("appId");
         String config = call.argument("config");
+        int limitPersonalAds = call.argument("limitPersonalAds");
+
+        // 构建基础配置
+        TTAdConfig.Builder configBuilder = new TTAdConfig.Builder()
+                .appId(appId)
+                .useMediation(true)
+                .debug(BuildConfig.DEBUG)
+                .supportMultiProcess(false);
+        // 离线配置
         JSONObject localConfigJson = null;
         if (!TextUtils.isEmpty(config)) {
             String localConfigStr = FileUtils.getJson(config, activity);
@@ -187,22 +169,88 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 e.printStackTrace();
             }
         }
-        // 穿山甲配置
-        GMPangleOption gmPangleOption=new GMPangleOption.Builder()
-                .setIsUseTextureView(true)
-                .build();
         // 构建配置
-        GMAdConfig adConfig = new GMAdConfig.Builder()
-                .setAppId(appId)
-                .setAppName("测试App")
-                .setDebug(BuildConfig.DEBUG)
-                .setOpenAdnTest(BuildConfig.DEBUG)
-                .setCustomLocalConfig(localConfigJson)
-                .setPangleOption(gmPangleOption)
-                .build();
+        TTAdConfig gmPangleOption;
+        if (localConfigJson != null) {
+            gmPangleOption = configBuilder
+                    .customController(getTTCustomController(limitPersonalAds == 0))
+                    .setMediationConfig(new MediationConfig.Builder()
+                            .setCustomLocalConfig(localConfigJson)
+                            .build()).build();
+        } else {
+            gmPangleOption = configBuilder
+                    .customController(getTTCustomController(limitPersonalAds == 0))
+                    .build();
+        }
         // 初始化 SDK
-        GMMediationAdSdk.initialize(activity.getApplicationContext(), adConfig);
-        result.success(true);
+        TTAdSdk.init(activity.getApplicationContext(), gmPangleOption, new TTAdSdk.InitCallback() {
+            @Override
+            public void success() {
+                result.success(true);
+            }
+
+            @Override
+            public void fail(int code, String message) {
+                result.success(false);
+            }
+        });
+    }
+
+
+    private TTCustomController getTTCustomController(boolean limitPersonalAds) {
+        return new TTCustomController() {
+
+            @Override
+            public boolean isCanUseWifiState() {
+                return super.isCanUseWifiState();
+            }
+
+            @Override
+            public String getMacAddress() {
+                return super.getMacAddress();
+            }
+
+            @Override
+            public boolean isCanUseWriteExternal() {
+                return super.isCanUseWriteExternal();
+            }
+
+            @Override
+            public String getDevOaid() {
+                return super.getDevOaid();
+            }
+
+            @Override
+            public boolean isCanUseAndroidId() {
+                return super.isCanUseAndroidId();
+            }
+
+            @Override
+            public String getAndroidId() {
+                return super.getAndroidId();
+            }
+
+            @Override
+            public MediationPrivacyConfig getMediationPrivacyConfig() {
+                return new MediationPrivacyConfig() {
+
+                    @Override
+                    public boolean isLimitPersonalAds() {
+                        return limitPersonalAds;
+                    }
+
+                    @Override
+                    public boolean isProgrammaticRecommend() {
+                        return limitPersonalAds;
+                    }
+                };
+            }
+
+            @Override
+            public boolean isCanUsePermissionRecordAudio() {
+                return super.isCanUsePermissionRecordAudio();
+            }
+        };
     }
 
     /**
@@ -237,67 +285,4 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
         result.success(true);
     }
 
-    /**
-     * 显示插屏全屏广告
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void showInterstitialFullAd(MethodCall call, MethodChannel.Result result) {
-        InterstitialFullPage adPage = new InterstitialFullPage();
-        adPage.showAd(activity, call);
-        result.success(true);
-    }
-
-    /**
-     * 显示全屏视频广告
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void showFullVideoAd(MethodCall call, MethodChannel.Result result) {
-        FullVideoPage adPage = new FullVideoPage();
-        adPage.showAd(activity, call);
-        result.success(true);
-    }
-
-    /**
-     * 显示激励视频广告
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void showRewardVideoAd(MethodCall call, MethodChannel.Result result) {
-//        RewardVideoPage adPage = new RewardVideoPage();
-//        adPage.showAd(activity, call);
-//        result.success(true);
-    }
-
-    /**
-     * 加载信息流广告列表
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void loadFeedAd(MethodCall call, MethodChannel.Result result) {
-        FeedAdLoad feedAd = new FeedAdLoad();
-        feedAd.loadFeedAdList(activity, call, result);
-    }
-
-    /**
-     * 删除信息流广告列表
-     *
-     * @param call   MethodCall
-     * @param result Result
-     */
-    public void clearFeedAd(MethodCall call, MethodChannel.Result result) {
-        List<Integer> adList = call.argument("list");
-        if (adList != null) {
-            for (int ad : adList) {
-                FeedAdManager.getInstance().removeAd(ad);
-            }
-        }
-        result.success(true);
-
-    }
 }
