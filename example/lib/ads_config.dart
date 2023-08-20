@@ -22,10 +22,7 @@ class AdsConfig {
 
   /// 获取 App id
   static String get appId {
-    if (Platform.isIOS) {
-      return '5209496';
-    }
-    return '5216573';
+    return '5324024';
   }
 
   /// 获取 App Config
@@ -38,50 +35,27 @@ class AdsConfig {
 
   /// 获取开屏广告位id
   static String get splashId {
-    if (Platform.isIOS) {
-      return '887383142';
-    }
-    return '887382967';
+    return '102420790';
   }
 
-  /// 获取插屏广告位id
-  static String get interstitialId {
-    if (Platform.isIOS) {
-      return '945494755';
-    }
-    return '945493679';
-  }
+  /// 获取插屏广告位id 竖屏
+  static String get interstitialId => '102421471';
 
-  /// 获取插屏全屏广告位id
-  static String get interstitialFullId {
-    if (Platform.isIOS) {
-      return '946961656';
-    }
-    return '946276599';
-  }
+  /// 获取插屏广告位id 横屏
+  static String get interstitialIdHorizontal => '102428790';
 
-  /// 获取全屏视频广告位id(纵向)
-  static String get fullVideoVerticalId {
-    if (Platform.isIOS) {
-      return '900546831';
-    }
-    return '945493676';
-  }
-
-  /// 获取全屏视频广告位id(横向)
-  static String get fullVideoHorizontalId {
-    if (Platform.isIOS) {
-      return '945494751';
-    }
-    return '945493675';
-  }
+  /// 获取插屏广告位id 半屏
+  static String get interstitialIdHalf => '102428146';
 
   /// 获取激励视频广告位id
-  static String get rewardVideoId => '946584890';
+  static String get rewardVideoId => '102421199';
 
   /// 获取 Banner 广告位id
-  static String get bannerId => Platform.isIOS ? '102253640' : '102252466';
+  static String get bannerId => '102424305';
 
   /// 获取 Feed 信息流广告位 id
-  static String get feedId => Platform.isIOS ? '102255258' : '102254613';
+  static String get feedId => '102420797';
+
+  /// 获取 Draw 信息流广告位 id
+  static String get drawFeedId => '102420797';
 }

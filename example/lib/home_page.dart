@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
-import 'package:flutter_gromore_ads/view/ad_banner_widget.dart';
 
 import 'ads_config.dart';
-import 'feed_page.dart';
+import 'pro_page.dart';
 
 /// 首页
 class HomePage extends StatefulWidget {
@@ -37,102 +36,149 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Flutter GroMore Ads'),
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              Text('Result: $_result'),
-              const SizedBox(height: 10),
-              Text('onAdEvent: $_adEvent'),
-              const SizedBox(height: 20),
-              ElevatedButton(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Text('Result: $_result'),
+            const SizedBox(height: 10),
+            Text('onAdEvent: $_adEvent'),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.maxFinite,
+              child: ElevatedButton(
                 child: const Text('初始化'),
                 onPressed: () {
                   init();
                 },
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('请求应用跟踪透明度授权(仅 iOS)'),
-                onPressed: () {
-                  requestIDFA();
-                },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: ElevatedButton(
+                    child: const Text('请求应用跟踪授权'),
+                    onPressed: () {
+                      requestIDFA();
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Flexible(
+                  child: ElevatedButton(
+                    child: const Text('动态请求相关权限'),
+                    onPressed: () {
+                      requestPermissionIfNecessary();
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  child: const Text('开屏广告(Logo)'),
+                  onPressed: () {
+                    showSplashAd(AdsConfig.logo2);
+                  },
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  child: const Text('开屏广告(全屏)'),
+                  onPressed: () {
+                    showSplashAd();
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  child: const Text('插竖屏'),
+                  onPressed: () {
+                    showInterstitialAd(AdsConfig.interstitialId);
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  child: const Text('插横屏'),
+                  onPressed: () {
+                    showInterstitialAd(AdsConfig.interstitialIdHorizontal);
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  child: const Text('插半屏'),
+                  onPressed: () {
+                    showInterstitialAd(AdsConfig.interstitialIdHalf);
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            const Center(
+              child: Text(
+                '🏆 Pro 版付费功能 🏆',
+                style: TextStyle(
+                  color: Colors.purple,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('动态请求相关权限（仅 Android）'),
-                onPressed: () {
-                  requestPermissionIfNecessary();
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示开屏广告（Logo2）'),
-                onPressed: () {
-                  showSplashAd(AdsConfig.logo2);
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示开屏广告（全屏）'),
-                onPressed: () {
-                  showSplashAd();
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示插屏广告'),
-                onPressed: () {
-                  showInterstitialAd();
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示插屏全屏广告'),
-                onPressed: () {
-                  showInterstitialFullAd();
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示全屏视频广告(纵向)'),
-                onPressed: () {
-                  showFullVideoAd(1);
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('展示全屏视频广告(横向)'),
-                onPressed: () {
-                  showFullVideoAd(2);
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                child: const Text('信息流广告'),
-                onPressed: () {
-                  Navigator.push(
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  child: const Text('信息流广告(Pro)'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProPage(),
+                        ));
+                  },
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  child: const Text('激励视频广告(Pro)'),
+                  onPressed: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const FeedPage(),
-                      ));
-                },
-              ),
-              const SizedBox(height: 20),
-              AdBannerWidget(
-                posId: AdsConfig.bannerId,
-                width: 300,
-                height: 75,
-              ),
-              const SizedBox(height: 20),
-              // AdBannerWidget(
-              //   posId: AdsConfig.bannerId,
-              //   width: 300,
-              //   height: 75,
-              // ),
-            ],
-          ),
+                        builder: (context) => const ProPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+            width: double.maxFinite,
+            height: 140,
+            color: Colors.grey[200],
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                const Center(child: Text('👇🏻 Banner 广告 👇🏻')),
+                const SizedBox(height: 10),
+                AdBannerWidget(
+                  posId: AdsConfig.bannerId,
+                  width: 300,
+                  height: 75,
+                ),
+              ],
+            )),
       ),
     );
   }
@@ -143,6 +189,7 @@ class _HomePageState extends State<HomePage> {
       bool result = await FlutterGromoreAds.initAd(
         AdsConfig.appId,
         config: AdsConfig.config,
+        limitPersonalAds: 1,
       );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";
       setState(() {});
@@ -210,48 +257,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   /// 展示插屏广告
-  Future<void> showInterstitialAd() async {
+  Future<void> showInterstitialAd(String posid) async {
     try {
-      bool result = await FlutterGromoreAds.showInterstitialAd(
-        AdsConfig.interstitialId,
-        width: 300,
-        height: 300,
-      );
+      bool result = await FlutterGromoreAds.showInterstitialAd(posid);
       _result = "展示插屏广告${result ? '成功' : '失败'}";
     } on PlatformException catch (e) {
       _result = "展示插屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-  }
-
-  /// 展示插屏全屏广告
-  Future<void> showInterstitialFullAd() async {
-    try {
-      bool result = await FlutterGromoreAds.showInterstitialFullAd(
-        AdsConfig.interstitialFullId,
-        muted: true,
-      );
-      _result = "展示插屏全屏广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示插屏全屏广告失败 code:${e.code} msg:${e.message} details:${e.details}";
-    }
-    setState(() {});
-  }
-
-  /// 展示全屏视频广告
-  Future<void> showFullVideoAd(int orientation) async {
-    try {
-      bool result = await FlutterGromoreAds.showFullVideoAd(
-        orientation == 1
-            ? AdsConfig.fullVideoVerticalId
-            : AdsConfig.fullVideoHorizontalId,
-        orientation: orientation,
-      );
-      _result = "展示全屏视频广告${result ? '成功' : '失败'}";
-    } on PlatformException catch (e) {
-      _result =
-          "展示全屏视频广告失败 code:${e.code} msg:${e.message} details:${e.details}";
     }
     setState(() {});
   }

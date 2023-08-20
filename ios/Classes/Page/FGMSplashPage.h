@@ -11,7 +11,7 @@
 // 开屏广告
 @interface FGMSplashPage :FGMBasePage
 // 开屏
-@property (strong,nonatomic) ABUSplashAd *ad;
+@property (strong,nonatomic) BUSplashAd *ad;
 @property (retain,nonatomic) UIView *bottomView;
 @property (assign,nonatomic ) BOOL fullScreenAd;
 // 广告是否展示中

@@ -4,8 +4,9 @@ import static com.zero.flutter_gromore_ads.PluginDelegate.KEY_POSID;
 
 import android.app.Activity;
 
-import com.bytedance.msdk.api.v2.ad.GMBaseAd;
-import com.bytedance.msdk.api.v2.slot.GMAdSlotBase;
+import com.bytedance.sdk.openadsdk.AdSlot;
+import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.TTAdSdk;
 import com.zero.flutter_gromore_ads.event.AdErrorEvent;
 import com.zero.flutter_gromore_ads.event.AdEvent;
 import com.zero.flutter_gromore_ads.event.AdEventHandler;
@@ -20,6 +21,10 @@ public abstract class BaseAdPage {
     protected Activity activity;
     // 广告位 id
     protected String posId;
+    // 广告配置
+    protected AdSlot adslot;
+    // 广告加载器
+    protected TTAdNative adNativeLoader;
 
     /**
      * 显示广告
@@ -30,6 +35,7 @@ public abstract class BaseAdPage {
     public void showAd(Activity activity, MethodCall call) {
         this.activity = activity;
         this.posId = call.argument(KEY_POSID);
+        this.adNativeLoader= TTAdSdk.getAdManager().createAdNative(activity);
         loadAd(call);
     }
 

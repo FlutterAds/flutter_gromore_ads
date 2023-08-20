@@ -1,46 +1,24 @@
 package com.zero.flutter_gromore_ads.page;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-import com.bumptech.glide.Glide;
-import com.bytedance.msdk.api.AdError;
-import com.bytedance.msdk.api.TToast;
-import com.bytedance.msdk.api.nativeAd.TTNativeAdAppInfo;
-import com.bytedance.msdk.api.nativeAd.TTViewBinder;
-import com.bytedance.msdk.api.v2.GMAdConstant;
-import com.bytedance.msdk.api.v2.GMAdDislike;
-import com.bytedance.msdk.api.v2.GMAdSize;
-import com.bytedance.msdk.api.v2.GMDislikeCallback;
-import com.bytedance.msdk.api.v2.ad.banner.GMBannerAd;
-import com.bytedance.msdk.api.v2.ad.banner.GMBannerAdListener;
-import com.bytedance.msdk.api.v2.ad.banner.GMBannerAdLoadCallback;
-import com.bytedance.msdk.api.v2.ad.banner.GMNativeAdInfo;
-import com.bytedance.msdk.api.v2.ad.banner.GMNativeToBannerListener;
-import com.bytedance.msdk.api.v2.ad.nativeAd.GMViewBinder;
-import com.bytedance.msdk.api.v2.slot.GMAdSlotBanner;
+import com.bytedance.sdk.openadsdk.AdSlot;
+import com.bytedance.sdk.openadsdk.TTAdDislike;
+import com.bytedance.sdk.openadsdk.TTAdNative;
+import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.zero.flutter_gromore_ads.PluginDelegate;
-import com.zero.flutter_gromore_ads.R;
 import com.zero.flutter_gromore_ads.event.AdEventAction;
+import com.zero.flutter_gromore_ads.utils.UIUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.platform.PlatformView;
@@ -48,13 +26,13 @@ import io.flutter.plugin.platform.PlatformView;
 /**
  * Banner 广告 View
  */
-class AdBannerView extends BaseAdPage implements PlatformView, GMBannerAdListener, GMBannerAdLoadCallback {
+class AdBannerView extends BaseAdPage implements PlatformView, TTAdNative.NativeExpressAdListener, TTNativeExpressAd.ExpressAdInteractionListener, TTAdDislike.DislikeInteractionCallback {
     private final String TAG = AdBannerView.class.getSimpleName();
     @NonNull
     private final FrameLayout frameLayout;
     private final PluginDelegate pluginDelegate;
     private final int id;
-    private GMBannerAd bad;
+    private TTNativeExpressAd bad;
 
 
     AdBannerView(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, PluginDelegate pluginDelegate) {
@@ -81,17 +59,12 @@ class AdBannerView extends BaseAdPage implements PlatformView, GMBannerAdListene
         // 获取请求模板广告素材的尺寸
         int expressViewWidth = call.argument("width");
         int expressViewHeight = call.argument("height");
-        bad = new GMBannerAd(activity, posId);
-        // 设置广告事件监听
-        bad.setAdBannerListener(this);
-        // 设置广告配置
-        GMAdSlotBanner slotBanner = new GMAdSlotBanner.Builder()
-                .setBannerSize(GMAdSize.BANNER_CUSTOME)
-                .setImageAdSize(expressViewWidth, expressViewHeight)// GMAdSize.BANNER_CUSTOME可以调用setImageAdSize设置大小
-                .setMuted(true) // 控制视频是否静音
+        this.adslot = new AdSlot.Builder()
+                .setCodeId(posId)
+                .setImageAcceptedSize(UIUtils.dp2px(activity,expressViewWidth), UIUtils.dp2px(activity,expressViewHeight))
                 .build();
         // 加载广告
-        bad.loadAd(slotBanner, this);
+        adNativeLoader.loadBannerExpressAd(adslot, this);
     }
 
     /**
@@ -100,68 +73,79 @@ class AdBannerView extends BaseAdPage implements PlatformView, GMBannerAdListene
     private void disposeAd() {
         frameLayout.removeAllViews();
         if (bad != null) {
-            bad.setAdBannerListener(null);
+            bad.setExpressInteractionListener(null);
             bad.destroy();
         }
     }
 
     @Override
-    public void onAdClicked() {
+    public void onError(int i, String s) {
+        Log.e(TAG, "onError code:" + i + " msg:" + s);
+        sendErrorEvent(i, s);
+        disposeAd();
+    }
+
+    @Override
+    public void onNativeExpressAdLoad(List<TTNativeExpressAd> list) {
+        if (list == null || list.size() == 0) {
+            Log.e(TAG, "onNativeExpressAdLoad list is null or size is 0");
+            return;
+        }
+        bad = list.get(0);
+        bad.setExpressInteractionListener(this);
+        bad.setDislikeCallback(activity, this);
+        bad.render();
+    }
+
+    @Override
+    public void onAdClicked(View view, int i) {
         Log.i(TAG, "onAdClicked");
         // 添加广告事件
         sendEvent(AdEventAction.onAdClicked);
     }
 
     @Override
-    public void onAdClosed() {
-        Log.i(TAG, "onAdClosed");
-        // 添加广告事件
-        sendEvent(AdEventAction.onAdClosed);
-        disposeAd();
-    }
-
-    @Override
-    public void onAdLeftApplication() {
-
-    }
-
-    @Override
-    public void onAdOpened() {
-
-    }
-
-    @Override
-    public void onAdShow() {
+    public void onAdShow(View view, int i) {
         Log.i(TAG, "onAdShow");
         // 添加广告事件
         sendEvent(AdEventAction.onAdExposure);
     }
 
     @Override
-    public void onAdShowFail(@NonNull AdError adError) {
-        Log.e(TAG, "onAdShowFail code:" + adError.code + " msg:" + adError.message);
-        sendErrorEvent(adError.code, adError.message);
+    public void onRenderFail(View view, String s, int i) {
+        Log.e(TAG, "onRenderFail code:" + i + " msg:" + s);
+        sendErrorEvent(i, s);
         disposeAd();
     }
 
     @Override
-    public void onAdFailedToLoad(@NonNull AdError adError) {
-        Log.e(TAG, "onAdFailedToLoad code:" + adError.code + " msg:" + adError.message);
-        sendErrorEvent(adError.code, adError.message);
-        disposeAd();
-    }
-
-    @Override
-    public void onAdLoaded() {
-        Log.i(TAG, "onAdLoaded");
-        if (bad != null && bad.isReady()) {
+    public void onRenderSuccess(View view, float v, float v1) {
+        Log.i(TAG, "onRenderSuccess");
+        if (bad != null) {
             frameLayout.removeAllViews();
-            frameLayout.addView(bad.getBannerView());
+            frameLayout.addView(bad.getExpressAdView());
             // 添加广告事件
             sendEvent(AdEventAction.onAdPresent);
+        }else{
+            disposeAd();
         }
-        // 添加广告事件
-        sendEvent(AdEventAction.onAdLoaded);
     }
 
+    @Override
+    public void onShow() {
+        Log.i(TAG, "Dislike onShow");
+    }
+
+    @Override
+    public void onSelected(int i, String s, boolean b) {
+        Log.i(TAG, "Dislike onSelected");
+        // 添加广告事件
+        disposeAd();
+        sendEvent(AdEventAction.onAdClosed);
+    }
+
+    @Override
+    public void onCancel() {
+        Log.i(TAG, "Dislike onCancel");
+    }
 }

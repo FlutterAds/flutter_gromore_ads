@@ -32,32 +32,25 @@ target 'Runner' do
   # use_modular_headers!
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   #1.GroMoreSDK核心库
-  pod 'Ads-Mediation-CN', :path=>'Frameworks/Ads-Mediation-CN'
-  # 2.GroMore官方适配adapter（请以接入文档0.3说明为准，请不要更换GroMoreSDK不支持的三方sdk版本）
-  # 穿山甲
-  pod 'ABUAdCsjAdapter', :path=>'Frameworks/ABUAdCsjAdapter/'
-  pod 'Ads-CN','4.9.0.6'
-  # 穿山甲beta灰度版
-  #pod 'Ads-CN-Beta', '3.8.0.0'
   # 广点通/优量汇
-  pod 'ABUAdGdtAdapter', :path=>'Frameworks/ABUAdGdtAdapter'
-  pod 'GDTMobSDK','4.14.02'
+  pod 'CSJMGdtAdapter', '4.14.30.0'
+  pod 'GDTMobSDK','4.14.30'
   # 百度SDK
-#  pod 'ABUAdBaiduAdapter', :path=>'Frameworks/ABUAdBaiduAdapter'
-#  pod 'BaiduMobAdSDK', '4.901'
+  # pod 'CSJMBaiduAdapter', '5.300.0'
+  # pod 'BaiduMobAdSDK', '5.300'
   # UnityAds
-#  pod 'ABUAdUnityAdapter', :path=>'Frameworks/ABUAdUnityAdapter'
+#  pod 'CSJMUnityAdapter', '4.3.0.0'
 #  pod 'UnityAds', '4.3.0'
   # Admob/GoogleAd
-#  pod 'ABUAdAdmobAdapter', :path=>'Frameworks/ABUAdAdmobAdapter'
-#  pod 'Google-Mobile-Ads-SDK', '9.9.0'
+#  pod 'CSJMAdmobAdapter', '10.0.0.0'
+#  pod 'Google-Mobile-Ads-SDK', '10.0.0'
   # SigmobAd
-#  pod 'ABUAdSigmobAdapter', :path=>'Frameworks/ABUAdSigmobAdapter'
-#  pod 'SigmobAd-iOS', '4.3.0'
+#  pod 'CSJMSigmobAdapter', '4.8.0.0'
+#  pod 'SigmobAd-iOS', '4.8.0'
   # MintegralAdSDK
-#  pod 'ABUAdMintegralAdapter', :path=>'Frameworks/ABUAdMintegralAdapter'
+#  pod 'CSJMMintegralAdapter', '7.3.6.0.0'
   # MintegralAdSDK 使用时请务必使用cocoapod源
-  # pod 'MintegralAdSDK', '7.1.9.0', :subspecs => [
+  # pod 'MintegralAdSDK', '7.3.6.0', :subspecs => [
   # 'SplashAd',
   # 'InterstitialAd',
   # 'NewInterstitialAd',
@@ -71,12 +64,11 @@ target 'Runner' do
   # 'BidInterstitialVideoAd',
   # 'BidRewardVideoAd'
   # ]
-  #  pod 'ABUAdKlevinAdapter', :path=>'Frameworks/ABUAdKlevinAdapter'
-  #  pod 'KlevinAdSDK', '2.9.1.207'
+  #  pod 'CSJMKlevinAdapter', '2.11.0.211.1'
+  #  pod 'KlevinAdSDK', '2.11.0.211'
   # 快手
-#  pod 'KSAdSDK'
-  # 调试
-#  pod 'ABUVisualDebug', :path=>'Frameworks/ABUVisualDebug'
+  #  pod 'CSJMKsAdapter', '3.3.47.0'
+  #  pod 'KSAdSDK', '3.3.47'
 end
 
 post_install do |installer|
