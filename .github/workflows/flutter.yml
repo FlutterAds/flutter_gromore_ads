@@ -30,17 +30,16 @@ jobs:
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
-        #channel: 'stable' # 'dev', 'alpha', default to: 'stable'
-        flutter-version: '2.5.3' # you can also specify exact version of flutter
+        channel: 'stable' # 'dev', 'alpha', default to: 'stable'
     
     # Get flutter dependencies.
-    - run: flutter pub get
+    - run: dart pub get
     
     # Check for any formatting issues in the code.
-    - run: flutter format --set-exit-if-changed .
+    - run: dart format --set-exit-if-changed .
     
     # Statically analyze the Dart code for any errors.
-    - run: flutter analyze .
+    - run: dart analyze .
     
     #####
     # Build app
