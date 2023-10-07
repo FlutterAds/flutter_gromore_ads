@@ -61,7 +61,6 @@ NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
     NSString *appId=call.arguments[@"appId"];
     NSString *config=call.arguments[@"config"];
     int limitPersonalAds=[call.arguments[@"limitPersonalAds"] intValue];
-    NSLog(@"appid:%@",appId);
     BUAdSDKConfiguration *configuration = [BUAdSDKConfiguration configuration];
     // 是否开启调试
     #ifdef DEBUG
