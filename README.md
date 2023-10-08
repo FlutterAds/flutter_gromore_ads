@@ -16,7 +16,7 @@
 
 ## Gromore 有什么特点？
 
-就一点可以帮你较大幅度的提升收益，但是需要技术和运营都懂，其他就不多说了。
+可以帮你提升广告收益，但是需要技术和运营都懂，不懂可以（[🧑🏻‍💻咨询我](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）。
 
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
@@ -29,8 +29,8 @@
 - ✅ 开屏广告
 - ✅ 插屏广告
 - ✅ 横幅广告
-- 🏆 信息流（[Pro 版本](example/README.md)）
-- 🏆 激励视频 ([Pro 版本](example/README.md))
+- 🏆 信息流（[🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）
+- 🏆 激励视频 ([🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md))
 
 ## 入门使用
 
@@ -108,11 +108,11 @@ AdBannerWidget(
 
 ### 🏆 信息流广告
 
-- 查看 [🚀 Pro 版本](example/README.md)
+- 查看 [🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)
 
 ### 🏆 激励视频广告
 
-- 查看 [🚀 Pro 版本](example/README.md)
+- 查看 [🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)
 
 
 ### 设置广告事件监听
@@ -311,4 +311,5 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
 |[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告插件|
+|[flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro)|🏆🏆🏆 可以帮你提升收益 Flutter 广告插件|
 
