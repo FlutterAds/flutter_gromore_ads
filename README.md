@@ -31,6 +31,7 @@
 - ✅ 横幅广告
 - 🏆 信息流（[🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）
 - 🏆 激励视频 ([🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md))
+- 🏆 激励视频-二次激励（可大幅提升收益，[🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）
 
 ## 入门使用
 
