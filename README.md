@@ -4,7 +4,7 @@
 <h3 align="center">一款优质的 Flutter 广告插件（GroMore、穿山甲）</h3>
 
 <p align="center">
-<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v2.0.0-success></a>
+<a href="https://pub.dev/packages/flutter_gromore_ads"><img src=https://img.shields.io/badge/version-v2.1.0-success></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/badge/platform-iOS%20%7C%20Android-brightgreen></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml"><img src="https://github.com/FlutterAds/flutter_gromore_ads/actions/workflows/flutter.yml/badge.svg?branch=develop"></a>
 <a href="https://github.com/FlutterAds/flutter_gromore_ads"><img src=https://img.shields.io/github/stars/FlutterAds/flutter_gromore_ads?color=brightgreen></a>
@@ -35,11 +35,12 @@
 
 ## 入门使用
 
+> 🚀🚀🚀 借助 [flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
 ### 引入依赖
 
 ``` Dart
 dependencies:
-  flutter_gromore_ads: ^2.0.0
+  flutter_gromore_ads: ^2.1.0
 ```
 
 > 下面 `导入 SDK` 是必须的配置，千万别省略了，仔细看文档来配置。
@@ -312,5 +313,5 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
 |[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告插件|
-|[flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro)|🏆🏆🏆 可以帮你提升收益 Flutter 广告插件|
+|[flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
 
