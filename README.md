@@ -16,7 +16,7 @@
 
 ## Gromore 有什么特点？
 
-可以帮你提升广告收益，但是需要技术和运营都懂，不懂可以（[🧑🏻‍💻咨询我](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）。
+可以帮你提升广告收益，但是需要技术和运营都懂，不懂可以（[🧑🏻‍💻咨询我](https://flutterads.github.io/site/)）。
 
 ## 插件特点
 - 🔨 接入简单快速（封装原生端配置，仅需引入即可开始）
@@ -29,13 +29,14 @@
 - ✅ 开屏广告
 - ✅ 插屏广告
 - ✅ 横幅广告
-- 🏆 信息流（[🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）
-- 🏆 激励视频 ([🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md))
-- 🏆 激励视频-二次激励（可大幅提升收益，[🚀 Pro 版](https://github.com/FlutterAds/flutter_gromore_ads/blob/pro/README.md)）
+- 🏆 信息流（[🚀 Pro 版](https://flutterads.github.io/site/)）
+- 🏆 激励视频 ([🚀 Pro 版](https://flutterads.github.io/site/))
+- 🏆 激励视频-二次激励（可大幅提升收益，[🚀 Pro 版](https://flutterads.github.io/site/)）
 
 ## 入门使用
 
-> 🚀🚀🚀 借助 [flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
+> 🚀🚀🚀 借助 [flutter_gromore_pro](https://flutterads.github.io/site/) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
+
 ### 引入依赖
 
 ``` Dart
@@ -306,6 +307,7 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |歌**|88|大佬 666|
 |Co**|66|大佬 888|
 |At**|200|大佬给力，帮我节省了很多时间|
+|向**|200|新版本解决了我的问题，感谢大佬|
 
 ## FlutterAds 广告插件系列
 |插件|描述|
@@ -313,5 +315,5 @@ bool result = await FlutterGromoreAds.requestIDFA;
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
 |[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告插件|
-|[flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
+|[flutter_gromore_pro](https://flutterads.github.io/site/)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
 
