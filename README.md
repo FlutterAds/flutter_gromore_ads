@@ -11,7 +11,7 @@
 <a href="https://github.com/FlutterAds/flutter_gromore_ads/blob/develop/LICENSE"><img src=https://img.shields.io/badge/license-MIT-brightgreen></a>
 </p>
 <p align="center">
-<a href="https://www.csjplatform.com/gromore"><img src="https://raw.githubusercontent.com/FlutterAds/site/master/images/gromore/gromore_introduce.jpeg" alt="gromore"/></a>
+<a href="https://flutterads.github.io/site/"><img src="https://raw.githubusercontent.com/FlutterAds/.github/main/gromore_pro_site.png" alt="gromore"/></a>
 </p>
 
 ## Gromore 有什么特点？
