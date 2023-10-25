@@ -183,15 +183,17 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                     .build();
         }
         // 初始化 SDK
-        TTAdSdk.init(activity.getApplicationContext(), gmPangleOption, new TTAdSdk.InitCallback() {
+        TTAdSdk.init(activity.getApplicationContext(),gmPangleOption);
+        TTAdSdk.start(new TTAdSdk.Callback() {
             @Override
             public void success() {
-                result.success(true);
+                result.success(TTAdSdk.isInitSuccess());
             }
 
             @Override
-            public void fail(int code, String message) {
+            public void fail(int i, String s) {
                 result.success(false);
+                Log.e(TAG, "TTAdSdk init start Error code:"+i+" msg:"+s);
             }
         });
     }

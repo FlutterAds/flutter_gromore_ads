@@ -48,7 +48,7 @@ NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
     if (@available(iOS 14, *)) {
         [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
             BOOL requestResult=status == ATTrackingManagerAuthorizationStatusAuthorized;
-            NSLog(@"requestIDFA:%@",requestResult?@"YES":@"NO");
+            NSLog(@"FlutterGromoreAdsPlugin requestIDFA:%@",requestResult?@"YES":@"NO");
             result(@(requestResult));
         }];
     } else {
@@ -81,6 +81,9 @@ NSString *const kGMAdBannerViewId=@"flutter_gromore_ads_banner";
     [BUAdSDKManager startWithAsyncCompletionHandler:^(BOOL success, NSError *error) {
         if (success) {
             result(@(YES));
+        } else {
+            result(@(NO));
+            NSLog(@"FlutterGromoreAdsPlugin initAd error:%@",error.description);
         }
     }];
     
