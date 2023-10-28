@@ -63,7 +63,7 @@ flutter {
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     //GroMore_sdk adapter
-    implementation "com.pangle.cn:mediation-gdt-adapter:4.540.1410.1" //gdt adapter
+    implementation "com.pangle.cn:mediation-gdt-adapter:4.540.1410.3" //gdt adapter
     implementation 'com.qq.e.union:union:4.540.1410'// 广点通广告 SDK
     // 其他厂商参考 https://www.csjplatform.com/union/media/union/download/detail?id=142&docId=27562&osType=android
 }

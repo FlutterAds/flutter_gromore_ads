@@ -1,9 +1,8 @@
-## v2.0.0
-* 从此版本开始，Gromore 插件更新为 Gromore 融合 SDK 版本
-* 升级 iOS SDK 到 `v5.3.6.1`
-* 升级 Android SDK 到 `v5.5.1.5`
+## v2.1.0
+* 🚀🚀🚀 借助 [flutter_gromore_pro](https://github.com/FlutterAds/flutter_gromore_ads/tree/pro) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
+* 升级 iOS SDK 到 `v5.6.0.9`
+* 升级 Android SDK 到 `v5.6.1.6`
 
-> 此版本升级后建议多自测，如有问题请及时反馈。
 ## 2.0.0
 * 增加信息流广告支持
 ## 1.3.2
