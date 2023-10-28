@@ -34,6 +34,10 @@
 - 🏆 激励视频-二次激励（可大幅提升收益，[🚀 Pro 版](https://flutterads.github.io/site/)）
 - 🏆 实时获取 eCPM（上报归因，买量更有效，[🚀 Pro 版](https://flutterads.github.io/site/)）
 
+## 下载体验
+<a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
+> 回复 `Pro` 进行体验
+
 ## 入门使用
  [📃 配置文档](https://github.com/FlutterAds/flutter_gromore_ads/wiki)
 
