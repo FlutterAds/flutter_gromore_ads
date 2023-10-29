@@ -39,7 +39,7 @@
 > 回复 `Pro` 进行体验
 
 ## 入门使用
- [📃 配置文档](https://github.com/FlutterAds/flutter_gromore_ads/wiki)
+ - [📃 配置文档](https://flutterads.github.io/site/start/guide/install.html)
 
 ## FlutterAds 广告插件系列
 |插件|描述|
