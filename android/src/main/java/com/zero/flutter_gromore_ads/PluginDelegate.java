@@ -150,7 +150,6 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
      */
     public void initAd(MethodCall call, final MethodChannel.Result result) {
         String appId = call.argument("appId");
-        String config = call.argument("config");
         int limitPersonalAds = call.argument("limitPersonalAds");
 
         // 构建基础配置
@@ -159,29 +158,10 @@ public class PluginDelegate implements MethodChannel.MethodCallHandler, EventCha
                 .useMediation(true)
                 .debug(BuildConfig.DEBUG)
                 .supportMultiProcess(false);
-        // 离线配置
-        JSONObject localConfigJson = null;
-        if (!TextUtils.isEmpty(config)) {
-            String localConfigStr = FileUtils.getJson(config, activity);
-            try {
-                localConfigJson = new JSONObject(localConfigStr);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
         // 构建配置
-        TTAdConfig gmPangleOption;
-        if (localConfigJson != null) {
-            gmPangleOption = configBuilder
-                    .customController(getTTCustomController(limitPersonalAds == 0))
-                    .setMediationConfig(new MediationConfig.Builder()
-                            .setCustomLocalConfig(localConfigJson)
-                            .build()).build();
-        } else {
-            gmPangleOption = configBuilder
-                    .customController(getTTCustomController(limitPersonalAds == 0))
-                    .build();
-        }
+        TTAdConfig gmPangleOption = configBuilder
+                .customController(getTTCustomController(limitPersonalAds == 0))
+                .build();
         // 初始化 SDK
         TTAdSdk.init(activity.getApplicationContext(),gmPangleOption);
         TTAdSdk.start(new TTAdSdk.Callback() {

@@ -1,8 +1,6 @@
 #import <Flutter/Flutter.h>
 #import "FGMSplashPage.h"
 #import "FGMInterstitialPage.h"
-#import "FGMFeedAdLoad.h"
-#import "FGMFeedAdManager.h"
 
 @interface FlutterGromoreAdsPlugin : NSObject<FlutterPlugin,FlutterStreamHandler>
 @property (strong,nonatomic) FlutterEventSink eventSink;// 事件

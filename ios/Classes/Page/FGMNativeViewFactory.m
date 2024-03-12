@@ -7,7 +7,6 @@
 
 #import "FGMNativeViewFactory.h"
 #import "FGMAdBannerView.h"
-//#import "FGMAdFeedView.h"
 
 @implementation FGMNativeViewFactory
 
