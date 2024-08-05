@@ -38,7 +38,7 @@
 
 ## 📃 接入文档
 
-- [ 🎯 极速接入、快速体验、持续更新](https://github.com/FlutterAds/flutter_pangle_ads/wiki)
+- [ 🎯 极速接入、快速体验、持续更新](https://flutterads.top/)
 
 - [ 💰 变现套件 = 【GroMore】+【AdSpark】+【AdContent】](https://flutterads.top/)
 
