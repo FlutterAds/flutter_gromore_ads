@@ -7,13 +7,13 @@
 * 增加 CI/CD 流程，提高代码质量
 * [🏆 Pro版](https://flutterads.top/) 支持【信息流、激励视频、测试助手、实时收益、预加载】
 
-## v3.0.0
+## 3.0.0
 * 🚀🚀🚀 借助 [Gromore Pro版](https://flutterads.top/) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
 * [🏆 Pro版](https://flutterads.top/) 额外支持【信息流、激励视频、测试助手、实时收益、】
 * 适配 Flutter 新版本
 * 升级 Android&iOS SDK 版本
 
-## v2.1.0
+## 2.1.0
 * 升级 iOS SDK 到 `v5.6.0.9`
 * 升级 Android SDK 到 `v5.6.1.6`
 

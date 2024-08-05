@@ -28,6 +28,7 @@
 - 🏆 二次激励（可有效提升收益）[🚀 Pro 版](https://flutterads.top/)
 - 💰 实时价格 eCPM（上报归因，买量更有效）[🚀 Pro 版](https://flutterads.top/)
 - 🦥 预缓存（预加载，极速展示，高填充率） [🚀 Pro 版](https://flutterads.top/)
+- 🧪 测试助手（精准测试，稳定上线）[🚀 Pro 版](https://flutterads.top/)
 
 ## 📱 下载体验
 <a href="https://www.pgyer.com/app/qrcode/fads"><img src="https://raw.githubusercontent.com/yy1300326388/yy1300326388/main/images/gzh/gzh_qrcode.jpeg" width='100' height='100'></a>
