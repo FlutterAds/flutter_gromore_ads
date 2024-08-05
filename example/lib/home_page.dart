@@ -95,30 +95,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  child: const Text('插竖屏'),
-                  onPressed: () {
-                    showInterstitialAd(AdsConfig.interstitialId);
-                  },
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  child: const Text('插横屏'),
-                  onPressed: () {
-                    showInterstitialAd(AdsConfig.interstitialIdHorizontal);
-                  },
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  child: const Text('插半屏'),
-                  onPressed: () {
-                    showInterstitialAd(AdsConfig.interstitialIdHalf);
-                  },
-                ),
-              ],
+            ElevatedButton(
+              child: const Text('插屏广告'),
+              onPressed: () {
+                showInterstitialAd(AdsConfig.interstitialId);
+              },
             ),
             const SizedBox(height: 20),
             const Center(
@@ -188,7 +169,6 @@ class _HomePageState extends State<HomePage> {
     try {
       bool result = await FlutterGromoreAds.initAd(
         AdsConfig.appId,
-        config: AdsConfig.config,
         limitPersonalAds: 1,
       );
       _result = "广告SDK 初始化${result ? '成功' : '失败'}";

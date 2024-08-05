@@ -25,37 +25,12 @@ class AdsConfig {
     return '5324024';
   }
 
-  /// 获取 App Config
-  static String get config {
-    if (Platform.isIOS) {
-      return 'ios_config_5209496';
-    }
-    return 'android_config_5216573.json';
-  }
-
   /// 获取开屏广告位id
-  static String get splashId {
-    return '102420790';
-  }
+  static String get splashId => '102420790';
 
   /// 获取插屏广告位id 竖屏
   static String get interstitialId => '102421471';
 
-  /// 获取插屏广告位id 横屏
-  static String get interstitialIdHorizontal => '102428790';
-
-  /// 获取插屏广告位id 半屏
-  static String get interstitialIdHalf => '102428146';
-
-  /// 获取激励视频广告位id
-  static String get rewardVideoId => '102421199';
-
   /// 获取 Banner 广告位id
   static String get bannerId => '102424305';
-
-  /// 获取 Feed 信息流广告位 id
-  static String get feedId => '102420797';
-
-  /// 获取 Draw 信息流广告位 id
-  static String get drawFeedId => '102420797';
 }

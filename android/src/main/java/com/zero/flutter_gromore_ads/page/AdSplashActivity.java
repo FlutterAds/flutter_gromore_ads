@@ -135,8 +135,9 @@ public class AdSplashActivity extends AppCompatActivity implements TTAdNative.CS
         return getResources().getIdentifier(resName, "mipmap", getPackageName());
     }
 
+
     @Override
-    public void onSplashLoadSuccess() {
+    public void onSplashLoadSuccess(CSJSplashAd csjSplashAd) {
         Log.d(TAG, "onSplashLoadSuccess");
         AdEventHandler.getInstance().sendEvent(new AdEvent(this.posId, AdEventAction.onAdLoaded));
     }

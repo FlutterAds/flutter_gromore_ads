@@ -122,7 +122,7 @@
 }
 
 
-- (void)splashVideoAdDidPlayFinish:(nonnull BUSplashAd *)splashAd didFailWithError:(nonnull NSError *)error {
+- (void)splashVideoAdDidPlayFinish:(BUSplashAd *)splashAd didFailWithError:(NSError *)error {
     NSLog(@"%s",__FUNCTION__);
 }
 
