@@ -30,6 +30,7 @@
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
@@ -92,11 +93,13 @@
        <activity
            android:name="com.qq.e.ads.PortraitADActivity"
            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+           android:exported="false"
            android:screenOrientation="portrait" />
        <activity
            android:name="com.qq.e.ads.LandscapeADActivity"
            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
            android:screenOrientation="landscape"
+           android:exported="false"
            tools:replace="android:screenOrientation" />
 
        <!-- 声明SDK所需要的组件 -->
@@ -107,7 +110,8 @@
 
        <activity
            android:name="com.qq.e.ads.ADActivity"
-           android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+           android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+           android:exported="false" />
        <!-- GDT end================== -->
 
    </application>
