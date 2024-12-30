@@ -49,6 +49,7 @@
 |[flutter_gromore_pro](https://flutterads.top/)|🏆🏆🏆 帮你大幅提升广告收益，发挥出最大的用户价值|
 |[flutter_gromore_ads](https://github.com/FlutterAds/flutter_gromore_ads)|字节跳动、穿山甲、GroMore 聚合 Flutter 广告开源版插件|
 |[flutter_pangle_ads](https://github.com/FlutterAds/flutter_pangle_ads)|字节跳动、穿山甲 Flutter 广告插件|
+|[flutter_pangle_global_ads](https://github.com/FlutterAds/flutter_pangle_global_ads)|字节跳动、穿山甲国际版 Flutter 广告插件 ~ [🚀 Pro 版](https://global.flutterads.top/)|
 |[flutter_qq_ads](https://github.com/FlutterAds/flutter_qq_ads)|腾讯广告、广点通、优量汇 Flutter 广告插件|
 |[flutter_adspark](https://github.com/FlutterAds/flutter_adspark)|巨量广告/穿山甲的广告监测、增长分析、归因上报、事件管理 Flutter 版插件|
-|[flutter_adcontent](https://github.com/FlutterAds/flutter_adcontent)|穿山甲内容输出 Flutter 版插件，支持短剧和小视频|
+|[flutter_adcontent](https://github.com/FlutterAds/flutter_adcontent)|穿山甲内容输出 Flutter 版插件，支持短剧、小视频、短故事(小说)|
