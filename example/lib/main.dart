@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'pro_page.dart';
 
 void main() {
   // 绑定引擎
@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
+      home: ProPage(),
     );
   }
 }

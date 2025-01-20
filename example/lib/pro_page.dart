@@ -13,7 +13,7 @@ class _ProPageState extends State<ProPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pro 版付费功能'),
+        title: const Text('Pro 版体验'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -22,20 +22,20 @@ class _ProPageState extends State<ProPage> {
               child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  '此功能是插件 Pro 版付费功能，需要购买插件后才能使用\n请联系微信：toponelan 咨询购买并获得技术支持',
+                  '开源版不提供示例，请扫码下载 Pro 版体验',
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
-            Image.asset(
-              'assets/images/img_pro.png',
+            Image.network(
+              'https://flutterads.top/gzh_qrcode.webp',
               fit: BoxFit.cover,
             ),
             const Center(
               child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
-                  '日活 10W 以上，可咨询其他合作模式，目前已有百万级别的客户在合作，获得了非常好的收益提升',
+                  '扫码关注公众号回复【Pro】，即可下载体验',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.purple,
