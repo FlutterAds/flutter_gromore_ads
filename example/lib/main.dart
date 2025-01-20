@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gromore_ads/flutter_gromore_ads.dart';
 
 import 'pro_page.dart';
 
@@ -7,6 +8,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // 启动
   runApp(const MyApp());
+
+  // 初始化
+  init();
 }
 
 class MyApp extends StatefulWidget {
@@ -23,4 +27,21 @@ class _MyAppState extends State<MyApp> {
       home: ProPage(),
     );
   }
+}
+
+/// 初始化
+Future<void> init() async {
+  // 设置监听
+  FlutterGromoreAds.onEventListener((event) {
+    print('🎉🎉🎉 FlutterAds ==> $event');
+  });
+
+  // 初始化
+  await FlutterGromoreAds.initAd(
+    '1234567890',
+    config: 'config.json',
+  );
+
+  // 展示开屏广告
+  await FlutterGromoreAds.showSplashAd('1234567890');
 }

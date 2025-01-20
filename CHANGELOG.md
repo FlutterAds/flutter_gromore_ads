@@ -3,6 +3,7 @@
 * 适配新版本 Flutter，兼容 Android namespace
 * 升级 iOS SDK 到 `v5.9.1.5`
 * 升级 Android SDK 到 `v5.9.2.8`
+* 插件迁移 `plugin_platform_interface` 方便更多平台的后续适配，比如鸿蒙
 * [🏆 Pro版](https://flutterads.top/) 支持【信息流、激励视频、测试助手、实时收益、预加载】
 
 ## 3.1.0
