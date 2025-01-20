@@ -1,3 +1,10 @@
+## 3.2.0
+* 🚀🚀🚀 借助 [Gromore Pro版](https://flutterads.top/) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
+* 适配新版本 Flutter，兼容 Android namespace
+* 升级 iOS SDK 到 `v5.9.1.5`
+* 升级 Android SDK 到 `v5.9.2.8`
+* [🏆 Pro版](https://flutterads.top/) 支持【信息流、激励视频、测试助手、实时收益、预加载】
+
 ## 3.1.0
 * 🚀🚀🚀 借助 [Gromore Pro版](https://flutterads.top/) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
 * 升级 iOS SDK 到 `v5.9.1.2`

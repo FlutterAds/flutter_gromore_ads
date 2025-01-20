@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_gromore_ads'
-  s.version          = '3.0.0'
+  s.version          = '3.2.0'
   s.summary          = '一款优质的 Flutter 广告插件（GroMore、穿山甲）'
   s.description      = <<-DESC
   FlutterAds 致力于构建优质的 Flutter 广告插件
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   # 这里仅加载 framework，在 Podfile 中加载 Ads-Mediation-CN 要去掉 framework 的加载，防止冲突
   # s.vendored_frameworks = 'Frameworks/Ads-Mediation-CN/Ads-Mediation-CN/ABUAdSDK.framework'
   # 依赖地址：https://github.com/CocoaPods/Specs/tree/master/Specs/9/b/0/Ads-Fusion-CN-Beta/
-  s.dependency 'Ads-Fusion-CN-Beta', '5.9.1.2'
+  s.dependency 'Ads-Fusion-CN-Beta', '5.9.1.5'
   s.platform = :ios, '9.0'
   s.static_framework = true
   # Flutter.framework does not contain a i386 slice.
