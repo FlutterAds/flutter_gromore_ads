@@ -1,3 +1,10 @@
+## v3.2.1
+
+* 🚀 推荐使用【[Gromore Pro](https://flutterads.top/)】 让您的广告收益翻倍
+* 📱 增加初始化传入经纬度参数
+* 📱 增加信息流设置静音参数
+* ⚡️ 优化 Android 类名冲突问题
+
 ## 3.2.0
 * 🚀🚀🚀 借助 [Gromore Pro版](https://flutterads.top/) 可以帮你大幅提升广告收益，发挥出最大的用户价值 🏆
 * 适配新版本 Flutter，兼容 Android namespace
