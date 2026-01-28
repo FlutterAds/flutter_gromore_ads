@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     # This job will run on macos virtual machine
-    runs-on: macos-13
+    runs-on: macos
     steps:
     
     # Setup Java environment in order to build the Android app.
